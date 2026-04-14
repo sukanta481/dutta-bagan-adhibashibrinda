@@ -24,40 +24,18 @@ function initAnimations() {
   window._animationsInitialised = true;
 
   /* ============================================================
-     1. PAGE-LOAD ENTRANCE — cinematic fade-in on hero
+     1. PAGE-LOAD ENTRANCE — scroll hint fade
      ============================================================ */
-  const introTl = gsap.timeline({ delay: 0.3 });
-
-  introTl
-    .from('#site-header', {
-      opacity: 0,
-      y: -16,
-      duration: 0.7,
-      ease: 'power2.out'
-    })
-    .from('#hero-scroll-hint', {
-      opacity: 0,
-      duration: 0.6
-    }, '-=0.2');
-
-
-  /* ============================================================
-     2. GLOBAL HEADER — toggle scrolled state past hero
-     ============================================================ */
-  ScrollTrigger.create({
-    trigger: '#section-hero',
-    start: 'bottom 90%',
-    onEnter: () => {
-      document.getElementById('site-header').classList.add('is-scrolled');
-    },
-    onLeaveBack: () => {
-      document.getElementById('site-header').classList.remove('is-scrolled');
-    }
+  gsap.from('#hero-scroll-hint', {
+    opacity: 0,
+    duration: 0.6,
+    delay: 0.5,
+    ease: 'power2.out'
   });
 
 
   /* ============================================================
-     3. ABOUT US SECTION ANIMATIONS
+     2. ABOUT US SECTION ANIMATIONS
      ============================================================ */
 
   /* Fade-up entrance for about content elements */
@@ -99,24 +77,6 @@ function initAnimations() {
     ease:     'power3.out',
     scrollTrigger: {
       trigger:       '#section-achievements',
-      start:         'top 75%',
-      toggleActions: 'play none none none'
-    }
-  });
-
-
-  /* ============================================================
-     4b. THEME HIGHLIGHT SECTION ANIMATIONS
-     ============================================================ */
-
-  gsap.from('#section-theme-highlight .anim-fadeup', {
-    opacity:  0,
-    y:        40,
-    duration: 0.9,
-    stagger:  0.15,
-    ease:     'power3.out',
-    scrollTrigger: {
-      trigger:       '#section-theme-highlight',
       start:         'top 75%',
       toggleActions: 'play none none none'
     }

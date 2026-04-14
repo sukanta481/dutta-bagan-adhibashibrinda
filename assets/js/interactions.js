@@ -9,16 +9,6 @@ $(function () {
   function initInteractions() {
 
   /* ============================================================
-     NAV LINK HOVER — ink-underline effect
-     ============================================================ */
-  $('.hero-nav-links a').each(function () {
-    // Each link needs a span wrapper for the underline trick
-    const text = $(this).text();
-    $(this).html('<span class="link-inner">' + text + '</span>');
-  });
-
-
-  /* ============================================================
      VIDEO PiP — click to expand back toward center (UX extra)
      Works after GSAP has moved video to corner.
      ============================================================ */
@@ -83,22 +73,6 @@ $(function () {
 (function injectCursorStyles() {
   const style = document.createElement('style');
   style.textContent = `
-    /* Nav link underline ink effect */
-    .hero-nav-links a { position: relative; }
-    .hero-nav-links a .link-inner {
-      position: relative;
-      display: inline-block;
-    }
-    .hero-nav-links a .link-inner::after {
-      content: '';
-      position: absolute;
-      bottom: -2px; left: 0;
-      width: 0; height: 1px;
-      background: var(--accent-red-soft);
-      transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .hero-nav-links a:hover .link-inner::after { width: 100%; }
-
     /* PiP click expand hint */
     #hero-video-pip { cursor: pointer; }
     #hero-video-pip.pip--expanded {

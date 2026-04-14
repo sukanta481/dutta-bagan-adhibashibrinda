@@ -16,18 +16,34 @@
         return response.text();
       })
       .then((html) => {
-        mount.outerHTML = html;
+        // Keep the mount node so Vue patching does not permanently remove the insertion point.
+        mount.innerHTML = html;
       });
   }
 
-  window.layoutReady = Promise.all([
+  function loadLayout() {
+    return Promise.all([
     loadPartial('site-header', 'includes/header.html'),
     loadPartial('site-footer', 'includes/footer.html')
-  ])
+    ]);
+  }
+
+  window.layoutReady = loadLayout()
     .then(() => {
       document.dispatchEvent(new Event('layout:ready'));
     })
     .catch((error) => {
       console.error(error);
     });
+
+  // Re-apply after Vue mounts in case virtual DOM patching cleared placeholder contents.
+  document.addEventListener('vue:mounted', function () {
+    loadLayout()
+      .then(() => {
+        document.dispatchEvent(new Event('layout:ready'));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
 }());

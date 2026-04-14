@@ -1,27 +1,49 @@
-<!-- Editorial split navigation -->
-<nav class="hero-nav" id="hero-nav">
-  <ul class="hero-nav-links hero-nav-links--left">
-    <li><a href="#section-about">About</a></li>
-    <li><a href="#section-gallery">Gallery</a></li>
-  </ul>
-  <a href="#section-hero" class="hero-nav-brand" aria-label="Adhibashibrinda — home">
-    <img src="assets/images/Dutta bagan.png" alt="Adhibashibrinda" class="nav-logo-img">
+<!-- ============================================================
+     SITE HEADER — transparent at top, solid white on scroll
+     ============================================================ -->
+<header class="site-header" id="siteHeader">
+  <a href="index.html" class="site-header__logo" aria-label="Adhibashibrinda — home">
+    <img src="assets/images/Dutta bagan.png" alt="Adhibashibrinda">
   </a>
-  <ul class="hero-nav-links hero-nav-links--right">
-    <li><a href="#section-footer">Contact</a></li>
+  <ul class="site-header__nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li>
+      <a href="gallery.html">Gallery</a>
+      <ul class="site-header__dropdown">
+        <li><a href="gallery.html#gallery-2026">2026</a></li>
+        <li><a href="gallery.html#gallery-2025">2025</a></li>
+        <li><a href="gallery-2024.html">2024</a></li>
+      </ul>
+    </li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
-</nav>
+  <button class="site-header__toggle" id="siteHeaderToggle" aria-label="Open menu">
+    <i class="bi bi-list"></i>
+  </button>
+</header>
 
-<!-- Sticky Header — mirrors the split layout -->
-<div class="sticky-header" id="sticky-header">
-  <ul class="hero-nav-links hero-nav-links--left">
-    <li><a href="#section-about">About</a></li>
-    <li><a href="#section-gallery">Gallery</a></li>
-  </ul>
-  <a href="#section-hero" class="hero-nav-brand" aria-label="Adhibashibrinda — home">
-    <img src="assets/images/Dutta bagan.png" alt="Adhibashibrinda" class="nav-logo-img">
-  </a>
-  <ul class="hero-nav-links hero-nav-links--right">
-    <li><a href="#section-footer">Contact</a></li>
-  </ul>
+<div class="menu-backdrop" id="menuBackdrop"></div>
+
+<!-- Menu Backdrop Blur (clicking closes menu) -->
+<div class="menu-drawer-backdrop" id="menuDrawerBackdrop"></div>
+
+<!-- Mobile Menu Top Drawer -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay">
+  <img src="assets/images/mandala.svg" class="mobile-menu-mandala" alt="" aria-hidden="true">
+  <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+  </button>
+  <div class="mobile-menu-content">
+    <a href="index.html" class="mobile-menu-link menu-link-anim">Home</a>
+    <a href="about.html" class="mobile-menu-link menu-link-anim">About</a>
+    <a href="gallery.html" class="mobile-menu-link menu-link-anim">Gallery</a>
+    <div class="mobile-menu-years menu-pills-anim">
+      <a href="gallery.html#gallery-2026" class="mobile-menu-year">2026</a>
+      <a href="gallery.html#gallery-2025" class="mobile-menu-year">2025</a>
+      <a href="gallery-2024.html" class="mobile-menu-year">2024</a>
+    </div>
+    <a href="contact.html" class="mobile-menu-link menu-link-anim">Contact</a>
+  </div>
+  <p class="mobile-menu-footer">INFO@DUTTABAGAN.COM</p>
 </div>
