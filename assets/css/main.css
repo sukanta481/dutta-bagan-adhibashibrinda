@@ -12,6 +12,248 @@ body {
   overflow-x: hidden;
 }
 
+/* App wrapper overflow control */
+#app {
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ============================================================
+   ZONE 1 — Dark Red color-blocked zone
+   Wraps: Hero, Marquee, About, Archives
+   ============================================================ */
+.zone-1-red {
+  background-color: #b22222;
+  color: #FDFBF7;
+  position: relative;
+  padding-bottom: 4rem;
+}
+
+/* Zone 1 heading defaults */
+.zone-1-red h1,
+.zone-1-red h2,
+.zone-1-red h3,
+.zone-1-red h4 {
+  color: #FDFBF7;
+}
+
+/* ============================================================
+   ZONE 2 — Red-Tinted Alabaster color-blocked zone
+   Wraps: Stats, APSS 2024, Gallery, Contact
+   ============================================================ */
+.zone-2-light {
+  background-color: #F8EFEF;
+  padding: 5rem 0;
+  position: relative;
+}
+
+/* Zone 2 typography inversion */
+.zone-2-light h1,
+.zone-2-light h2,
+.zone-2-light h3,
+.zone-2-light h4 {
+  color: #b22222;
+}
+
+.zone-2-light p,
+.zone-2-light span,
+.zone-2-light li,
+.zone-2-light a:not(.achievements-cta) {
+  color: #333333;
+}
+
+/* Zone 2 eyebrow text — Aged Brass */
+.zone-2-light .gallery-eyebrow,
+.zone-2-light .theme-highlight-eyebrow,
+.zone-2-light .contact-intro-label {
+  color: #D4AF37;
+}
+
+/* ============================================================
+   ZONE 3 — Dark Red footer anchor (editorial heritage aesthetic)
+   ============================================================ */
+.zone-3-footer {
+  background-color: #b22222;
+  color: #FDFBF7;
+}
+
+.zone-3-footer footer {
+  background: transparent;
+}
+
+/* Zone 3 heading defaults */
+.zone-3-footer h1,
+.zone-3-footer h2,
+.zone-3-footer h3,
+.zone-3-footer h4,
+.zone-3-footer h5 {
+  color: #FDFBF7;
+}
+
+/* Footer brand name */
+.footer-brand-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: #FDFBF7;
+  line-height: 1.1;
+}
+
+/* Footer brand Bengali text */
+.footer-brand-bengali {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: #FDFBF7;
+  opacity: 0.85;
+}
+
+/* Footer brand tagline */
+.footer-brand-tagline {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: #FDFBF7;
+  opacity: 0.6;
+  line-height: 1.5;
+}
+
+/* Footer brand logo */
+.footer-brand-logo {
+  display: block;
+  width: min(320px, 85%);
+  height: auto;
+}
+
+/* Footer column headings */
+.footer-col-heading {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #D4AF37;
+  margin-bottom: 1.25rem;
+}
+
+/* Footer links list */
+.footer-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-link {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: #FDFBF7;
+  opacity: 0.7;
+  text-decoration: none;
+  transition: opacity 0.25s ease;
+}
+
+.footer-link:hover {
+  opacity: 1;
+  color: #FDFBF7;
+  text-decoration: none;
+}
+
+/* Footer contact list */
+.footer-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: #FDFBF7;
+  opacity: 0.7;
+  line-height: 1.5;
+}
+
+.footer-contact-icon {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: #FDFBF7;
+  opacity: 0.8;
+}
+
+/* Footer copyright */
+.footer-copyright {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: #FDFBF7;
+  opacity: 0.6;
+}
+
+/* Footer social icons */
+.footer-social-icons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.25rem;
+}
+
+.footer-social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #FDFBF7;
+  opacity: 0.7;
+  text-decoration: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.footer-social-icon:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  color: #FDFBF7;
+}
+
+/* ============================================================
+   AMBIENT ART — isolated SVG watermarks (no tiling)
+   ============================================================ */
+
+/* Zone 1: Mandala — top-right, slow spin */
+.zone-1-mandala {
+  position: absolute;
+  top: 5%;
+  right: -10vw;
+  width: min(45vw, 500px);
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+  filter: brightness(0) saturate(100%) invert(96%) sepia(4%) saturate(100%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  animation: spin-slow 120s linear infinite;
+}
+
+/* Zone 2: Paisley — bottom-left, static, colored #b22222 */
+.zone-2-paisley {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: min(35vw, 400px);
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 0;
+  /* Force red color for visibility on ivory background */
+  filter: brightness(0) saturate(100%) invert(24%) sepia(85%) saturate(3500%) hue-rotate(350deg) brightness(90%) contrast(95%);
+}
+
+@keyframes spin-slow {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* ── Design Tokens ── */
 
 /* ============================================================
@@ -28,7 +270,7 @@ body {
   overflow: hidden;
 }
 
-#app > *:not(.ambient-bg) {
+#app > *:not(.ambient-bg):not(.site-header) {
   position: relative;
   z-index: 2;
 }
@@ -478,6 +720,49 @@ body {
   font-family: 'Playfair Display', serif;
 }
 
+/* 2025 archive card typography (Poppins, bold, slightly larger) */
+.archive-card-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.archive-card-main {
+  color: #b22222;
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2.8vw, 2rem);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.archive-card-art {
+  color: #b22222;
+  font-weight: 700;
+  font-size: clamp(0.95rem, 2vw, 1.35rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-top: 2px;
+}
+
+.archive-card-year {
+  color: #b22222;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 4.4vw, 3.9rem);
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.archive-card-cta {
+  display: inline-block;
+  color: #000000;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.68rem, 1.1vw, 0.95rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #D4AF37;
+  padding-bottom: 2px;
+}
+
 /* ============================================================
    ACHIEVEMENTS SECTION — light background with stats
    ============================================================ */
@@ -826,10 +1111,11 @@ body {
   gap: clamp(24px, 3vw, 48px);
   align-items: start;
   width: 100%;
-  background: rgba(255, 255, 255, 0.78);
-  box-shadow: var(--shadow-card);
+  background: transparent;
+  box-shadow: none;
   padding: clamp(20px, 2vw, 32px);
   border-radius: 14px;
+  border: 1px solid rgba(178, 34, 34, 0.1);
 }
 
 /* Image placeholder */
@@ -843,8 +1129,9 @@ body {
   aspect-ratio: 1 / 1;
   border-radius: 12px;
   overflow: hidden;
-  background: #e8e4df;
+  background: #FFFFFF;
   position: relative;
+  box-shadow: 0 4px 20px rgba(178, 34, 34, 0.05);
 }
 
 .skeleton-image-placeholder .skeleton-shimmer {
@@ -969,7 +1256,7 @@ body {
   font-size: 0.75rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #D4AF37;
   margin-bottom: 12px;
 }
 
@@ -977,7 +1264,7 @@ body {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
   font-size: clamp(2rem, 4vw, 3rem);
-  color: #ffffff;
+  color: #b22222;
   margin: 0;
 }
 
@@ -1006,13 +1293,14 @@ body {
 .gallery-placeholder {
   width: 100%;
   height: 240px;
-  background: linear-gradient(135deg, #e8e4df 0%, #d4cfc9 50%, #e8e4df 100%);
+  background: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
   border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(178, 34, 34, 0.05);
 }
 
 .gallery-placeholder::after {
@@ -1530,10 +1818,9 @@ body {
   transform: translate3d(0, 0, 0);
 }
 
-/* Primary text: "অধিবাসীবৃন্দ"
-   High-contrast Display Serif (Playfair Display) — 100% opacity */
+/* Primary marquee text uses Poppins */
 .marquee-text-primary {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: clamp(1.8rem, 4.5vw, 3.5rem);
   color: #FDFBF7;
@@ -1544,10 +1831,9 @@ body {
   padding: 10px 0;
 }
 
-/* Secondary text: "COMMITTEE • DUTTA BAGAN"
-   Clean Sans-serif (Montserrat) — uppercase, wide tracking, 50% opacity */
+/* Secondary marquee text uses Poppins */
 .marquee-text-secondary {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: clamp(0.7rem, 1.8vw, 1rem);
   color: #FDFBF7;
