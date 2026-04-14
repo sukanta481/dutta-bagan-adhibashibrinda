@@ -20,6 +20,23 @@
   <div id="app">
 
     <!-- ============================================================
+         GLOBAL HEADER — editorial split, always visible
+         ============================================================ -->
+    <header class="site-header" id="site-header">
+      <ul class="hero-nav-links hero-nav-links--left">
+        <li><a href="#section-about">About</a></li>
+        <li><a href="#section-motifs">Legacy</a></li>
+      </ul>
+      <a href="#section-hero" class="hero-nav-brand" aria-label="Adhibashibrinda — home">
+        <img src="assets/images/Dutta bagan.png" alt="Adhibashibrinda" class="nav-logo-img">
+      </a>
+      <ul class="hero-nav-links hero-nav-links--right">
+        <li><a href="#section-gallery">Gallery</a></li>
+        <li><a href="#section-footer">Contact</a></li>
+      </ul>
+    </header>
+
+    <!-- ============================================================
          AMBIENT BACKGROUND LAYER — non-interactive decorative SVGs
          ============================================================ -->
     <div class="ambient-bg" aria-hidden="true">
@@ -30,8 +47,7 @@
     </div>
 
     <!-- ============================================================
-         HERO SECTION — Fixed video background with parallax
-         Video stays fixed, content scrolls on top
+         HERO SECTION
          ============================================================ -->
     <section id="section-hero" class="hero-outer">
       <div class="hero-sticky">
@@ -42,34 +58,6 @@
             <source src="assets/hero.mp4" type="video/mp4">
           </video>
           <div class="hero-video-overlay" aria-hidden="true"></div>
-        </div>
-
-        <div id="site-header">
-          <nav class="hero-nav" id="hero-nav">
-            <ul class="hero-nav-links hero-nav-links--left">
-              <li><a href="#section-about">About</a></li>
-              <li><a href="#section-gallery">Gallery</a></li>
-            </ul>
-            <a href="#section-hero" class="hero-nav-brand" aria-label="Adhibashibrinda — home">
-              <img src="assets/images/Dutta bagan.png" alt="Adhibashibrinda" class="nav-logo-img">
-            </a>
-            <ul class="hero-nav-links hero-nav-links--right">
-              <li><a href="#section-footer">Contact</a></li>
-            </ul>
-          </nav>
-
-          <div class="sticky-header" id="sticky-header">
-            <ul class="hero-nav-links hero-nav-links--left">
-              <li><a href="#section-about">About</a></li>
-              <li><a href="#section-gallery">Gallery</a></li>
-            </ul>
-            <a href="#section-hero" class="hero-nav-brand" aria-label="Adhibashibrinda — home">
-              <img src="assets/images/Dutta bagan.png" alt="Adhibashibrinda" class="nav-logo-img">
-            </a>
-            <ul class="hero-nav-links hero-nav-links--right">
-              <li><a href="#section-footer">Contact</a></li>
-            </ul>
-          </div>
         </div>
 
         <!-- Scroll indicator -->

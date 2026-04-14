@@ -29,7 +29,7 @@ function initAnimations() {
   const introTl = gsap.timeline({ delay: 0.3 });
 
   introTl
-    .from('#hero-nav', {
+    .from('#site-header', {
       opacity: 0,
       y: -16,
       duration: 0.7,
@@ -42,21 +42,16 @@ function initAnimations() {
 
 
   /* ============================================================
-     2. STICKY HEADER TOGGLE
+     2. GLOBAL HEADER — toggle scrolled state past hero
      ============================================================ */
-
-  gsap.set('#hero-nav', { clearProps: 'opacity,transform,visibility' });
-
-  /* Show sticky header when scrolling past hero */
   ScrollTrigger.create({
     trigger: '#section-hero',
-    start: 'bottom top',
+    start: 'bottom 90%',
     onEnter: () => {
-      document.getElementById('sticky-header').classList.add('is-visible');
+      document.getElementById('site-header').classList.add('is-scrolled');
     },
     onLeaveBack: () => {
-      document.getElementById('sticky-header').classList.remove('is-visible');
-      gsap.set('#hero-nav', { clearProps: 'opacity,transform,visibility' });
+      document.getElementById('site-header').classList.remove('is-scrolled');
     }
   });
 
