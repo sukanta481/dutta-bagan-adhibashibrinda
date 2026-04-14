@@ -14,7 +14,11 @@ createApp({
 
     // Split theme name into individual letter spans for GSAP animation
     const themeLetters = ref([]);
-    onMounted(() => {
+    onMounted(async () => {
+      if (window.layoutReady && typeof window.layoutReady.then === 'function') {
+        await window.layoutReady;
+      }
+
       themeLetters.value = themeName.value.split('').map(char => ({
         char,
         isSpace: char === ' '

@@ -6,6 +6,7 @@
  */
 
 $(function () {
+  function initInteractions() {
 
   /* ============================================================
      NAV LINK HOVER — ink-underline effect
@@ -65,11 +66,19 @@ $(function () {
     $(this).find('.photo-caption').stop(true).slideUp(200);
   });
 
+  }
+
+  if (window.layoutReady && typeof window.layoutReady.then === 'function') {
+    window.layoutReady.then(initInteractions);
+  } else {
+    initInteractions();
+  }
+
 });
 
 
 /* ============================================================
-   CURSOR DOT CSS — injected inline so no extra file needed
+   INLINE UI STYLES — injected so no extra file needed
    ============================================================ */
 (function injectCursorStyles() {
   const style = document.createElement('style');

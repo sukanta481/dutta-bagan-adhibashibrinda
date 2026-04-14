@@ -6,15 +6,69 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  background-color: #FAF8F5;
+  background-color: #b22222;
   color: var(--text-body);
   font-family: 'DM Sans', sans-serif;
   overflow-x: hidden;
 }
 
 /* ── Design Tokens ── */
+
+/* ============================================================
+   AMBIENT BACKGROUND LAYER — non-interactive decorative SVGs
+   ============================================================ */
+.ambient-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#app > *:not(.ambient-bg) {
+  position: relative;
+  z-index: 2;
+}
+
+/* Image 1: The Spinner (Mandala) — slow rotation */
+.ambient-mandala {
+  position: absolute;
+  top: -10%;
+  right: -15vw;
+  width: min(50vw, 600px);
+  opacity: 0.14;
+  pointer-events: none;
+  z-index: 0;
+  /* Force Warm Ivory color */
+  filter: brightness(0) saturate(100%) invert(96%) sepia(4%) saturate(100%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  animation: spin-slow 120s linear infinite;
+}
+
+/* Image 2: The Static Anchor (Paisley) — no motion */
+.ambient-paisley {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: min(40vw, 450px);
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+  /* Force Warm Ivory color */
+  filter: brightness(0) saturate(100%) invert(96%) sepia(4%) saturate(100%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
+/* Slow spin animation for mandala */
+@keyframes spin-slow {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 :root {
-  --bg-base:          #FAF8F5;
+  --bg-base:          #b22222;
   --bg-section:       #F2EEE8;
   --bg-dark:          #1A1410;
 
@@ -40,21 +94,13 @@ body {
    Video stays fixed, content scrolls on top
    ============================================================ */
 .hero-video-fixed {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   z-index: 0;
   overflow: hidden;
-  opacity: 1;
-  transition: opacity 0.5s ease;
-}
-
-.hero-video-fixed.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
 }
 
 .hero-video-fixed video {
@@ -94,20 +140,18 @@ body {
    ============================================================ */
 .hero-outer {
   position: relative;
-  height: 200vh;   /* 100vh scroll travel: enough for text fade + brief video-only pause */
+  height: 100vh;
 }
 
-/* Sticky stage: viewport-height */
 .hero-sticky {
-  position: sticky;
-  top: 0;
+  position: relative;
   height: 100vh;
   overflow: hidden;
 }
 
 
 /* ============================================================
-   HERO NAV
+   EDITORIAL HEADER — symmetrical split nav over hero
    ============================================================ */
 .hero-nav {
   position: absolute;
@@ -117,49 +161,59 @@ body {
   z-index: 100;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 3rem;
-  padding: 20px 5vw;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 24px 48px;
   background: transparent;
-  opacity: 1;
 }
 
-/* Logo container */
+/* Centered brand — absolutely positioned so side groups stay balanced */
 .hero-nav-brand {
-  position: relative;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   flex-shrink: 0;
   pointer-events: auto;
+  text-decoration: none;
 }
 
-/* Logo */
 .nav-logo-img {
-  height: 140px;
+  height: 96px;
   width: auto;
   display: block;
   user-select: none;
 }
 
-/* Nav links */
+/* Left & right nav groups */
 .hero-nav-links {
   list-style: none;
   display: flex;
-  gap: 2.8rem;
+  align-items: center;
+  gap: 2.75rem;
+  margin: 0;
+  padding: 0;
   pointer-events: auto;
 }
 
+.hero-nav-links--left  { justify-content: flex-start; }
+.hero-nav-links--right { justify-content: flex-end; }
+
 .hero-nav-links a {
   font-family: 'DM Sans', sans-serif;
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.16em;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: #F0EBE3;
+  color: #FDFBF7;
   text-decoration: none;
+  transition: opacity 0.2s ease;
 }
 
-.hero-nav-links a:hover {
+.hero-nav-links a:hover,
+.hero-nav-links a:focus-visible {
   opacity: 0.7;
 }
 
@@ -258,177 +312,166 @@ body {
 
 
 /* ============================================================
-   FIXED ABOUT US BACKGROUND — parallax
-   Image stays fixed, content scrolls on top
-   ============================================================ */
-.about-bg-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 1;
-  overflow: hidden;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
-}
-
-.about-bg-fixed.is-visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.about-bg-fixed img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Dark gradient overlay for text legibility */
-.about-bg-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(10, 8, 6, 0.7);
-  pointer-events: none;
-  z-index: 1;
-}
-
-
-/* ============================================================
-   ABOUT US SECTION — scrolls over fixed background
+   ABOUT US SECTION — Bootstrap grid, heritage editorial layout
    ============================================================ */
 .section-about {
-  background: transparent;
-  padding: 120px 5vw 140px;
+  padding: 50px 0 50px;
   position: relative;
-  z-index: 25;
+  overflow: hidden;
+  background: #b22222;
 }
 
 .section-about-inner {
   position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
   width: 100%;
-  background: rgba(0, 0, 0, 0.24);
-  padding: clamp(28px, 4vw, 48px);
-  border-radius: 10px;
 }
 
-/* Top header: title + tagline */
-.about-header {
-  text-align: center;
-  margin-bottom: 60px;
+.section-about .container {
+  position: relative;
+  z-index: 2;
 }
 
-.about-main-title {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 700;
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  color: #fff;
-  line-height: 1.2;
-  margin-bottom: 16px;
+/* Watermark wrapper — prevents horizontal scroll on mobile */
+.about-watermark-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.about-main-tagline {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 400;
-  font-size: clamp(1.2rem, 2.5vw, 2rem);
-  color: #fff;
-  line-height: 1.4;
-}
-
-/* Two column grid */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-
-/* Left column: logo image */
-.about-image-col {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.about-logo-img {
-  max-width: 100%;
-  height: auto;
-  max-height: 400px;
-  object-fit: contain;
-}
-
-/* Right column: text content */
-.about-text-col {
-  color: #fff;
-}
-
-.about-eyebrow {
+/* Watermark text styling */
+.about-watermark-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(8rem, 15vw, 14rem);
+  color: #FDFBF7;
+  opacity: 0.05;
+  white-space: nowrap;
   display: block;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 500;
-  font-size: 0.75rem;
+  line-height: 1;
+}
+
+/* Eyebrow: "ABOUT US" */
+.about-eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 16px;
+  color: #D4AF37;
 }
 
-.about-intro {
+/* Main Heading */
+.about-heading {
+  font-family: 'Playfair Display', serif;
+  color: #FDFBF7;
+  line-height: 1.2;
+}
+
+/* Body Text */
+.about-body {
   font-family: 'DM Sans', sans-serif;
-  font-weight: 600;
-  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-  color: #fff;
-  line-height: 1.6;
-  margin-bottom: 20px;
+  color: rgba(253, 251, 247, 0.8);
 }
 
-.about-body-text {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.6);
-  line-height: 1.8;
-  margin-bottom: 32px;
-}
-
-/* White pill button */
+/* CTA Button — override Bootstrap outline-light for better contrast */
 .about-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: #1A1410;
-  text-decoration: none;
-  background: #fff;
-  padding: 16px 36px;
-  border-radius: 50px;
-  transition: all 0.3s ease;
+  border-color: rgba(253, 251, 247, 0.45);
+  color: #FDFBF7;
+  transition: all 0.35s ease;
 }
 
 .about-btn:hover {
-  background: #f0f0f0;
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #1A1410;
   transform: translateY(-2px);
 }
 
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .section-about {
+    padding: 50px 0 50px;
+  }
+
+  .about-heading {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+  }
+}
+
+@media (max-width: 576px) {
+  .section-about {
+    padding: 40px 0 40px;
+  }
+
+  .about-eyebrow {
+    font-size: 0.75rem;
+  }
+
+  .about-btn {
+    font-size: 0.75rem !important;
+    padding: 12px 28px !important;
+  }
+}
+
+
+/* ============================================================
+   THE ARCHIVES SECTION — past events showcase
+   ============================================================ */
+.section-archives {
+  padding: 40px 0 30px;
+  position: relative;
+  background: #b22222;
+}
+
+/* Eyebrow */
+.archives-eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #D4AF37;
+}
+
+/* Main Heading */
+.archives-heading {
+  font-family: 'Playfair Display', serif;
+  color: #FDFBF7;
+}
+
+/* Hide scrollbar for horizontal scroll */
+.archives-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Archive card hover scale effect */
+.hover-scale {
+  transition: transform 0.35s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.04);
+}
+
+.transition-transform {
+  transition: transform 0.35s ease;
+}
+
+/* Premium serif font class for archive cards */
+.font-serif {
+  font-family: 'Playfair Display', serif;
+}
 
 /* ============================================================
    ACHIEVEMENTS SECTION — light background with stats
    ============================================================ */
 .section-achievements {
-  background: var(--bg-base);
-  padding: 80px 5vw;
+  padding: 50px 5vw 30px;
   position: relative;
-  z-index: 30;
   overflow: hidden;
+  font-family: 'Poppins', sans-serif;
 }
 
 .achievements-inner {
@@ -447,20 +490,20 @@ body {
 }
 
 .achievements-eyebrow {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: clamp(1.5rem, 3vw, 2.2rem);
-  color: var(--text-primary);
+  color: #ffffff;
   margin: 0;
   line-height: 1.2;
 }
 
 .achievements-main {
   display: block;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: clamp(1.8rem, 4vw, 3rem);
-  color: var(--text-primary);
+  color: #ffffff;
   line-height: 1.3;
   margin-top: 4px;
 }
@@ -470,7 +513,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   color: #ffffff;
@@ -494,7 +537,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
   padding-top: 32px;
-  border-top: 1px solid rgba(28, 26, 23, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 /* Individual stat item */
@@ -505,7 +548,7 @@ body {
 }
 
 .achievement-number {
-  font-family: 'Fira Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 900;
   font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1;
@@ -513,22 +556,22 @@ body {
 }
 
 .number-highlight {
-  color: var(--accent-red);
+  color: #ffffff;
 }
 
 .number-unit {
-  color: var(--text-primary);
+  color: #ffffff;
 }
 
 .number-star {
-  color: var(--accent-red);
+  color: #ffffff;
 }
 
 .achievement-label {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: clamp(0.75rem, 1.2vw, 0.95rem);
-  color: var(--text-body);
+  color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   line-height: 1.4;
@@ -538,11 +581,39 @@ body {
   white-space: pre-line;
 }
 
+@media (max-width: 576px) {
+  .section-achievements {
+    padding: 12px 4vw 22px;
+  }
+
+  .achievements-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    padding-top: 16px;
+  }
+
+  .achievement-item {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .achievement-number {
+    font-size: clamp(2rem, 8vw, 2.7rem);
+  }
+
+  .achievement-label {
+    font-size: clamp(0.62rem, 2.2vw, 0.78rem);
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+  }
+}
+
 /* ============================================================
    THEME REVEAL SECTION
    ============================================================ */
 .theme-reveal-section {
-  background: #FAF8F5;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -614,7 +685,7 @@ body {
 
 
 /* ============================================================
-   STICKY HEADER
+   STICKY HEADER — mirrors the editorial split layout
    ============================================================ */
 .sticky-header {
   position: fixed;
@@ -622,13 +693,13 @@ body {
   left: 0;
   right: 0;
   z-index: 999;
-  background: rgba(250, 248, 245, 0.94);
-  backdrop-filter: blur(6px);
-  padding: 12px 5vw;
+  background: rgba(26, 20, 16, 0.92);
+  backdrop-filter: blur(8px);
+  padding: 14px 48px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 3rem;
+  justify-content: space-between;
+  gap: 2rem;
   transform: translateY(-100%);
   transition: transform 0.35s ease;
 }
@@ -637,28 +708,19 @@ body {
   transform: translateY(0);
 }
 
-.sticky-header .nav-logo-img {
-  height: 140px;
+.sticky-header .hero-nav-brand {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.sticky-header .hero-nav-links {
-  list-style: none;
-  display: flex;
-  gap: 2.8rem;
+.sticky-header .nav-logo-img {
+  height: 64px;
 }
 
 .sticky-header .hero-nav-links a {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: #1C1A17;
-  text-decoration: none;
-}
-
-.sticky-header .hero-nav-links a:hover {
-  opacity: 0.7;
+  color: #FDFBF7;
 }
 
 
@@ -682,8 +744,16 @@ body {
     display: none;
   }
 
-  .hero-nav {
-    gap: 0;
+  .hero-nav,
+  .sticky-header {
+    padding: 16px 24px;
+    justify-content: center;
+  }
+
+  .hero-nav .hero-nav-brand,
+  .sticky-header .hero-nav-brand {
+    position: static;
+    transform: none;
   }
 
   .hero-video-overlay {
@@ -704,29 +774,11 @@ body {
   }
 
   .nav-logo-img {
-    height: 90px;
+    height: 64px;
   }
 
-  /* About Us responsive */
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .about-image-col {
-    order: -1;
-  }
-
-  .about-logo-img {
-    max-height: 250px;
-  }
-
-  .about-header {
-    margin-bottom: 40px;
-  }
-
-  .section-about {
-    padding: 80px 5vw 100px;
+  .sticky-header .nav-logo-img {
+    height: 44px;
   }
 }
 
@@ -783,49 +835,29 @@ body {
 }
 
 /* ============================================================
-   THEME HIGHLIGHT BACKGROUND — fixed parallax
-   ============================================================ */
-.theme-highlight-bg-fixed {
-  display: none;
-}
-
-/* ============================================================
    THEME HIGHLIGHT SECTION — image + details
    ============================================================ */
 .section-theme-highlight {
-  background: var(--bg-base);
-  padding: 80px 5vw;
+  padding: 80px 2.5vw;
   position: relative;
-  z-index: 2;
-  overflow: hidden;
-}
-
-/* Subtle background image within the section */
-.section-theme-highlight::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url('../../assets/images/trophies.png') center / cover no-repeat;
-  opacity: 0.06;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.section-theme-highlight > * {
-  position: relative;
-  z-index: 1;
 }
 
 .theme-highlight-inner {
-  max-width: 1200px;
+  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
 }
 
 .theme-highlight-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 48px);
   align-items: start;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: var(--shadow-card);
+  padding: clamp(20px, 2vw, 32px);
+  border-radius: 14px;
 }
 
 /* Image placeholder */
@@ -863,7 +895,7 @@ body {
 }
 
 .theme-highlight-eyebrow {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Fira Sans', sans-serif;
   font-weight: 600;
   font-size: 0.8rem;
   letter-spacing: 0.1em;
@@ -873,8 +905,8 @@ body {
 }
 
 .theme-highlight-title {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 800;
   font-size: clamp(2rem, 4vw, 3rem);
   color: var(--text-primary);
   margin: 0 0 8px;
@@ -903,7 +935,7 @@ body {
 }
 
 .theme-highlight-details li {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Fira Sans', sans-serif;
   font-weight: 400;
   font-size: 0.95rem;
   color: var(--text-body);
@@ -916,7 +948,7 @@ body {
 }
 
 .theme-highlight-description {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Fira Sans', sans-serif;
   font-weight: 400;
   font-size: 0.95rem;
   color: var(--text-body);
@@ -924,61 +956,33 @@ body {
   margin-top: 24px;
 }
 
-/* ============================================================
-   GALLERY BACKGROUND — fixed parallax
-   ============================================================ */
-.gallery-bg-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 1;
-  overflow: hidden;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
-}
+@media (max-width: 991px) {
+  .section-theme-highlight {
+    padding: 70px 5vw;
+  }
 
-.gallery-bg-fixed.is-visible {
-  opacity: 1;
-  pointer-events: none;
-}
+  .theme-highlight-grid {
+    grid-template-columns: 1fr;
+  }
 
-.gallery-bg-fixed img {
-  width: 100%;
-  height: 120%;
-  object-fit: cover;
-  display: block;
-}
-
-.gallery-bg-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(10, 8, 6, 0.55);
-  pointer-events: none;
-  z-index: 1;
+  .theme-highlight-image {
+    position: static;
+  }
 }
 
 /* ============================================================
-   GALLERY SECTION — justified grid
+   GALLERY SECTION — automatic slider
    ============================================================ */
 .section-gallery {
-  background: transparent;
-  padding: 80px 5vw;
+  padding: 80px 0;
   position: relative;
-  z-index: 25;
+  overflow: hidden;
 }
 
 .gallery-inner {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  background: rgba(0, 0, 0, 0.24);
-  padding: clamp(28px, 4vw, 48px);
-  border-radius: 10px;
+  padding: 0 clamp(28px, 4vw, 48px);
 }
 
 /* Gallery header */
@@ -1005,30 +1009,38 @@ body {
   margin: 0;
 }
 
-/* Justified grid using columns */
-.gallery-grid {
-  column-count: 4;
-  column-gap: 12px;
+/* Gallery Slider */
+.gallery-slider-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
-.gallery-item {
-  break-inside: avoid;
-  margin-bottom: 12px;
+.gallery-slider-track {
+  display: flex;
+  gap: 16px;
+  will-change: transform;
+  animation: gallerySlide 30s linear infinite;
+}
+
+.gallery-slide {
+  flex: 0 0 calc(25% - 12px); /* 4 slides visible on desktop */
+  min-width: calc(25% - 12px);
   border-radius: 8px;
   overflow: hidden;
-  position: relative;
 }
 
-/* Placeholder styling for each image slot */
+/* Placeholder styling */
 .gallery-placeholder {
   width: 100%;
-  height: 200px;
+  height: 240px;
   background: linear-gradient(135deg, #e8e4df 0%, #d4cfc9 50%, #e8e4df 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
+  border-radius: 8px;
 }
 
 .gallery-placeholder::after {
@@ -1060,19 +1072,44 @@ body {
   100% { transform: translateX(100%); }
 }
 
-/* Wide item (spans 2 columns visually) */
-.gallery-item--wide .gallery-placeholder {
-  height: 200px;
+/* Auto-slide animation */
+@keyframes gallerySlide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-25% * 11 - 16px * 11 / 4));
+  }
 }
 
-/* Tall item */
-.gallery-item--tall .gallery-placeholder {
-  height: 280px;
+/* Pause on hover */
+.gallery-slider-wrapper:hover .gallery-slider-track {
+  animation-play-state: paused;
 }
 
-/* Hover effect */
-.gallery-item:hover .gallery-placeholder span {
-  color: rgba(0,0,0,0.4);
+/* Mobile: 2 slides visible */
+@media (max-width: 768px) {
+  .gallery-slide {
+    flex: 0 0 calc(50% - 8px);
+    min-width: calc(50% - 8px);
+  }
+
+  .gallery-slider-track {
+    gap: 12px;
+  }
+
+  .gallery-placeholder {
+    height: 180px;
+  }
+
+  @keyframes gallerySlide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-50% * 11 - 12px * 11 / 2));
+    }
+  }
 }
 
 /* ============================================================
@@ -1282,10 +1319,9 @@ body {
    CONTACT SECTION — white background, black text, Fira Sans
    ============================================================ */
 .section-contact {
-  background: #ffffff;
   padding: 80px 5vw;
   position: relative;
-  z-index: 30;
+  color: #ffffff;
 }
 
 .contact-inner {
@@ -1312,7 +1348,7 @@ body {
   font-family: 'Fira Sans', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
-  color: var(--text-body);
+  color: #ffffff;
   margin: 0;
 }
 
@@ -1320,7 +1356,7 @@ body {
   font-family: 'Fira Sans', sans-serif;
   font-weight: 800;
   font-size: clamp(2rem, 4vw, 3rem);
-  color: var(--text-primary);
+  color: #ffffff;
   line-height: 1.2;
   margin: 0;
 }
@@ -1344,9 +1380,16 @@ body {
   justify-content: center;
   width: 48px;
   height: 48px;
+  min-width: 48px;
   border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.contact-item-icon svg {
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
 }
 
@@ -1360,29 +1403,41 @@ body {
   font-family: 'Fira Sans', sans-serif;
   font-weight: 600;
   font-size: 0.85rem;
-  color: var(--text-body);
+  color: #ffffff;
 }
 
 .contact-item-phone {
   font-family: 'Fira Sans', sans-serif;
   font-weight: 700;
   font-size: 1.2rem;
-  color: var(--text-primary);
+  color: #ffffff;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .contact-item-phone:hover {
-  color: var(--accent-red);
+  color: #ffffff;
 }
 
 .contact-item-addr {
   font-family: 'Fira Sans', sans-serif;
   font-weight: 400;
   font-size: 0.9rem;
-  color: var(--text-body);
+  color: #ffffff;
   line-height: 1.6;
   margin: 0;
+}
+
+.contact-ad-cta {
+  margin-top: 18px;
+  align-self: flex-start;
+  background: #ffffff;
+  color: #000000;
+}
+
+.contact-ad-cta:hover {
+  background: #ffffff;
+  color: #b22222;
 }
 
 /* Right: Map */
@@ -1471,6 +1526,146 @@ body {
 
   .gallery-title {
     font-size: clamp(1.6rem, 5vw, 2.5rem);
+  }
+}
+
+/* ============================================================
+   MARQUEE STRAP — editorial scrolling text banner
+   Cultural heritage aesthetic: elegant, legible, refined
+   ============================================================ */
+.marquee-strap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #b22222;
+  padding: 44px 0;
+  z-index: 10;
+}
+
+.marquee-track {
+  width: 100%;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.marquee-content {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marqueeScroll 35s linear infinite;
+  /* Hardware-accelerated transform for buttery smooth animation */
+  transform: translate3d(0, 0, 0);
+}
+
+/* Primary text: "অধিবাসীবৃন্দ"
+   High-contrast Display Serif (Playfair Display) — 100% opacity */
+.marquee-text-primary {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4.5vw, 3.5rem);
+  color: #FDFBF7;
+  opacity: 1;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin: 0 0.35em;
+  padding: 10px 0;
+}
+
+/* Secondary text: "COMMITTEE • DUTTA BAGAN"
+   Clean Sans-serif (Montserrat) — uppercase, wide tracking, 50% opacity */
+.marquee-text-secondary {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: clamp(0.7rem, 1.8vw, 1rem);
+  color: #FDFBF7;
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  line-height: 1;
+}
+
+/* Image Group: wrapper holding two images side-by-side */
+.marquee-image-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  margin: 0 2rem;
+  flex-shrink: 0;
+}
+
+/* Marquee images: constrained height with blend mode for premium aesthetic */
+.marquee-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  display: block;
+  filter: brightness(1.1) contrast(1.05);
+}
+
+/* Motif SVG: gold/brass separator between Bengali and English text */
+.marquee-motif {
+  height: 1.5em;
+  width: auto;
+  opacity: 1;
+  margin: 0 2rem;
+  flex-shrink: 0;
+  /* Force gold/brass color via CSS filter */
+  filter: brightness(0) saturate(100%) invert(72%) sepia(35%) saturate(500%) hue-rotate(10deg) brightness(95%) contrast(90%);
+}
+
+/* Infinite horizontal scroll — seamless loop at 50%
+   Using translate3d forces GPU compositing for smooth rendering */
+@keyframes marqueeScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Pause on hover for readability */
+.marquee-track:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+/* Responsive scaling */
+@media (max-width: 768px) {
+  .marquee-strap {
+    padding: 30px 0;
+  }
+
+  .marquee-text-primary {
+    font-size: clamp(1.4rem, 6vw, 2.2rem);
+  }
+
+  .marquee-text-secondary {
+    font-size: clamp(0.55rem, 3vw, 0.7rem);
+    letter-spacing: 0.12em;
+  }
+
+  .marquee-image-group {
+    margin: 0 1.2rem;
+    gap: 0;
+  }
+
+  .marquee-img {
+    height: 30px;
+  }
+
+  @keyframes marqueeScroll {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  .marquee-content {
+    animation-duration: 28s;
   }
 }
 

@@ -35,19 +35,6 @@ function initAnimations() {
       duration: 0.7,
       ease: 'power2.out'
     })
-    .from('.hero-intro-label', {
-      opacity: 0,
-      y: 20,
-      duration: 0.6,
-      ease: 'power2.out'
-    }, '-=0.3')
-    .from('.hero-big-word', {
-      opacity: 0,
-      y: 40,
-      stagger: 0.15,
-      duration: 0.8,
-      ease: 'power3.out'
-    }, '-=0.4')
     .from('#hero-scroll-hint', {
       opacity: 0,
       duration: 0.6
@@ -55,48 +42,10 @@ function initAnimations() {
 
 
   /* ============================================================
-     2. SCROLL-DRIVEN ANIMATIONS
+     2. STICKY HEADER TOGGLE
      ============================================================ */
 
-  // Safety reset: if any previous GSAP run left inline styles, restore hero nav.
   gsap.set('#hero-nav', { clearProps: 'opacity,transform,visibility' });
-
-  /* Keep hero nav visible, don't fade out */
-
-  gsap.to('#hero-scroll-hint', {
-    opacity: 0,
-    scrollTrigger: {
-      trigger: '#section-hero',
-      start: 'top top',
-      end: '5% top',
-      scrub: true
-    }
-  });
-
-  /* Fade hero foreground out within the 100vh scroll travel */
-  gsap.to('#hero-text, #hero-scroll-hint', {
-    opacity: 0,
-    y: -40,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '#section-hero',
-      start: '5% top',
-      end: '42% top',
-      scrub: true
-    }
-  });
-
-  /* Hide hero video only after hero section fully leaves viewport */
-  ScrollTrigger.create({
-    trigger: '#section-hero',
-    start: 'bottom top',
-    onEnter: () => {
-      document.getElementById('hero-video-fixed').classList.add('is-hidden');
-    },
-    onLeaveBack: () => {
-      document.getElementById('hero-video-fixed').classList.remove('is-hidden');
-    }
-  });
 
   /* Show sticky header when scrolling past hero */
   ScrollTrigger.create({
@@ -108,56 +57,6 @@ function initAnimations() {
     onLeaveBack: () => {
       document.getElementById('sticky-header').classList.remove('is-visible');
       gsap.set('#hero-nav', { clearProps: 'opacity,transform,visibility' });
-    }
-  });
-
-  /* Show about us background when scrolling to about section */
-  ScrollTrigger.create({
-    trigger: '#section-about',
-    start: 'top 85%',
-    end: 'bottom 15%',
-    onEnter: () => {
-      document.getElementById('about-bg-fixed').classList.add('is-visible');
-    },
-    onLeave: () => {
-      document.getElementById('about-bg-fixed').classList.remove('is-visible');
-    },
-    onEnterBack: () => {
-      document.getElementById('about-bg-fixed').classList.add('is-visible');
-    },
-    onLeaveBack: () => {
-      document.getElementById('about-bg-fixed').classList.remove('is-visible');
-    }
-  });
-
-  /* Show gallery background when scrolling to gallery section */
-  ScrollTrigger.create({
-    trigger: '#section-gallery',
-    start: 'top 85%',
-    end: 'bottom 15%',
-    onEnter: () => {
-      document.getElementById('gallery-bg-fixed').classList.add('is-visible');
-    },
-    onLeave: () => {
-      document.getElementById('gallery-bg-fixed').classList.remove('is-visible');
-    },
-    onEnterBack: () => {
-      document.getElementById('gallery-bg-fixed').classList.add('is-visible');
-    },
-    onLeaveBack: () => {
-      document.getElementById('gallery-bg-fixed').classList.remove('is-visible');
-    }
-  });
-
-  /* Gallery background parallax — slow vertical drift as user scrolls */
-  gsap.to('.gallery-bg-img', {
-    yPercent: -15,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '#section-gallery',
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: true
     }
   });
 
