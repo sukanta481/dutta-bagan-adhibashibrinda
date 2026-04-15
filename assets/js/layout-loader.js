@@ -4,6 +4,8 @@
  */
 
 (function () {
+  const LAYOUT_VERSION = '20260415-3';
+
   function loadPartial(mountId, filePath) {
     const mount = document.getElementById(mountId);
     if (!mount) return Promise.resolve();
@@ -23,8 +25,8 @@
 
   function loadLayout() {
     return Promise.all([
-    loadPartial('site-header', 'includes/header.html'),
-    loadPartial('site-footer', 'includes/footer.html')
+    loadPartial('site-header', 'includes/header.html?v=' + LAYOUT_VERSION),
+    loadPartial('site-footer', 'includes/footer.html?v=' + LAYOUT_VERSION)
     ]);
   }
 

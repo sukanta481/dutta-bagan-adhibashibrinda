@@ -8,10 +8,10 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@400;600;900&family=Fira+Sans:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/main.css?v=20260415-3">
 </head>
 <body>
-  <script src="assets/js/loader.js"></script>
+  <script src="assets/js/loader.js?v=20260415-3"></script>
 
   <div id="app">
 
@@ -25,19 +25,24 @@
             <h2 class="gallery-title">Our Gallery</h2>
           </div>
 
-          <div class="gallery-slider-wrapper">
-            <div class="gallery-slider-track" id="gallerySliderTrack">
-              <div class="gallery-slide" id="gallery-2026"><div class="gallery-placeholder" style="height:220px"><span>Image 1</span></div></div>
-              <div class="gallery-slide" id="gallery-2025"><div class="gallery-placeholder" style="height:280px"><span>Image 2</span></div></div>
-              <div class="gallery-slide" id="gallery-2024"><div class="gallery-placeholder" style="height:200px"><span>Image 3</span></div></div>
-              <div class="gallery-slide"><div class="gallery-placeholder" style="height:260px"><span>Image 4</span></div></div>
-              <div class="gallery-slide"><div class="gallery-placeholder" style="height:240px"><span>Image 5</span></div></div>
-              <div class="gallery-slide"><div class="gallery-placeholder" style="height:300px"><span>Image 6</span></div></div>
-              <div class="gallery-slide"><div class="gallery-placeholder" style="height:180px"><span>Image 7</span></div></div>
-              <div class="gallery-slide"><div class="gallery-placeholder" style="height:250px"><span>Image 8</span></div></div>
-              <div class="gallery-slide"><div class="gallery-placeholder" style="height:230px"><span>Image 9</span></div></div>
-              <div class="gallery-slide"><div class="gallery-placeholder" style="height:270px"><span>Image 10</span></div></div>
-            </div>
+          <!-- Year Dropdown Filter -->
+          <div class="gallery-filter" id="galleryFilter">
+            <select class="gallery-year-select" id="galleryYearSelect">
+              <option value="">All Years</option>
+              <option value="2026">2026</option>
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+            </select>
+          </div>
+
+          <!-- Loading Indicator -->
+          <div class="gallery-loading" id="galleryLoading">
+            <div class="gallery-spinner"></div>
+          </div>
+
+          <!-- Justified Grid -->
+          <div class="gallery-grid" id="galleryGrid">
+            <!-- Images loaded here via JS -->
           </div>
         </div>
       </section>
@@ -52,11 +57,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.21/vue.global.prod.min.js"></script>
-  <script src="assets/js/header.js"></script>
-  <script src="assets/js/layout-loader.js?v=20260415-1"></script>
-  <script src="assets/js/app.js"></script>
-  <script src="assets/js/animations.js"></script>
-  <script src="assets/js/interactions.js"></script>
-  <script src="assets/js/scroll-reveal.js"></script>
+  <script src="assets/js/header.js?v=20260415-3"></script>
+  <script src="assets/js/layout-loader.js?v=20260415-3"></script>
+  <script src="assets/js/app.js?v=20260415-3"></script>
+  <script src="assets/js/animations.js?v=20260415-3"></script>
+  <script src="assets/js/interactions.js?v=20260415-3"></script>
+  <script src="assets/js/scroll-reveal.js?v=20260415-3"></script>
+  <script src="assets/js/gallery-page.js?v=20260415-3"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
  * like temple doors opening. Runs on every page load.
  */
 (function () {
-  var LOGO_SRC = 'assets/images/dutta bagan.png';
+  var LOGO_SRC = 'assets/images/dutta bagan 2.png';
 
   var MARKUP =
     '<div class="page-loader" id="pageLoader" role="status" aria-label="Loading">' +
@@ -12,10 +12,8 @@
       '<div class="loader-half loader-half--bottom"></div>' +
       '<div class="loader-center">' +
         '<div class="loader-glow"></div>' +
-        '<svg class="loader-ring" viewBox="0 0 200 200" aria-hidden="true">' +
-          '<circle cx="100" cy="100" r="92"></circle>' +
-        '</svg>' +
         '<img src="' + LOGO_SRC + '" alt="" class="loader-logo">' +
+        '<div class="loader-dots" aria-hidden="true"><span></span><span></span><span></span></div>' +
       '</div>' +
     '</div>';
 
@@ -87,12 +85,22 @@
 
   function runTimeline(loader) {
     var gsap = window.gsap;
-    var ring = loader.querySelector('.loader-ring circle');
-    var circumference = 2 * Math.PI * 92;
-    ring.style.strokeDasharray = circumference;
-    ring.style.strokeDashoffset = circumference;
+    var logoEl = loader.querySelector('.loader-logo');
+    if (logoEl) logoEl.style.animation = 'none'; // hand control to GSAP
 
-    var tl = gsap.timeline({ onComplete: function () { finish(loader); } });
+    // Continuous breathing pulse on the logo — runs until doors open
+    var pulse = gsap.to('.loader-logo', {
+      scale: 1.08,
+      duration: 0.95,
+      ease: 'sine.inOut',
+      repeat: -1,
+      yoyo: true
+    });
+
+    var tl = gsap.timeline({ onComplete: function () {
+      pulse.kill();
+      finish(loader);
+    } });
 
     tl.from('.loader-logo', {
       opacity: 0,
@@ -101,36 +109,35 @@
       ease: 'back.out(1.4)'
     }, 0);
 
-    tl.to(ring, {
-      strokeDashoffset: 0,
-      duration: 1.0,
-      ease: 'power2.inOut'
-    }, 0.4);
+    tl.fromTo('.loader-dots span',
+      { opacity: 0.25, y: 0 },
+      { opacity: 1, y: -6, duration: 0.42, stagger: 0.14, repeat: 4, yoyo: true, ease: 'sine.inOut' },
+      0.5);
 
     tl.fromTo('.loader-glow',
-      { opacity: 0, scale: 0.8 },
-      { opacity: 1, scale: 1.25, duration: 0.35, repeat: 3, yoyo: true, ease: 'sine.inOut' },
-      0.9);
+      { opacity: 0, scale: 0.85 },
+      { opacity: 1, scale: 1.22, duration: 0.45, repeat: 3, yoyo: true, ease: 'sine.inOut' },
+      0.8);
 
     // Hold, then doors open
     tl.to('.loader-half--top', {
       yPercent: -100,
       duration: 0.65,
       ease: 'power3.inOut'
-    }, 1.75);
+    }, 2.2);
 
     tl.to('.loader-half--bottom', {
       yPercent: 100,
       duration: 0.65,
       ease: 'power3.inOut'
-    }, 1.75);
+    }, 2.2);
 
     tl.to('.loader-center', {
       opacity: 0,
       scale: 1.15,
       duration: 0.55,
       ease: 'power2.in'
-    }, 1.75);
+    }, 2.2);
   }
 
   inject();
