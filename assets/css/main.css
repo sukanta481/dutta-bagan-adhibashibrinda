@@ -1152,6 +1152,11 @@ body {
   color: rgba(253, 251, 247, 0.8);
 }
 
+/* Anchor offset for About profile deep-links below fixed header */
+.profile-anchor {
+  scroll-margin-top: 110px;
+}
+
 /* CTA Button — override Bootstrap outline-light for better contrast */
 .about-btn {
   border-color: rgba(253, 251, 247, 0.45);
@@ -2514,7 +2519,8 @@ body {
   }
 
   .about-page-hero img {
-    height: clamp(210px, 58vw, 320px);
+    height: clamp(280px, 72vw, 420px);
+    object-position: center center;
   }
 }
 

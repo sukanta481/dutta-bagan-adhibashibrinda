@@ -4,7 +4,7 @@
  */
 
 (function () {
-  const LAYOUT_VERSION = '20260415-7';
+  const LAYOUT_VERSION = '20260415-9';
 
   function loadPartial(mountId, filePath) {
     const mount = document.getElementById(mountId);

@@ -9,10 +9,10 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@400;600;900&family=Fira+Sans:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css?v=20260415-7">
+  <link rel="stylesheet" href="assets/css/main.css?v=20260415-9">
 </head>
 <body>
-  <script src="assets/js/loader.js?v=20260415-7"></script>
+  <script src="assets/js/loader.js?v=20260415-9"></script>
 
   <div id="app">
 
@@ -32,17 +32,12 @@
           <div class="row g-5 align-items-center">
 
             <!-- Left Column: Overlapping Imagery -->
-            <div class="col-12 col-lg-6">
-              <div class="position-relative">
-                <img src="assets/images/Dutta bagan.png" alt="Our Story" class="img-fluid rounded-0" style="width: 85%; aspect-ratio: 4/5; object-fit: cover; filter: grayscale(20%); border: 1px solid rgba(178,34,34,0.1);">
-
-                <!-- Floating Stat Box -->
-                <div class="position-absolute bg-white p-4 shadow-sm d-none d-md-block" style="bottom: -20px; right: 0; width: 50%; border-left: 4px solid #b22222;">
-                  <h3 class="font-serif fw-bold mb-0" style="color: #b22222;">9L+</h3>
-                  <p class="text-uppercase mb-0" style="font-size: 0.75rem; letter-spacing: 0.1em; color: #333;">Footfall</p>
-                </div>
-              </div>
+             <!-- Left Column: Arch Image + Logo -->
+            <div class="col-12 col-lg-5 text-center mb-5 mb-lg-0 anim-fadeup" style="position: relative;">
+              <img src="assets/images/arch.png" alt="" class="img-fluid" style="max-width: 400px; width: 75%;">
+              <img src="assets/images/Dutta bagan.png" alt="Dutta Bagan Adhibashibrinda" class="about-logo-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; max-width: 600px; height: auto; object-fit: contain; z-index: 2; filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15));">
             </div>
+
 
             <!-- Right Column: The Narrative -->
             <div class="col-12 col-lg-6 ps-lg-5">
@@ -81,14 +76,12 @@
             <h2 class="display-5 font-serif fw-bold mb-0" style="color: #b22222;">Leadership Profiles</h2>
           </div>
 
-          <!-- Profile 1: Image Left, Text Right -->
-          <div class="row align-items-center mb-5 pb-5" style="border-color: rgba(178,34,34,0.1) !important;">
-            <!-- Left Column: Image -->
+          <!-- Profile 1: President -->
+          <div id="profile-president" class="row align-items-center mb-5 pb-5 profile-anchor">
             <div class="col-12 col-md-5 mb-4 mb-md-0">
-              <img src="assets/images/core committee/Mrs. Debika Chakraborty.png" alt="Kasturi Chowdhury" class="img-fluid w-100" style="aspect-ratio: 4/5; object-fit: cover; filter: grayscale(100%); border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(178,34,34,0.05);">
+              <img src="assets/images/core committee/Mrs. Debika Chakraborty.png" alt="Mrs. Debika Chakraborty" class="img-fluid w-100" style="aspect-ratio: 4/5; object-fit: cover; filter: grayscale(100%); border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(178,34,34,0.05);">
             </div>
 
-            <!-- Right Column: Text -->
             <div class="col-12 col-md-7 ps-md-5">
               <h2 class="display-6 font-serif fw-bold mb-1" style="color: #b22222; text-transform: uppercase;">Mrs. Debika Chakraborty</h2>
               <div class="d-inline-block px-3 py-1 mb-4" style="background-color: #b22222; color: #FDFBF7; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">Club President</div>
@@ -96,11 +89,39 @@
             </div>
           </div>
 
-          <!-- Profile 2: Text Left, Image Right (CRITICAL MOBILE ORDERING) -->
-          
+          <!-- <hr class="section-divider section-divider--dark" aria-hidden="true"> -->
 
-            <!-- Right Column: Image (order-1 on mobile, order-2 on desktop) -->
-            
+          <!-- Profile 2: Vice President -->
+          <!-- <div id="profile-vice-president" class="row align-items-center mb-5 pb-5 profile-anchor">
+            <div class="col-12 col-md-7 pe-md-5 order-2 order-md-1">
+              <h2 class="display-6 font-serif fw-bold mb-1" style="color: #b22222; text-transform: uppercase;">Kasturi Chowdhury</h2>
+              <div class="d-inline-block px-3 py-1 mb-4" style="background-color: #b22222; color: #FDFBF7; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">Vice President</div>
+              <p style="color: #333333; line-height: 1.8; font-size: 1.05rem;">Kasturi Chowdhury guides the committee's cultural direction with depth, sensitivity, and strong community connection. Her leadership strengthens collaboration across volunteers, artisans, and local families.</p>
+            </div>
+
+            <div class="col-12 col-md-5 mb-4 mb-md-0 order-1 order-md-2">
+              <div class="portrait-placeholder d-flex align-items-center justify-content-center" style="aspect-ratio: 4/5; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(178,34,34,0.05);">
+                <span class="portrait-initials">KC</span>
+              </div>
+            </div>
+          </div>
+
+          <hr class="section-divider section-divider--dark" aria-hidden="true"> -->
+
+          <!-- Profile 3: General Secretary -->
+          <!-- <div id="profile-general-secretary" class="row align-items-center profile-anchor">
+            <div class="col-12 col-md-5 mb-4 mb-md-0">
+              <div class="portrait-placeholder d-flex align-items-center justify-content-center" style="aspect-ratio: 4/5; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(178,34,34,0.05);">
+                <span class="portrait-initials">DB</span>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-7 ps-md-5">
+              <h2 class="display-6 font-serif fw-bold mb-1" style="color: #b22222; text-transform: uppercase;">Debaditya Banerjee</h2>
+              <div class="d-inline-block px-3 py-1 mb-4" style="background-color: #b22222; color: #FDFBF7; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">General Secretary</div>
+              <p style="color: #333333; line-height: 1.8; font-size: 1.05rem;">Debaditya Banerjee coordinates planning, execution, and day-to-day committee operations with precision. His operational leadership ensures each event flows smoothly from preparation to final celebration.</p>
+            </div>
+          </div> -->
 
         </div>
       </section>
@@ -114,11 +135,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.21/vue.global.prod.min.js"></script>
-  <script src="assets/js/header.js?v=20260415-7"></script>
-  <script src="assets/js/layout-loader.js?v=20260415-7"></script>
-  <script src="assets/js/app.js?v=20260415-7"></script>
-  <script src="assets/js/animations.js?v=20260415-7"></script>
-  <script src="assets/js/interactions.js?v=20260415-7"></script>
-  <script src="assets/js/scroll-reveal.js?v=20260415-7"></script>
+  <script src="assets/js/header.js?v=20260415-9"></script>
+  <script src="assets/js/layout-loader.js?v=20260415-9"></script>
+  <script src="assets/js/app.js?v=20260415-9"></script>
+  <script src="assets/js/animations.js?v=20260415-9"></script>
+  <script src="assets/js/interactions.js?v=20260415-9"></script>
+  <script src="assets/js/scroll-reveal.js?v=20260415-9"></script>
 </body>
 </html>
