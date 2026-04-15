@@ -23,6 +23,40 @@
   opacity: 0.9;
 }
 
+/* Atmospheric Drift — watermark behind Core Committee */
+.ambient-drift {
+  animation: gentle-flow 30s ease-in-out infinite alternate;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+@keyframes gentle-flow {
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1); }
+  100% { transform: translate(4vw, 3vh) rotate(4deg) scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-drift { animation: none; }
+}
+
+/* Portrait placeholder — warm editorial fill with monogram */
+.portrait-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(120% 80% at 50% 15%, rgba(201, 151, 58, 0.10) 0%, rgba(201, 151, 58, 0) 60%),
+    linear-gradient(180deg, #F4EEE4 0%, #E8DFD1 100%);
+}
+.portrait-initials {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  letter-spacing: 0.05em;
+  color: rgba(178, 34, 34, 0.55);
+  user-select: none;
+}
+
 /* ============================================================
    PAGE LOADER — Ceremonial Reveal
    ============================================================ */
@@ -1355,7 +1389,7 @@ body {
 }
 
 .number-highlight {
-  color: #ffffff;
+  color: #b22222;
 }
 
 .number-unit {
