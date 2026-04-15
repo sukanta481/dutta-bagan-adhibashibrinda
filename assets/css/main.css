@@ -2655,10 +2655,12 @@ body {
   border-radius: 999px;
   text-align: center;
   line-height: 1.15;
+  white-space: normal;
   transition: background-color 0.28s ease, color 0.28s ease, transform 0.28s ease;
 }
 
 .contact-ad-cta span {
+  display: block;
   color: #ffffff;
   transition: color 0.28s ease;
 }
@@ -2773,7 +2775,11 @@ body {
   }
 
   .contact-ad-cta {
-    min-width: min(92vw, 560px);
+    min-width: 0;
+    width: min(86vw, 440px);
+    padding: 14px 20px;
+    font-size: clamp(0.92rem, 3.4vw, 1.12rem);
+    line-height: 1.25;
   }
 }
 
@@ -2884,13 +2890,15 @@ body {
 /* Secondary marquee text uses Poppins */
 .marquee-text-secondary {
   font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  font-size: clamp(0.7rem, 1.8vw, 1rem);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4.5vw, 3.5rem);
   color: #FDFBF7;
-  opacity: 0.5;
+  opacity: 1;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.02em;
   line-height: 1;
+  margin: 0 0.35em;
+  padding: 10px 0;
 }
 
 /* Image Group: wrapper holding two images side-by-side */
@@ -2950,8 +2958,8 @@ body {
   }
 
   .marquee-text-secondary {
-    font-size: clamp(0.55rem, 3vw, 0.7rem);
-    letter-spacing: 0.12em;
+    font-size: clamp(1.4rem, 6vw, 2.2rem);
+    letter-spacing: 0.02em;
   }
 
   .marquee-image-group {

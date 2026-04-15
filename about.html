@@ -19,36 +19,38 @@
     <div id="site-header"></div>
 
     <section class="about-page-hero" aria-label="About page hero image">
-      <img src="assets/images/gallery-hero.svg" alt="About hero" loading="eager">
+      <img src="assets/images/About-hero.svg" alt="About hero" loading="eager">
     </section>
 
-          
+    <!-- ============================================
+         OUR STORY SECTION
+         ============================================ -->
+    <section class="py-5" style="background-color: #F8EFEF;">
+      <div class="container py-5">
+        <div class="row g-5 align-items-center">
 
-      <!-- ============================================
-           OUR STORY SECTION
-           ============================================ -->
-      <section class="py-5" style="background-color: #F8EFEF;">
-        <div class="container py-5">
-          <div class="row g-5 align-items-center">
+          <!-- Left Column: Arch Image + Logo (Desktop Only) -->
+          <div class="col-12 col-lg-5 text-center mb-5 mb-lg-0 anim-fadeup d-none d-lg-block" style="position: relative;">
+            <img src="assets/images/arch-red.svg" alt="" class="img-fluid" style="max-width: 400px; width: 75%;">
+            <img src="assets/images/Dutta bagan 2.png" alt="Dutta Bagan Adhibashibrinda" class="about-logo-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; max-width: 600px; height: auto; object-fit: contain; z-index: 2; filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15));">
+          </div>
 
-            <!-- Left Column: Overlapping Imagery -->
-             <!-- Left Column: Arch Image + Logo -->
-            <div class="col-12 col-lg-5 text-center mb-5 mb-lg-0 anim-fadeup" style="position: relative;">
-              <img src="assets/images/arch.png" alt="" class="img-fluid" style="max-width: 400px; width: 75%;">
-              <img src="assets/images/Dutta bagan.png" alt="Dutta Bagan Adhibashibrinda" class="about-logo-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; max-width: 600px; height: auto; object-fit: contain; z-index: 2; filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15));">
-            </div>
+          <!-- Right Column: The Narrative (with mobile watermark) -->
+          <div class="col-12 col-lg-6 position-relative py-4">
 
+            <!-- Mobile Watermark (visible only on mobile) -->
+            <img src="assets/images/arch.png" class="position-absolute d-block d-lg-none" style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; opacity: 0.05; pointer-events: none; z-index: 0;" alt="">
 
-            <!-- Right Column: The Narrative -->
-            <div class="col-12 col-lg-6 ps-lg-5">
+            <!-- Text Content (positioned above watermark) -->
+            <div style="position: relative; z-index: 10;">
 
               <!-- Our Heritage -->
-              <p class="text-uppercase fw-bold mb-2" style="color: #D4AF37; font-size: 0.85rem; letter-spacing: 0.15em;">Our Heritage</p>
+              <p class="text-uppercase fw-bold mb-2" style="color: black; font-size: 0.85rem; letter-spacing: 0.15em;">Our Heritage</p>
               <h2 class="display-5 font-serif fw-bold mb-4" style="color: #b22222;">About Dutta Bagan</h2>
 
-              <p style="color: #333333; line-height: 1.7; font-size: 1.05rem;">Dutta Bagan Adhibashibrinda has been at the heart of cultural celebrations for over half a century. What began as a small community gathering has blossomed into one of the most vibrant and anticipated festivities in the region, attracting devotees and visitors from across the nation.</p>
+              <p class="lead mb-4" style="color: #b22222; font-weight: 500;">Dutta Bagan Adhibashibrinda has been at the heart of cultural celebrations for over half a century. What began as a small community gathering has blossomed into one of the most vibrant and anticipated festivities in the region, attracting devotees and visitors from across the nation.</p>
 
-              <p style="color: #333333; line-height: 1.7; font-size: 1.05rem;">Our roots run deep in tradition, yet our spirit embraces the energy of each new generation. The committee, composed of passionate local residents, works tirelessly to create an experience that honors our heritage while evolving with contemporary expression.</p>
+              <p style="color: #333333; font-size: 1rem;">Our roots run deep in tradition, yet our spirit embraces the energy of each new generation. The committee, composed of passionate local residents, works tirelessly to create an experience that honors our heritage while evolving with contemporary expression.</p>
 
               <!-- Divider -->
               <hr class="my-5" style="border-color: rgba(178,34,34,0.1);">
@@ -56,75 +58,72 @@
               <!-- Our Vision -->
               <h3 class="font-serif fw-bold mb-3" style="color: #b22222;">Our Vision</h3>
 
-              <p style="color: #333333; line-height: 1.7; font-size: 1.05rem;">Looking ahead, we envision Dutta Bagan Adhibashibrinda as more than a festival ground—it is a living testament to community strength, cultural preservation, and the unifying power of faith. We aim to expand our reach while maintaining the intimate, heartfelt connection that defines our celebrations, ensuring that future generations inherit a tradition as vibrant and meaningful as the one we cherish today.</p>
+              <p style="color: #333333; font-size: 0.95rem;">Looking ahead, we envision Dutta Bagan Adhibashibrinda as more than a festival ground—it is a living testament to community strength, cultural preservation, and the unifying power of faith. We aim to expand our reach while maintaining the intimate, heartfelt connection that defines our celebrations, ensuring that future generations inherit a tradition as vibrant and meaningful as the one we cherish today.</p>
 
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- ============================================
-           LEADERSHIP PROFILES SECTION
-           ============================================ -->
-      <section class="py-5" style="background-color: #F8EFEF;">
-        <div class="container">
-
-          <!-- Section Title -->
-          <div class="text-center mb-5 pb-4">
-            <p class="text-uppercase fw-bold mb-2" style="color: #D4AF37; font-size: 0.85rem; letter-spacing: 0.15em;">Our Team</p>
-            <h2 class="display-5 font-serif fw-bold mb-0" style="color: #b22222;">Leadership Profiles</h2>
-          </div>
-
-          <!-- Profile 1: President -->
-          <div id="profile-president" class="row align-items-center mb-5 pb-5 profile-anchor">
-            <div class="col-12 col-md-5 mb-4 mb-md-0">
-              <img src="assets/images/core committee/Mrs. Debika Chakraborty.png" alt="Mrs. Debika Chakraborty" class="img-fluid w-100" style="aspect-ratio: 4/5; object-fit: cover; filter: grayscale(100%); border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(178,34,34,0.05);">
-            </div>
-
-            <div class="col-12 col-md-7 ps-md-5">
-              <h2 class="display-6 font-serif fw-bold mb-1" style="color: #b22222; text-transform: uppercase;">Mrs. Debika Chakraborty</h2>
-              <div class="d-inline-block px-3 py-1 mb-4" style="background-color: #b22222; color: #FDFBF7; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">Club President</div>
-              <p style="color: #333333; line-height: 1.8; font-size: 1.05rem;">As the Club President, Mrs. Debika Chakraborty brings decades of experience in community leadership and cultural preservation. Her vision and dedication have been instrumental in shaping the identity and growth of Dutta Bagan Adhibashibrinda, ensuring that every celebration reflects the values and aspirations of our community.</p>
             </div>
           </div>
-
-          <!-- <hr class="section-divider section-divider--dark" aria-hidden="true"> -->
-
-          <!-- Profile 2: Vice President -->
-          <!-- <div id="profile-vice-president" class="row align-items-center mb-5 pb-5 profile-anchor">
-            <div class="col-12 col-md-7 pe-md-5 order-2 order-md-1">
-              <h2 class="display-6 font-serif fw-bold mb-1" style="color: #b22222; text-transform: uppercase;">Kasturi Chowdhury</h2>
-              <div class="d-inline-block px-3 py-1 mb-4" style="background-color: #b22222; color: #FDFBF7; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">Vice President</div>
-              <p style="color: #333333; line-height: 1.8; font-size: 1.05rem;">Kasturi Chowdhury guides the committee's cultural direction with depth, sensitivity, and strong community connection. Her leadership strengthens collaboration across volunteers, artisans, and local families.</p>
-            </div>
-
-            <div class="col-12 col-md-5 mb-4 mb-md-0 order-1 order-md-2">
-              <div class="portrait-placeholder d-flex align-items-center justify-content-center" style="aspect-ratio: 4/5; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(178,34,34,0.05);">
-                <span class="portrait-initials">KC</span>
-              </div>
-            </div>
-          </div>
-
-          <hr class="section-divider section-divider--dark" aria-hidden="true"> -->
-
-          <!-- Profile 3: General Secretary -->
-          <!-- <div id="profile-general-secretary" class="row align-items-center profile-anchor">
-            <div class="col-12 col-md-5 mb-4 mb-md-0">
-              <div class="portrait-placeholder d-flex align-items-center justify-content-center" style="aspect-ratio: 4/5; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(178,34,34,0.05);">
-                <span class="portrait-initials">DB</span>
-              </div>
-            </div>
-
-            <div class="col-12 col-md-7 ps-md-5">
-              <h2 class="display-6 font-serif fw-bold mb-1" style="color: #b22222; text-transform: uppercase;">Debaditya Banerjee</h2>
-              <div class="d-inline-block px-3 py-1 mb-4" style="background-color: #b22222; color: #FDFBF7; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">General Secretary</div>
-              <p style="color: #333333; line-height: 1.8; font-size: 1.05rem;">Debaditya Banerjee coordinates planning, execution, and day-to-day committee operations with precision. His operational leadership ensures each event flows smoothly from preparation to final celebration.</p>
-            </div>
-          </div> -->
 
         </div>
-      </section>
+      </div>
+    </section>
+
+    <!-- ============================================
+         LEADERSHIP PROFILES SECTION
+         ============================================ -->
+    <section class="py-5" style="background-color: #F8EFEF;">
+      <div class="container">
+
+        <!-- Section Title -->
+        <div class="text-center mb-5 pb-4">
+          <p class="text-uppercase fw-bold mb-2" style="color: black; font-size: 0.85rem; letter-spacing: 0.15em;">Our Team</p>
+          <h2 class="display-5 font-serif fw-bold mb-0" style="color: #b22222;">Leadership Profiles</h2>
+        </div>
+
+        <!-- Profile 1: President -->
+        <div id="profile-president" class="row align-items-center mb-5 pb-5 profile-anchor" style="border-bottom: 1px solid rgba(178,34,34,0.1);">
+          <div class="col-12 col-md-5 mb-4 mb-md-0">
+            <img src="assets/images/core committee/Mrs. Debika Chakraborty.png" alt="Mrs. Debika Chakraborty" class="img-fluid w-100" style="aspect-ratio: 4/5; object-fit: cover; filter: grayscale(100%); border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(178,34,34,0.05);">
+          </div>
+
+          <div class="col-12 col-md-7 ps-md-5">
+            <h3 class="font-serif fw-bold mb-2" style="color: #b22222; font-size: 1.5rem;">Mrs. Debika Chakraborty</h3>
+            <div class="d-inline-block px-3 py-1 mb-3" style="background-color: #b22222; color: #FDFBF7; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">Club President</div>
+            <p style="color: #333333; line-height: 1.7; font-size: 0.95rem;">As the Club President, Mrs. Debika Chakraborty brings decades of experience in community leadership and cultural preservation. Her vision and dedication have been instrumental in shaping the identity and growth of Dutta Bagan Adhibashibrinda, ensuring that every celebration reflects the values and aspirations of our community.</p>
+          </div>
+        </div>
+
+        <!-- Profile 2: Vice President (Commented Out) -->
+        <!-- <div id="profile-vice-president" class="row align-items-center mb-5 pb-5 profile-anchor" style="border-bottom: 1px solid rgba(178,34,34,0.1);">
+          <div class="col-12 col-md-7 pe-md-5 order-2 order-md-1">
+            <h3 class="font-serif fw-bold mb-2" style="color: #b22222; font-size: 1.5rem;">Kasturi Chowdhury</h3>
+            <div class="d-inline-block px-3 py-1 mb-3" style="background-color: #b22222; color: #FDFBF7; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">Vice President</div>
+            <p style="color: #333333; line-height: 1.7; font-size: 0.95rem;">Kasturi Chowdhury guides the committee's cultural direction with depth, sensitivity, and strong community connection. Her leadership strengthens collaboration across volunteers, artisans, and local families.</p>
+          </div>
+
+          <div class="col-12 col-md-5 mb-4 mb-md-0 order-1 order-md-2">
+            <div class="portrait-placeholder d-flex align-items-center justify-content-center" style="aspect-ratio: 4/5; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(178,34,34,0.05);">
+              <span class="portrait-initials">KC</span>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Profile 3: General Secretary (Commented Out) -->
+        <!-- <div id="profile-general-secretary" class="row align-items-center mb-5 pb-5 profile-anchor" style="border-bottom: 1px solid rgba(178,34,34,0.1);">
+          <div class="col-12 col-md-5 mb-4 mb-md-0">
+            <div class="portrait-placeholder d-flex align-items-center justify-content-center" style="aspect-ratio: 4/5; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(178,34,34,0.05);">
+              <span class="portrait-initials">DB</span>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-7 ps-md-5">
+            <h3 class="font-serif fw-bold mb-2" style="color: #b22222; font-size: 1.5rem;">Debaditya Banerjee</h3>
+            <div class="d-inline-block px-3 py-1 mb-3" style="background-color: #b22222; color: #FDFBF7; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">General Secretary</div>
+            <p style="color: #333333; line-height: 1.7; font-size: 0.95rem;">Debaditya Banerjee coordinates planning, execution, and day-to-day committee operations with precision. His operational leadership ensures each event flows smoothly from preparation to final celebration.</p>
+          </div>
+        </div> -->
+
+      </div>
+    </section>
 
     <div id="site-footer"></div>
 
@@ -141,5 +140,6 @@
   <script src="assets/js/animations.js?v=20260415-9"></script>
   <script src="assets/js/interactions.js?v=20260415-9"></script>
   <script src="assets/js/scroll-reveal.js?v=20260415-9"></script>
+</body>
 </body>
 </html>
