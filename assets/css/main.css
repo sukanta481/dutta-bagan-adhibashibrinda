@@ -365,6 +365,30 @@ body {
   opacity: 0.8;
 }
 
+/* Ensure footer contact icon/text are consistently aligned across duplicated footer style blocks */
+.zone-3-footer .footer-contact-item {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  align-items: start;
+  column-gap: 0.75rem;
+}
+
+.zone-3-footer .footer-contact-icon {
+  margin-top: 2px;
+}
+
+.zone-3-footer .footer-contact-item span,
+.zone-3-footer .footer-contact-item .footer-link {
+  display: block;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.zone-3-footer .footer-contact-item .footer-link {
+  color: #FDFBF7;
+  opacity: 0.72;
+}
+
 /* Footer copyright */
 .footer-copyright {
   font-family: 'Poppins', sans-serif;
@@ -1185,7 +1209,7 @@ body {
   font-size: 0.875rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #D4AF37;
+  color: whitesmoke;
 }
 
 /* Main Heading */
@@ -1442,7 +1466,7 @@ body {
   color: #b22222;
 }
 
-.zone-2-light .number-highlight {
+.zone-2-light .number-highlight, .zone-2-light .number-star {
   color: #b22222;
 }
 
@@ -1450,9 +1474,6 @@ body {
   color: #ffffff;
 }
 
-.number-star {
-  color: #ffffff;
-}
 
 .achievement-label {
   font-family: 'Poppins', sans-serif;
@@ -2592,14 +2613,15 @@ body {
 .contact-ad-cta {
   margin-top: 18px;
   align-self: center;
-  background: #ffffff;
-  color: #000000;
+  background: #b22222;
+  color: #ffffff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: clamp(1.1rem, 1.9vw, 1.5rem);
   font-weight: 700;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   padding: clamp(18px, 2.4vw, 26px) clamp(36px, 5vw, 74px);
   min-width: clamp(330px, 44vw, 640px);
   border-radius: 999px;
@@ -2609,7 +2631,7 @@ body {
 }
 
 .contact-ad-cta span {
-  color: #000000;
+  color: #ffffff;
   transition: color 0.28s ease;
 }
 
@@ -2640,7 +2662,7 @@ body {
 }
 
 .contact-ad-cta:hover {
-  background: #b22222;
+  background: #000000;
   color: #ffffff;
   transform: translateY(-2px) scale(1.02);
 }
