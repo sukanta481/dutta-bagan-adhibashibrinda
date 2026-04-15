@@ -865,7 +865,8 @@ body {
   border: none;
   cursor: pointer;
   color: #D4AF37;
-  z-index: 10;
+  z-index: 30;
+  pointer-events: auto;
   padding: 8px;
   transition: opacity 0.2s ease;
 }
@@ -877,7 +878,7 @@ body {
 /* Navigation Content — centered */
 .mobile-menu-content {
   position: relative;
-  z-index: 10;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;

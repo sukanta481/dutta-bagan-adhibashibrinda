@@ -4,7 +4,7 @@
  * like temple doors opening. Runs on every page load.
  */
 (function () {
-  var LOGO_SRC = 'assets/images/dutta bagan 2.png';
+  var LOGO_SRC = 'assets/images/Dutta bagan 2.png';
 
   var MARKUP =
     '<div class="page-loader" id="pageLoader" role="status" aria-label="Loading">' +
