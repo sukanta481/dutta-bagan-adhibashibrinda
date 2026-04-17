@@ -56,6 +56,22 @@ $(function () {
     $(this).find('.photo-caption').stop(true).slideUp(200);
   });
 
+
+  /* ============================================================
+     ABOUT PROFILE PHOTO REVEAL (hover + click/tap + keyboard)
+     ============================================================ */
+  $(document).on('click', '.profile-photo-reveal', function () {
+    const isColor = $(this).toggleClass('is-color').hasClass('is-color');
+    $(this).attr('aria-pressed', isColor ? 'true' : 'false');
+  });
+
+  $(document).on('keydown', '.profile-photo-reveal', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      $(this).trigger('click');
+    }
+  });
+
   }
 
   if (window.layoutReady && typeof window.layoutReady.then === 'function') {

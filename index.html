@@ -14,11 +14,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@400;600;900&family=Fira+Sans:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <!-- Main CSS -->
-  <link rel="stylesheet" href="assets/css/main.css?v=20260415-11">
+  <link rel="stylesheet" href="assets/css/main.css?v=20260417-1">
 </head>
 <body>
 
-    <script src="assets/js/loader.js?v=20260415-11"></script>
+    <script src="assets/js/loader.js?v=20260417-1"></script>
 
     <div id="app">
 
@@ -30,7 +30,7 @@
     <div class="zone-1-red">
 
     <!-- Ambient Art: Mandala � top-right, slow spin, parallax -->
-    <img src="assets/images/mandala.svg" alt="" class="zone-1-mandala parallax-slow" loading="lazy" aria-hidden="true">
+    <img src="assets/images/mandala.webp" alt="" class="zone-1-mandala parallax-slow" loading="lazy" aria-hidden="true">
 
     <!-- ============================================================
          HERO SECTION
@@ -40,7 +40,7 @@
 
         <!-- Hero cover background (contained within hero) -->
         <div class="hero-video-fixed" id="hero-video-fixed">
-          <img src="assets/images/hero-cover.webp" alt="" aria-hidden="true">
+          <img src="assets/images/hero-cover.webp" alt="" aria-hidden="true" loading="eager" fetchpriority="high" decoding="async">
           <div class="hero-video-overlay" aria-hidden="true"></div>
         </div>
 
@@ -183,8 +183,8 @@
 
             <!-- Left Column: Arch Image + Logo -->
             <div class="col-12 col-lg-5 text-center mb-5 mb-lg-0 anim-fadeup" style="position: relative;">
-              <img src="assets/images/arch.webp" alt="" class="img-fluid" style="max-width: 400px; width: 75%;">
-              <img src="assets/images/Dutta bagan.png" alt="Dutta Bagan Adhibashibrinda" class="about-logo-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; max-width: 600px; height: auto; object-fit: contain; z-index: 2; filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15));">
+              <img src="assets/images/arch.webp" alt="" class="img-fluid" style="max-width: 400px; width: 75%;" loading="lazy" decoding="async">
+              <img src="assets/images/Dutta bagan.png" alt="Dutta Bagan Adhibashibrinda" class="about-logo-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; max-width: 600px; height: auto; object-fit: contain; z-index: 2; filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15));" loading="lazy" decoding="async">
             </div>
 
             <!-- Right Column: Typography -->
@@ -232,9 +232,9 @@
             <a href="gallery-2024.html" class="archive-card-link d-block text-decoration-none">
               <div class="archive-arch-wrapper position-relative w-100 text-center transition-transform hover-scale">
                 <!-- Arch Graphic (dictates card dimensions) -->
-                <img src="assets/images/arch.webp" class="img-fluid w-100 d-block" alt="Archive Frame">
+                <img src="assets/images/arch.webp" class="img-fluid w-100 d-block" alt="Archive Frame" loading="lazy" decoding="async">
                 <!-- Kolka Watermark (subtle cultural texture) -->
-                <img src="assets/images/mangokolka1.webp" class="position-absolute top-50 start-50 translate-middle pointer-events-none" style="width: 50%; opacity: 0.08; z-index: 1;" alt="">
+                <img src="assets/images/mangokolka1.webp" class="position-absolute top-50 start-50 translate-middle pointer-events-none" style="width: 50%; opacity: 0.08; z-index: 1;" alt="" loading="lazy" decoding="async">
                 <!-- Centered Text -->
                 <div class="position-absolute top-50 start-50 translate-middle text-center archive-card-poppins archive-card-content" style="z-index: 2;">
                   <p class="archive-card-main mb-0">Durga Puja</p>
@@ -251,9 +251,9 @@
             <a href="gallery-2025.html" class="archive-card-link d-block text-decoration-none">
               <div class="archive-arch-wrapper position-relative w-100 text-center transition-transform hover-scale">
                 <!-- Arch Graphic (dictates card dimensions) -->
-                <img src="assets/images/arch.webp" class="img-fluid w-100 d-block" alt="Archive Frame">
+                <img src="assets/images/arch.webp" class="img-fluid w-100 d-block" alt="Archive Frame" loading="lazy" decoding="async">
                 <!-- Kolka Watermark (subtle cultural texture) -->
-                <img src="assets/images/mangokolka1.webp" class="position-absolute top-50 start-50 translate-middle pointer-events-none" style="width: 50%; opacity: 0.08; z-index: 1;" alt="">
+                <img src="assets/images/mangokolka1.webp" class="position-absolute top-50 start-50 translate-middle pointer-events-none" style="width: 50%; opacity: 0.08; z-index: 1;" alt="" loading="lazy" decoding="async">
                 <!-- Centered Text -->
                 <div class="position-absolute top-50 start-50 translate-middle text-center archive-card-poppins archive-card-content" style="z-index: 2;">
                   <p class="archive-card-main mb-0">Durga Puja</p>
@@ -270,9 +270,9 @@
             <a href="gallery-2026.html" class="archive-card-link d-block text-decoration-none">
               <div class="archive-arch-wrapper position-relative w-100 text-center transition-transform hover-scale">
                 <!-- Arch Graphic (dictates card dimensions) -->
-                <img src="assets/images/arch.webp" class="img-fluid w-100 d-block" alt="Archive Frame">
+                <img src="assets/images/arch.webp" class="img-fluid w-100 d-block" alt="Archive Frame" loading="lazy" decoding="async">
                 <!-- Kolka Watermark (subtle cultural texture) -->
-                <img src="assets/images/mangokolka1.webp" class="position-absolute top-50 start-50 translate-middle pointer-events-none" style="width: 50%; opacity: 0.08; z-index: 1;" alt="">
+                <img src="assets/images/mangokolka1.webp" class="position-absolute top-50 start-50 translate-middle pointer-events-none" style="width: 50%; opacity: 0.08; z-index: 1;" alt="" loading="lazy" decoding="async">
                 <!-- Centered Text -->
                 <div class="position-absolute top-50 start-50 translate-middle text-center archive-card-poppins archive-card-content" style="z-index: 2;">
                   <p class="archive-card-main mb-0">Durga Puja</p>
@@ -303,7 +303,7 @@
          ============================================================ -->
     <div class="position-relative overflow-hidden py-4" style="background-color: transparent;">
 
-      <img src="assets/images/mangokolka1.webp" alt="" aria-hidden="true" class="position-absolute ambient-drift" style="top: 8%; left: -6vw; width: min(42vw, 440px); opacity: 0.12; z-index: 0; pointer-events: none; filter: invert(15%) sepia(85%) saturate(3000%) hue-rotate(345deg) brightness(90%) contrast(90%);">
+      <img src="assets/images/mangokolka1.webp" alt="" aria-hidden="true" class="position-absolute ambient-drift" style="top: 8%; left: -6vw; width: min(42vw, 440px); opacity: 0.12; z-index: 0; pointer-events: none; filter: invert(15%) sepia(85%) saturate(3000%) hue-rotate(345deg) brightness(90%) contrast(90%);" loading="lazy" decoding="async">
 
       <section id="section-committee" class="section-committee container py-5 position-relative" style="z-index: 10;">
 
@@ -321,7 +321,7 @@
         <div class="col-10 col-sm-6 col-md-4 mb-4 text-center">
           <div class="bg-white p-3 mx-auto mb-4" style="max-width: 280px; box-shadow: 0 15px 35px rgba(178,34,34,0.05); border: 1px solid rgba(0,0,0,0.03);">
             <div class="position-relative w-100 portrait-placeholder" style="aspect-ratio: 3/4; border: 1px solid rgba(178,34,34,0.15); overflow: hidden;">
-              <img src="assets/images/core%20committee/Mrs.%20Debika%20Chakraborty.png" alt="Mrs. Debika Chakraborty" class="w-100 h-100" style="object-fit: cover;">
+              <img src="assets/images/core%20committee/Mrs.%20Debika%20Chakraborty.png" alt="Mrs. Debika Chakraborty" class="w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async">
             </div>
           </div>
           <h4 class="font-serif fw-bold mb-1" style="color: #b22222; font-size: 1.5rem;">Mrs. Debika Chakraborty</h4>
@@ -410,7 +410,7 @@
         <!-- Gallery Slider -->
         <div class="gallery-slider-wrapper">
           <div class="gallery-slider-track" id="gallerySliderTrack">
-            <!-- Slides injected by assets/js/gallery-slider.js?v=20260415-11 from gallery-feed.php -->
+            <!-- Slides injected by assets/js/gallery-slider.js?v=20260417-1 from gallery-feed.php -->
           </div>
         </div>
       </div>
@@ -498,15 +498,15 @@
   <!-- Vue 3 (load last before app scripts) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.21/vue.global.prod.min.js"></script>
 
-  <script src="assets/js/header.js?v=20260415-11"></script>
-  <script src="assets/js/layout-loader.js?v=20260415-11"></script>
+  <script src="assets/js/header.js?v=20260417-1"></script>
+  <script src="assets/js/layout-loader.js?v=20260417-1"></script>
 
   <!-- App scripts (Vue → GSAP → jQuery) -->
-  <script src="assets/js/app.js?v=20260415-11"></script>
-  <script src="assets/js/animations.js?v=20260415-11"></script>
-  <script src="assets/js/interactions.js?v=20260415-11"></script>
-  <script src="assets/js/scroll-reveal.js?v=20260415-11"></script>
-  <script src="assets/js/gallery-slider.js?v=20260415-11"></script>
+  <script src="assets/js/app.js?v=20260417-1"></script>
+  <script src="assets/js/animations.js?v=20260417-1"></script>
+  <script src="assets/js/interactions.js?v=20260417-1"></script>
+  <script src="assets/js/scroll-reveal.js?v=20260417-1"></script>
+  <script src="assets/js/gallery-slider.js?v=20260417-1"></script>
 
   </body>
 </html>

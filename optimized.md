@@ -8,28 +8,57 @@ Baseline (mobile, gallery-2025.html, PageSpeed Insights):
 
 The main blocker is **payload size**, not code. The site ships ~60+ MB of hero/background artwork and ~150+ MB of gallery images at full resolution to every device. Everything else is secondary.
 
+**Core Web Vitals targets (what Lighthouse is measuring):**
+| Metric | Good | Needs work | Poor | Current (est.) |
+|--------|------|-----------|------|----------------|
+| LCP (Largest Contentful Paint) | ≤ 2.5s | 2.5–4.0s | > 4.0s | ~7–9s |
+| FCP (First Contentful Paint)   | ≤ 1.8s | 1.8–3.0s | > 3.0s | ~3–5s |
+| TBT (Total Blocking Time)      | ≤ 200ms | 200–600ms | > 600ms | ~400ms |
+| CLS (Cumulative Layout Shift)  | ≤ 0.1 | 0.1–0.25 | > 0.25 | depends on page |
+| INP (Interaction to Next Paint) | ≤ 200ms | 200–500ms | > 500ms | likely OK |
+| Speed Index                    | ≤ 3.4s | 3.4–5.8s | > 5.8s | ~5–7s |
+
 ---
 
 ## 1. What's actually slow (measured)
 
-Files that are hurting us right now (`c:\xampp\htdocs\adhibashibrinda\assets\images\`):
+Files in `c:\xampp\htdocs\adhibashibrinda\assets\images\` — **updated 2026-04-17 after Phase 1 pass**:
 
-| File | Size | Problem |
-|------|------|---------|
-| `About-hero.svg` | 12.6 MB | Raster wrapped in SVG |
-| `gallery-hero.svg` | 12.6 MB | Raster wrapped in SVG |
-| `aboutusbg.svg` | 11.5 MB | Raster wrapped in SVG |
-| `galarybg.png` | 10.3 MB | Unoptimized PNG |
-| `hero-cover.svg` | 9.5 MB | Raster wrapped in SVG |
-| `arch-red.svg` | 3.7 MB | Raster wrapped in SVG |
-| `arch.png` | 2.3 MB | Unoptimized PNG |
-| `hero cover.jpg` | 1.8 MB | Full-res JPEG |
-| `mangokolka1.png` | 1.5 MB | Decorative PNG used 14× in marquee |
-| `Gallery/2025/` | 152 MB | Every thumbnail = full-res JPEG |
-| `Gallery/2024/` | 43 MB | Same |
-| `Gallery/2026/` | 18 MB | Same |
+| File | Was | Now | Status |
+|------|-----|-----|--------|
+| `hero-cover.webp` | 2.0 MB | **163 KB** | ✅ rebuilt at 1600w/q72 |
+| `About-hero.webp` | 1.8 MB | **129 KB** | ✅ rebuilt |
+| `gallery-hero.webp` | 1.8 MB | **129 KB** | ✅ rebuilt |
+| `aboutusbg.webp` | 2.9 MB | **129 KB** | ✅ rebuilt at 1600w/q65 |
+| `galarybg.webp` | 1.5 MB | **219 KB** | ✅ rebuilt |
+| `arch-red.webp` | 1.0 MB | **50 KB** | ✅ rebuilt at 900w/q72 |
+| `mangokolka1.webp` | 427 KB | 427 KB | 🟢 used 20× in marquee, cached once (skip dedupe for now) |
+| `Gallery/2025/` originals | 152 MB | 152 MB | ⏸ kept for lightbox; grid uses thumbs |
+| `Gallery/2025/thumbs/` | — | **2.3 MB** | ✅ 39 WebP thumbs at 800w/q75 |
+| `Gallery/2024/thumbs/` | — | **692 KB** | ✅ 8 thumbs |
+| `Gallery/2026/thumbs/` | — | **564 KB** | ✅ 10 thumbs |
 
-**Any single hero SVG above = bigger than most entire websites.** This is the #1 fix.
+**Hero payload:** ~10.0 MB → ~820 KB (-92%).
+**Gallery-grid payload:** 213 MB originals → 3.5 MB thumbs (-98%). Originals still load, but only via lightbox click.
+
+Old oversized WebPs backed up to [_originals-backup/](assets/images/_originals-backup/) before rebuild. The raw `.svg` / `.png` source files (~60 MB combined) can be deleted from repo after live testing.
+
+**Lesson:** `cwebp -q 78` on a 20 MP source still produces a ~2 MB file. **Resize THEN encode.**
+```bash
+# ffmpeg recipe (what was actually used)
+ffmpeg -y -i source.webp -vf "scale='min(1600,iw)':-2" \
+  -c:v libwebp -quality 72 -compression_level 6 out.webp
+```
+
+**Lesson:** `cwebp -q 78` on a 20 MP source still produces a ~2 MB file. **Resize THEN encode.**
+```bash
+# correct recipe — resize to 1600px wide, then WebP at q=70
+magick "source.jpg" -resize 1600x -quality 88 "tmp.jpg"
+cwebp -q 70 "tmp.jpg" -o "out.webp"
+rm tmp.jpg
+```
+
+**Phase 1 status (2026-04-17):** Actions 1.1, 1.2, 1.4 complete. 1.3 (responsive srcset) and 1.5 (marquee dedupe) deferred — heroes already tiny (~130 KB) after rebuild, so marginal gain isn't worth the HTML churn yet.
 
 Other contributors:
 - **7 Google Font families** loaded (`Playfair Display`, `DM Sans`, `Cinzel`, `Fira Sans`, `Poppins`, `Montserrat` — Fira Sans & Cinzel aren't even used).
@@ -50,14 +79,14 @@ These "SVG" files are just JPEGs stuffed inside an SVG wrapper. They gain nothin
 # Install cwebp once (Windows: https://developers.google.com/speed/webp/download)
 
 # Run from project root
-cwebp -q 78 "assets/images/hero-cover.svg" -o "assets/images/hero-cover.webp"
-cwebp -q 78 "assets/images/About-hero.svg" -o "assets/images/about-hero.webp"
-cwebp -q 78 "assets/images/gallery-hero.svg" -o "assets/images/gallery-hero.webp"
+cwebp -q 78 "assets/images/hero-cover.svg" -o "assets/images/hero-cover.webp" done
+cwebp -q 78 "assets/images/About-hero.svg" -o "assets/images/about-hero.webp" done
+cwebp -q 78 "assets/images/gallery-hero.svg" -o "assets/images/gallery-hero.webp" done
 cwebp -q 75 "assets/images/aboutusbg.svg"   -o "assets/images/aboutusbg.webp"
 cwebp -q 75 "assets/images/galarybg.png"    -o "assets/images/galarybg.webp"
-cwebp -q 80 "assets/images/arch.png"        -o "assets/images/arch.webp"
-cwebp -q 80 "assets/images/mangokolka1.png" -o "assets/images/mangokolka1.webp"
-cwebp -q 80 "assets/images/mangokolka2.png" -o "assets/images/mangokolka2.webp"
+cwebp -q 80 "assets/images/arch.png"        -o "assets/images/arch.webp" done
+cwebp -q 80 "assets/images/mangokolka1.png" -o "assets/images/mangokolka1.webp" done
+cwebp -q 80 "assets/images/mangokolka2.png" -o "assets/images/mangokolka2.webp" done
 ```
 
 Expected: **9.5 MB → ~180 KB** for hero-cover alone.
@@ -275,9 +304,12 @@ These are project-specific — breaking any of them re-introduces the same probl
 ### Images
 - [ ] **No raster images wrapped in SVG.** If the file contains `<image xlink:href="data:image/jpeg;base64,...">`, it's not an SVG. Export as WebP/JPEG directly.
 - [ ] **No image > 300 KB on mobile-first pages.** If source is bigger, build a smaller variant.
-- [ ] **Every `<img>` gets `width`, `height`, `alt`, and `loading="lazy"`** (except the LCP image — that gets `fetchpriority="high"`).
+- [ ] **Resize BEFORE encoding.** `cwebp -q 70` on a 6000×4000 source still produces a ~2 MB file. Downscale to target width (≤1920 for heroes, ≤800 for thumbs) first, then encode.
+- [ ] **Every `<img>` gets `width`, `height`, `alt`, and `loading="lazy"`** (except the LCP image — that gets `fetchpriority="high"` and `loading="eager"`).
+- [ ] **Never use `loading="lazy"` on the LCP image.** It silently destroys LCP score.
 - [ ] **Gallery originals never ship to thumbnails.** Thumbs live in a sibling `thumbs/` folder.
 - [ ] **Prefer WebP** with JPEG/PNG fallback via `<picture>`.
+- [ ] **Decorative images use `alt=""` + `aria-hidden="true"`**, not a made-up description.
 
 ### Fonts
 - [ ] **Max 3 font families, 3 weights each.** Every extra weight is a separate download.
@@ -293,6 +325,8 @@ These are project-specific — breaking any of them re-introduces the same probl
 - [ ] **Inline critical CSS in `<head>`** (at minimum the loader + above-the-fold layout).
 - [ ] **No layout animation on `width`/`height`/`margin`** — only `transform` and `opacity` (already in CLAUDE.md — keep holding the line).
 - [ ] **Cache-bust with `?v=…`** when changing a file; never rely on Hostinger clearing for you.
+- [ ] **Every page ships a `<meta name="description">` and `<link rel="canonical">`.**
+- [ ] **`<title>` is unique per page, ≤60 chars, ASCII-clean** (no stray encoding artifacts — about.html has one today, fix it).
 
 ### Deployment (Hostinger-specific)
 - [ ] **Upload the `.htaccess`** — it's the cheapest 30-point performance boost.
@@ -301,7 +335,84 @@ These are project-specific — breaking any of them re-introduces the same probl
 
 ---
 
-## 6. Quick wins checklist (do first, ship today)
+## 6. Lighthouse audit → fix mapping
+
+One-line fix for each audit name PageSpeed tends to flag on this project.
+
+### Performance audits
+| Lighthouse audit | What it means here | Fix |
+|------------------|--------------------|-----|
+| Serve images in next-gen formats | The raster-in-SVG heroes + mangokolka PNGs | Phase 1 Action 1.1 (WebP conversion) |
+| Properly size images | Gallery originals served as thumbnails | Phase 1 Action 1.2 (thumbs) + 1.3 (srcset) |
+| Efficiently encode images | WebP files at q=88 still 2 MB | **Resize THEN encode** — §1 recipe |
+| Defer offscreen images | Below-fold `<img>` without `loading="lazy"` | Action 1.4 — audit every `<img>` |
+| Eliminate render-blocking resources | 6 CDN `<script>` + Google Fonts | Action 3.1 (`defer`) + Action 2.3 (preload) |
+| Reduce unused JavaScript | Bootstrap JS bundle + jQuery on pages that don't need them | Action 3.2 + 3.3 + 3.4 |
+| Reduce unused CSS | Bootstrap CSS shipping all utilities | Low priority — PurgeCSS not worth it on a 4-page site |
+| Minify JavaScript / CSS | Already minified via CDN | N/A |
+| Enable text compression | No gzip on Hostinger by default | `.htaccess` mod_deflate block (Phase 4) |
+| Use efficient cache policy | No `Cache-Control` headers | `.htaccess` mod_expires block (Phase 4) |
+| Avoid enormous network payloads | ~60 MB hero art + ~213 MB gallery | Phase 1 (the whole point of this doc) |
+| Minimize main-thread work | GSAP + Vue + jQuery all parsing on load | Action 3.1 `defer` + drop jQuery (3.2) |
+| Reduce JavaScript execution time | Same as above | Same as above |
+| Avoid large layout shifts (CLS) | `<img>` without `width`/`height` | Always set intrinsic dimensions (§3 pattern) |
+| Preconnect to required origins | Fonts + CDN not preconnected | Action 2.3 + add `<link rel="preconnect">` for jsdelivr / cdnjs |
+| Preload key requests | LCP hero image + primary font | `<link rel="preload" as="image" fetchpriority="high" href="hero-cover.webp">` |
+| Avoid chaining critical requests | CSS → JS → image → font cascade | Preload hero image; inline loader CSS |
+| Ensure text remains visible during webfont load | Needs `font-display: swap` | Google Fonts URL already has `&display=swap` — keep it |
+| Image elements have explicit width and height | Many `<img>` missing attrs | Audit + add — prevents CLS |
+| Largest Contentful Paint image was lazily loaded | Hero with `loading="lazy"` | Hero gets `loading="eager"` + `fetchpriority="high"` |
+| Avoid non-composited animations | Animating `width`/`height`/`margin` | CLAUDE.md already forbids this — keep holding line |
+
+### Accessibility audits
+| Lighthouse audit | What it means here | Fix |
+|------------------|--------------------|-----|
+| Background and foreground colors have sufficient contrast | `--text-muted` (#7A7268) on `--bg-base` (#FAF8F5) is borderline; `--accent-gold` on white fails | Use `--text-body` for body copy; reserve `--text-muted` for decorative labels only (≥14px bold) |
+| Image elements have `[alt]` attributes | Decorative `<img>` use empty `alt=""`; content images need real alt | Committee portraits: `alt="Mrs. Debika Chakraborty, Club President"`. Watermarks: `alt=""` + `aria-hidden="true"` |
+| Links have discernible names | "Read more" / icon-only links | Add `aria-label` to social icons and bare-icon buttons |
+| Form elements have associated labels | Gallery year `<select>` | Wrap in `<label>` or add `aria-label` |
+| `[aria-*]` attributes match their roles | Usually fine; audit any custom widgets | Keep ARIA minimal — native HTML first |
+| Heading elements appear in sequential order | Don't skip `<h2>` → `<h4>` | Follow `<h1>` hero → `<h2>` section → `<h3>` sub |
+| `<html>` has a `lang` attribute | Already `<html lang="en">` — keep it | ✅ |
+| Page has a logical tab order | Skip-links for nav | Add `<a class="visually-hidden-focusable" href="#main">Skip to content</a>` |
+| Touch targets are sized appropriately | Min 48×48 px on mobile | Audit nav burger, gallery filter, social icons |
+
+### SEO audits
+| Lighthouse audit | What it means here | Fix |
+|------------------|--------------------|-----|
+| Document has a `<title>` | Confirm every page has a distinct title (about.html title contains a stray encoding char — fix) | Clean titles + keep ≤60 chars |
+| Document has a meta description | Currently missing on most pages | Add `<meta name="description" content="…">` per page, ≤160 chars |
+| Document has a valid `rel=canonical` | Missing | `<link rel="canonical" href="https://adhibashibrinda.com/about.html">` on every page |
+| Links are crawlable | Use real `href` values | No `href="#"` placeholders |
+| Image elements have `[alt]` | See Accessibility above | Same fix |
+| Page isn't blocked from indexing | No `noindex` on production | Confirm `robots.txt` + meta |
+| Has a valid `hreflang` | Only English for now | Skip unless Bengali version ships |
+| `tap-targets` are sized appropriately | Same as accessibility | Same fix |
+| Structured data is valid | No `schema.org` markup yet | Add `Event` / `Organization` JSON-LD to `index.html`:
+
+```html
+<script type="application/ld+json">
+{ "@context":"https://schema.org",
+  "@type":"Event",
+  "name":"Dutta Bagan Adhibashibrinda Durga Puja 2026",
+  "startDate":"2026-10-19",
+  "location":{"@type":"Place","name":"Dutta Bagan","address":"Kolkata, West Bengal, India"},
+  "organizer":{"@type":"Organization","name":"Dutta Bagan Adhibashibrinda"} }
+</script>
+``` |
+
+### Best Practices audits
+| Lighthouse audit | What it means here | Fix |
+|------------------|--------------------|-----|
+| Uses HTTPS | Hostinger auto-SSL | ✅ |
+| No browser errors logged to console | Keep console clean in production | Gate `console.log` calls behind a debug flag |
+| Images displayed with correct aspect ratio | Gallery tiles with `object-fit: cover` | Already OK; keep intrinsic ratios |
+| CSP headers | Not set | Optional — add via `.htaccess` once stable |
+| Page has no HTTP/2-incompatible resources | CDN hosts already HTTP/2 | ✅ |
+
+---
+
+## 7. Quick wins checklist (do first, ship today)
 
 If only an hour is available, these alone will push the score ~20 points:
 

@@ -37,10 +37,11 @@
       .then(function (images) {
         if (!Array.isArray(images) || images.length === 0) return;
 
-        var html = images.map(function (src) {
+        var html = images.map(function (entry) {
+          var src = typeof entry === 'string' ? entry : entry.thumb;
           return '<div class="gallery-slide">' +
                    '<a href="gallery.html" class="gallery-slide-link" aria-label="Open gallery page">' +
-                     '<img src="' + src + '" alt="" loading="lazy">' +
+                     '<img src="' + src + '" alt="" loading="lazy" decoding="async">' +
                    '</a>' +
                  '</div>';
         }).join('');

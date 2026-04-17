@@ -108,35 +108,25 @@
       return;
     }
 
-    // Determine columns based on screen width
-    var cols = window.innerWidth > 768 ? 4 : (window.innerWidth > 480 ? 2 : 1);
-    var gap = 12;
+    grid.className = 'masonry-grid';
 
-    // CSS Grid layout for consistent spacing
-    grid.style.display = 'grid';
-    grid.style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)';
-    grid.style.gap = gap + 'px';
+    currentImages.forEach(function (entry, index) {
+      var thumb = typeof entry === 'string' ? entry : entry.thumb;
+      var full  = typeof entry === 'string' ? entry : entry.full;
 
-    currentImages.forEach(function (src, index) {
       var itemEl = document.createElement('div');
-      itemEl.className = 'gallery-grid-item';
+      itemEl.className = 'masonry-item';
       itemEl.style.cursor = 'pointer';
-      itemEl.style.borderRadius = '8px';
-      itemEl.style.overflow = 'hidden';
 
       var imgEl = document.createElement('img');
-      imgEl.src = src;
+      imgEl.src = thumb;
       imgEl.alt = 'Gallery image ' + (index + 1);
       imgEl.loading = 'lazy';
-      imgEl.style.width = '100%';
-      imgEl.style.height = '100%';
-      imgEl.style.objectFit = 'cover';
-      imgEl.style.display = 'block';
-      imgEl.style.borderRadius = '8px';
+      imgEl.decoding = 'async';
 
       itemEl.appendChild(imgEl);
       itemEl.addEventListener('click', function () {
-        openLightbox(src);
+        openLightbox(full);
       });
 
       grid.appendChild(itemEl);

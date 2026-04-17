@@ -57,6 +57,20 @@
   user-select: none;
 }
 
+/* About page profile portraits: grayscale by default, reveal color on interaction */
+.profile-photo-reveal {
+  filter: grayscale(100%);
+  cursor: pointer;
+  transition: filter 0.35s ease, transform 0.35s ease;
+}
+
+.profile-photo-reveal:hover,
+.profile-photo-reveal:focus-visible,
+.profile-photo-reveal.is-color {
+  filter: grayscale(0%);
+  transform: translateY(-2px);
+}
+
 /* ============================================================
    PAGE LOADER — minimal (black bg, logo, three dots)
    ============================================================ */
@@ -2933,3 +2947,67 @@ body {
   }
 }
 
+/* ============================================================
+   GALLERY GRID
+   Mobile: 2-column CSS grid (square tiles).
+   Desktop: justified flex rows with uniform row height.
+   ============================================================ */
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  width: 100%;
+}
+
+.masonry-item {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  position: relative;
+}
+
+.masonry-item > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.masonry-item img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+
+@media (min-width: 768px) {
+  .masonry-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .masonry-item {
+    flex: 1 1 auto;
+    height: 240px;
+    min-width: 200px;
+    max-width: 100%;
+  }
+
+  .masonry-item img {
+    aspect-ratio: auto;
+  }
+
+  /* Pads the last row so remaining items don't stretch absurdly wide */
+  .masonry-grid::after {
+    content: "";
+    flex-grow: 1000;
+  }
+}
+
+@media (min-width: 1200px) {
+  .masonry-item {
+    height: 280px;
+  }
+}

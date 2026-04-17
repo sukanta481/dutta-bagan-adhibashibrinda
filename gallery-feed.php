@@ -17,24 +17,38 @@ foreach (['Gallery', 'gallery'] as $candidate) {
 $exts = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
 $images = [];
 
+function collectYear($yearDir, $yearName, $rootUrl, $exts) {
+    $out = [];
+    if (!is_dir($yearDir)) return $out;
+    $dir = new DirectoryIterator($yearDir);
+    foreach ($dir as $file) {
+        if ($file->isDot() || !$file->isFile()) continue;
+        $ext = strtolower($file->getExtension());
+        if (!in_array($ext, $exts, true)) continue;
+        $fname = $file->getFilename();
+        $full = $rootUrl . $yearName . '/' . $fname;
+        $thumbName = preg_replace('/\.[^.]+$/', '.webp', $fname);
+        $thumbPath = $yearDir . DIRECTORY_SEPARATOR . 'thumbs' . DIRECTORY_SEPARATOR . $thumbName;
+        $thumbUrl = is_file($thumbPath)
+            ? $rootUrl . $yearName . '/thumbs/' . rawurlencode($thumbName)
+            : $full;
+        $out[] = ['thumb' => $thumbUrl, 'full' => $full];
+    }
+    return $out;
+}
+
 if ($root !== null) {
     if ($year !== null && is_dir($root . DIRECTORY_SEPARATOR . $year)) {
-        $dir = new RecursiveDirectoryIterator($root . DIRECTORY_SEPARATOR . $year, FilesystemIterator::SKIP_DOTS);
-        foreach ($dir as $file) {
-            if (!$file->isFile()) continue;
-            $ext = strtolower($file->getExtension());
-            if (!in_array($ext, $exts, true)) continue;
-            $rel = $rootUrl . $year . '/' . $file->getFilename();
-            $images[] = $rel;
-        }
+        $images = collectYear($root . DIRECTORY_SEPARATOR . $year, $year, $rootUrl, $exts);
     } else {
-        $it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($root, FilesystemIterator::SKIP_DOTS));
-        foreach ($it as $file) {
-            if (!$file->isFile()) continue;
-            $ext = strtolower($file->getExtension());
-            if (!in_array($ext, $exts, true)) continue;
-            $rel = $rootUrl . str_replace(DIRECTORY_SEPARATOR, '/', substr($file->getPathname(), strlen($root) + 1));
-            $images[] = $rel;
+        $years = new DirectoryIterator($root);
+        foreach ($years as $yearEntry) {
+            if ($yearEntry->isDot() || !$yearEntry->isDir()) continue;
+            $yearName = $yearEntry->getFilename();
+            $images = array_merge(
+                $images,
+                collectYear($yearEntry->getPathname(), $yearName, $rootUrl, $exts)
+            );
         }
     }
 }
