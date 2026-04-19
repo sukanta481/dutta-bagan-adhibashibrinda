@@ -1,0 +1,20 @@
+Options -MultiViews
+RewriteEngine On
+
+# Use the homepage for the directory root.
+DirectoryIndex index.html
+
+# Redirect public .html URLs to clean URLs.
+RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[?\s] [NC]
+RewriteRule ^ /%1 [R=301,L,NE]
+
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[?\s] [NC]
+RewriteCond %{REQUEST_URI} !/includes/ [NC]
+RewriteCond %{REQUEST_URI} !/google [NC]
+RewriteRule ^ /%1 [R=301,L,NE]
+
+# Serve matching .html files when clean URLs are requested.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]

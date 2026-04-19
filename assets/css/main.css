@@ -512,7 +512,7 @@ body {
     top:11%;
   }
   .section-decor-kolka.is-right { right: -12vw; }
-  .section-decor-kolka.is-left  { left: -12vw; }
+  .section-decor-kolka.is-left  { left: -12vw; display: none; }
 }
 
 /* Intentionally no prefers-reduced-motion override for section decor —
@@ -1174,6 +1174,15 @@ body {
   z-index: 2;
 }
 
+/* Arch + Logo hover animation */
+.about-arch-wrapper {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+.about-arch-wrapper:hover {
+  transform: scale(1.05);
+}
+
 /* Keep the About-section kolka as a background watermark behind text */
 .section-about .section-decor-kolka {
   opacity: 0.75;
@@ -1252,6 +1261,10 @@ body {
 @media (max-width: 991px) {
   .section-about {
     padding: 50px 0 50px;
+  }
+
+  .section-decor-wrap.section-decor-kolka.is-left {
+    display: none;
   }
 
   .section-about .section-decor-kolka {
@@ -2060,14 +2073,22 @@ body {
 .gallery-slider-wrapper {
   position: relative;
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  touch-action: pan-x pan-y;
+}
+
+.gallery-slider-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .gallery-slider-track {
   display: flex;
   gap: 16px;
-  will-change: transform;
-  animation: gallerySlide 0.2s linear infinite;
 }
 
 .gallery-slide {
@@ -2155,9 +2176,7 @@ body {
 }
 
 /* Pause on hover */
-.gallery-slider-wrapper:hover .gallery-slider-track {
-  animation-play-state: paused;
-}
+/* Pause on hover natively handled by JS */
 
 /* Mobile: 2 slides visible */
 @media (max-width: 768px) {
@@ -2179,15 +2198,6 @@ body {
 
   .gallery-slide img {
     height: 220px;
-  }
-
-  @keyframes gallerySlide {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
   }
 }
 
