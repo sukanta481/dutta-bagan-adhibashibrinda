@@ -168,7 +168,7 @@ body {
   background-color: #b22222;
   color: #FDFBF7;
   position: relative;
-  padding-bottom: 4rem;
+  padding-bottom: 1rem;
 }
 
 /* Zone 1 heading defaults */
@@ -464,7 +464,7 @@ body {
 }
 
 .section-decor-kolka.is-right { right: -4vw; left: auto; }
-.section-decor-kolka.is-left  { left: -4vw;  right: auto; }
+.section-decor-kolka.is-left  { left: -6vw;  right: auto; top:77%; opacity: 0.85;}
 
 .section-decor-kolka.is-right img {
   animation-name: decor-kolka-drift-right;
@@ -509,6 +509,7 @@ body {
     width: 55vw;
     height: 55vw;
     opacity: 1;
+    top:11%;
   }
   .section-decor-kolka.is-right { right: -12vw; }
   .section-decor-kolka.is-left  { left: -12vw; }
@@ -1289,7 +1290,7 @@ body {
    THE ARCHIVES SECTION — past events showcase
    ============================================================ */
 .section-archives {
-  padding: 40px 0 30px;
+  padding: 20px 0 0;
   position: relative;
   overflow: hidden;
   background: #b22222;
