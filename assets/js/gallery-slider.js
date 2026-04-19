@@ -1,33 +1,29 @@
 /**
  * gallery-slider.js — Transform-based infinite auto-slider
  * with native touch-swipe support on mobile.
- *
- * Strategy: Use CSS transform: translateX() for smooth auto-scrolling,
- * combined with touch event handlers for manual swiping.
- * Images are duplicated so the loop resets seamlessly.
  */
 (function () {
-  var SPEED = 0.5; // px per frame (auto-scroll speed)
-  var currentX = 0; // accumulated translateX offset (negative = scrolled right)
+  var SPEED = 0.6;     // px per frame
+  var currentX = 0;    // always <= 0 (scrolled left)
+  var halfWidth = 0;   // measured after images load
   var rafId = null;
   var isPaused = false;
 
-  // Touch-swipe state
+  // Touch state
   var touchStartX = 0;
   var touchDeltaX = 0;
   var isSwiping = false;
 
   function init() {
     var wrapper = document.querySelector('.gallery-slider-wrapper');
-    var track = document.getElementById('gallerySliderTrack');
+    var track   = document.getElementById('gallerySliderTrack');
 
     if (!wrapper || !track) return;
 
-    /* ── Desktop: pause on hover ── */
+    /* Pause auto-scroll on desktop hover */
     wrapper.addEventListener('mouseenter', function () { isPaused = true; });
     wrapper.addEventListener('mouseleave', function () { isPaused = false; });
 
-    /* ── Fetch gallery images ── */
     fetch('gallery-feed.php', { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : []; })
       .then(function (images) {
@@ -42,28 +38,35 @@
                  '</div>';
         }).join('');
 
-        // Duplicate the set for seamless infinite loop
+        /* Duplicate for seamless loop */
         track.innerHTML = html + html;
 
-        // Wait for images to get initial layout before measuring
-        requestAnimationFrame(function () {
-          startAutoSlide(wrapper, track);
-          setupTouchSwipe(wrapper, track);
-        });
+        /* Wait until the browser has laid out the track and images
+           have their natural sizes, then start everything. */
+        waitForLayout(wrapper, track);
       })
       .catch(function (err) { console.error('gallery-feed failed:', err); });
   }
 
+  /* Poll until scrollWidth is non-zero (images have layout) */
+  function waitForLayout(wrapper, track) {
+    if (track.scrollWidth > 10) {
+      halfWidth = track.scrollWidth / 2;
+      startAutoSlide(wrapper, track);
+      setupTouchSwipe(wrapper, track);
+    } else {
+      setTimeout(function () { waitForLayout(wrapper, track); }, 50);
+    }
+  }
+
   /* ── Auto-slide loop ── */
   function startAutoSlide(wrapper, track) {
-    var halfWidth = track.scrollWidth / 2;
-
     function tick() {
       if (!isPaused && !isSwiping) {
         currentX -= SPEED;
 
-        // Seamless reset: when we've scrolled past the first set, jump back
-        if (Math.abs(currentX) >= halfWidth) {
+        /* When we've scrolled the full first-set width, silently jump back */
+        if (currentX <= -halfWidth) {
           currentX += halfWidth;
         }
       }
@@ -75,10 +78,8 @@
     rafId = requestAnimationFrame(tick);
   }
 
-  /* ── Touch swipe support ── */
+  /* ── Touch-swipe ── */
   function setupTouchSwipe(wrapper, track) {
-    var halfWidth = track.scrollWidth / 2;
-
     wrapper.addEventListener('touchstart', function (e) {
       isSwiping = true;
       touchStartX = e.touches[0].clientX;
@@ -87,27 +88,20 @@
 
     wrapper.addEventListener('touchmove', function (e) {
       if (!isSwiping) return;
-      var dx = e.touches[0].clientX - touchStartX;
-      touchDeltaX = dx;
-
-      // Apply swipe offset on top of the current auto-scroll position
+      touchDeltaX = e.touches[0].clientX - touchStartX;
       track.style.transform = 'translateX(' + (currentX + touchDeltaX) + 'px)';
     }, { passive: true });
 
     wrapper.addEventListener('touchend', function () {
-      // Commit the swipe delta into the running offset
+      /* Commit delta */
       currentX += touchDeltaX;
 
-      // Normalise so we stay within the valid scroll range
-      if (Math.abs(currentX) >= halfWidth) {
-        currentX += halfWidth;
-      }
-      if (currentX > 0) {
-        currentX -= halfWidth;
-      }
+      /* Keep inside valid range */
+      if (currentX <= -halfWidth) currentX += halfWidth;
+      if (currentX > 0)           currentX -= halfWidth;
 
       touchDeltaX = 0;
-      isSwiping = false;
+      isSwiping   = false;
     }, { passive: true });
   }
 
