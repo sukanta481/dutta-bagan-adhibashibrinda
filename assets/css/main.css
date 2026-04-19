@@ -274,7 +274,7 @@ body {
   font-size: 0.85rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #D4AF37;
+  color: #FDFBF7;
   margin-bottom: 1.25rem;
 }
 
@@ -388,7 +388,7 @@ body {
    AMBIENT ART — isolated SVG watermarks (no tiling)
    ============================================================ */
 
-/* Zone 1: Mandala — top-right, slow spin */
+/* Zone 1: Mandala — retained for global ambient tint (low opacity background) */
 .zone-1-mandala {
   position: absolute;
   top: 5%;
@@ -400,6 +400,123 @@ body {
   filter: brightness(0) saturate(100%) invert(96%) sepia(4%) saturate(100%) hue-rotate(0deg) brightness(100%) contrast(100%);
   animation: spin-slow 120s linear infinite;
 }
+
+/* ─────────────────────────────────────────────
+   VISIBLE SECTION DECOR — Chakra + drifting Kolka
+   Scoped to section-about and section-archives.
+   Architecture: a positioned WRAPPER + inner IMG.
+   Positioning lives on the wrapper; animation lives on the img.
+   Each element owns ONE transform — never conflicting.
+   ───────────────────────────────────────────── */
+.section-decor-wrap {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.section-decor-wrap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  -webkit-user-drag: none;
+}
+
+/* Mandala — dark line-art source, needs inversion + screen blend to read as white on red */
+.section-decor-mandala {
+  top: 33%;
+  width: min(55vw, 520px);
+  height: min(55vw, 520px);
+  transform: translateY(-50%);
+  opacity: 1;
+  filter: invert(1) contrast(1.15) brightness(1.1);
+  mix-blend-mode: screen;
+}
+
+.section-decor-mandala.is-right { right: -10vw; left: auto; }
+.section-decor-mandala.is-left  { left: -10vw;  right: auto; }
+
+.section-decor-mandala img {
+  animation-name: decor-chakra-spin;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+@keyframes decor-chakra-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Kolka (paisley motif) — already light-colored on transparent,
+   so `screen` blend alone makes it read white on red. No inversion. */
+.section-decor-kolka {
+  top: 72%;
+  width: min(40vw, 420px);
+  height: min(40vw, 420px);
+  transform: translateY(-50%);
+  opacity: 0.75;
+  mix-blend-mode: screen;
+}
+
+.section-decor-kolka.is-right { right: -4vw; left: auto; }
+.section-decor-kolka.is-left  { left: -4vw;  right: auto; }
+
+.section-decor-kolka.is-right img {
+  animation-name: decor-kolka-drift-right;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-play-state: running;
+  will-change: transform;
+}
+
+.section-decor-kolka.is-left img {
+  animation-name: decor-kolka-drift-left;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-play-state: running;
+  will-change: transform;
+}
+
+@keyframes decor-kolka-drift-left {
+  0%   { transform: translate(0, 0) rotate(-8deg); }
+  100% { transform: translate(50px, -18px) rotate(8deg); }
+}
+
+@keyframes decor-kolka-drift-right {
+  0%   { transform: translate(0, 0) rotate(8deg); }
+  100% { transform: translate(-50px, 18px) rotate(-8deg); }
+}
+
+@media (max-width: 768px) {
+  .section-decor-mandala {
+    width: 70vw;
+    height: 70vw;
+    opacity: 1;
+    top:11%;
+  }
+  .section-decor-mandala.is-right { right: -22vw; }
+  .section-decor-mandala.is-left  { left: -32vw; }
+  .section-decor-kolka {
+    width: 55vw;
+    height: 55vw;
+    opacity: 1;
+  }
+  .section-decor-kolka.is-right { right: -12vw; }
+  .section-decor-kolka.is-left  { left: -12vw; }
+}
+
+/* Intentionally no prefers-reduced-motion override for section decor —
+   these ornaments are core to the visual identity and must keep moving
+   even when the OS has reduced-motion enabled. */
 
 /* Zone 2: Paisley — bottom-left, static, colored #b22222 */
 .zone-2-paisley {
@@ -836,7 +953,7 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  color: #D4AF37;
+  color: #FDFBF7;
   z-index: 30;
   pointer-events: auto;
   padding: 8px;
@@ -887,7 +1004,7 @@ body {
 .mobile-menu-link:hover,
 .mobile-menu-link:focus-visible,
 .mobile-menu-gallery-title:hover {
-  color: #D4AF37;
+  color: #FDFBF7;
 }
 
 /* Year Pills — horizontal, Aged Brass bordered */
@@ -913,8 +1030,8 @@ body {
   font-size: 0.85rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #D4AF37;
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #FDFBF7;
+  border: 1px solid rgba(253, 251, 247, 0.45);
   padding: 0.4rem 1rem;
   border-radius: 50px;
   transition: all 0.3s ease;
@@ -922,7 +1039,7 @@ body {
 
 .mobile-menu-year:hover,
 .mobile-menu-year:focus-visible {
-  background: #D4AF37;
+  background: #FDFBF7;
   color: #b22222;
 }
 
@@ -1056,6 +1173,17 @@ body {
   z-index: 2;
 }
 
+/* Keep the About-section kolka as a background watermark behind text */
+.section-about .section-decor-kolka {
+  opacity: 0.75;
+  mix-blend-mode: normal;
+}
+
+.section-about .section-decor-kolka.is-right {
+  right: -6vw;
+  top: 71%;
+}
+
 /* Watermark wrapper — prevents horizontal scroll on mobile */
 .about-watermark-wrap {
   position: absolute;
@@ -1080,11 +1208,11 @@ body {
 /* Eyebrow: "ABOUT US" */
 .about-eyebrow {
   font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  font-size: 0.875rem;
-  letter-spacing: 0.2em;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #D4AF37;
+  color: #FDFBF7;
 }
 
 /* Main Heading */
@@ -1125,6 +1253,17 @@ body {
     padding: 50px 0 50px;
   }
 
+  .section-about .section-decor-kolka {
+    width: 48vw;
+    height: 48vw;
+    opacity: 0.75;
+  }
+
+  .section-about .section-decor-kolka.is-right {
+    right: -18vw;
+    top: 37%;
+  }
+
   .about-heading {
     font-size: clamp(1.6rem, 5vw, 2.4rem);
   }
@@ -1152,17 +1291,23 @@ body {
 .section-archives {
   padding: 40px 0 30px;
   position: relative;
+  overflow: hidden;
   background: #b22222;
+}
+
+.section-archives .container {
+  position: relative;
+  z-index: 2;
 }
 
 /* Eyebrow */
 .archives-eyebrow {
   font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  font-size: 0.875rem;
-  letter-spacing: 0.2em;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: whitesmoke;
+  color: #FDFBF7;
 }
 
 /* Main Heading */
@@ -1251,7 +1396,7 @@ body {
   font-size: clamp(0.68rem, 1.1vw, 0.95rem);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  border-bottom: 1px solid #D4AF37;
+  border-bottom: 1px solid #b22222;
   padding-bottom: 2px;
 }
 
@@ -1828,6 +1973,20 @@ body {
   overflow: hidden;
 }
 
+/* 2026 theme banner before Core Committee */
+.theme-banner-section {
+  width: 100%;
+  margin: 0;
+}
+
+.theme-banner-image {
+  display: block;
+  width: 100%;
+  height: clamp(180px, 34vw, 520px);
+  object-fit: cover;
+  object-position: center;
+}
+
 .gallery-inner {
   max-width: 100%;
   margin: 0 auto;
@@ -1842,11 +2001,11 @@ body {
 
 .gallery-eyebrow {
   font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #D4AF37;
+  color: #1f1b18;
   margin-bottom: 12px;
 }
 
@@ -1864,8 +2023,19 @@ body {
   z-index: 3;
 }
 
+.gallery-hero--theme {
+  background-image:
+    linear-gradient(rgba(26, 20, 16, 0.52), rgba(26, 20, 16, 0.52)),
+    url('../images/2026-theme.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: clamp(120px, 20vw, 170px) 0 clamp(56px, 8vw, 84px);
+  text-align: center;
+}
+
 .gallery-hero-kicker {
-  color: #D4AF37 !important;
+  color: #FDFBF7 !important;
   font-size: 0.85rem;
   letter-spacing: 0.15em;
   opacity: 1 !important;
@@ -1990,6 +2160,9 @@ body {
 
 /* Mobile: 2 slides visible */
 @media (max-width: 768px) {
+  .zone-1-red{
+    padding-bottom: 1rem;;
+  }
   .gallery-slide {
     flex: 0 0 calc(50% - 6px);
     min-width: calc(50% - 6px);
@@ -2439,7 +2612,7 @@ body {
 }
 
 .contact-hero-banner {
-  background-image: linear-gradient(rgba(15, 12, 10, 0.18), rgba(15, 12, 10, 0.18)), url('../images/contacus.jpeg');
+  background-image: linear-gradient(rgba(15, 12, 10, 0.18), rgba(15, 12, 10, 0.18)), url('../images/contacts.webp');
 }
 
 /* ============================================================
@@ -2467,16 +2640,22 @@ body {
   }
 
   .about-page-hero img,
-  .gallery-page-hero img,
-  .hero-video-fixed img {
+  .gallery-page-hero img {
     height: clamp(280px, 72vw, 420px);
     object-position: center center;
   }
+  
+  .hero-video-fixed img {
+    height: 100%;
+    object-position: center center;
+  }
 
-  /* Home page hero height fix for mobile */
+  /* Home page hero perfectly size to fill first screen without bleeding About section */
   .hero-outer, 
   .hero-sticky {
-    height: clamp(280px, 72vw, 420px);
+    /* Viewport height minus header (71px) and exact marquee strap (90px) */
+    height: calc(100vh - 164px);
+    height: calc(100dvh - 164px);
     min-height: auto;
   }
 }

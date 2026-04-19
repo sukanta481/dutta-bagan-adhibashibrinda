@@ -18,11 +18,11 @@ const ContactSection = {
             <ul class="list-unstyled mb-0">
               <li>
                 <h6 class="text-uppercase fw-bold mb-1" style="color: #b22222; font-size: 0.75rem; letter-spacing: 0.1em;">Call Us</h6>
-                <p class="fs-5 mb-4" style="color: #333333;">+91 93310 10720</p>
+                <p class="fs-5 mb-4" style="color: #333333;">+91 99033 89320</p>
               </li>
               <li>
                 <h6 class="text-uppercase fw-bold mb-1" style="color: #b22222; font-size: 0.75rem; letter-spacing: 0.1em;">Visit Us</h6>
-                <p style="color: #333333; max-width: 80%;">JC7C+8GX, Dakshinpara Rd, Satgachi, Baguiati, South Dumdum, West Bengal 700028</p>
+                <p style="color: #333333; max-width: 80%;">22 No Raja Manindra Road, Kolkata - 700037, Kolkata, India</p>
               </li>
             </ul>
           </div>
@@ -30,7 +30,7 @@ const ContactSection = {
           <div class="col-12 col-lg-6">
             <div class="w-100 overflow-hidden" style="border: 1px solid rgba(178,34,34,0.15); border-radius: 8px; box-shadow: 0 10px 30px rgba(178,34,34,0.05);">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.0!2d88.424!3d22.620!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8a0e3c0e3c0e3%3A0x0!2sDakshinpara+Durgotsab+Committee!5e0!3m2!1sen!2sin!4v1234567890"
+                src="https://www.google.com/maps?q=22%20No%20Raja%20Manindra%20Road%2C%20Kolkata%20-%20700037%2C%20Kolkata%2C%20India&output=embed"
                 style="width: 100%; height: 400px; border: 0; filter: grayscale(90%) contrast(110%) sepia(15%);"
                 allowfullscreen=""
                 loading="lazy"
