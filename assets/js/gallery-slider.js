@@ -1,44 +1,33 @@
 /**
- * gallery-slider.js - fetch every image under assets/images/gallery/**
- * and feed them into the homepage marquee slider using a native scrolling JS loop
- * that allows flawless swiping on mobile.
+ * gallery-slider.js — Transform-based infinite auto-slider
+ * with native touch-swipe support on mobile.
+ *
+ * Strategy: Use CSS transform: translateX() for smooth auto-scrolling,
+ * combined with touch event handlers for manual swiping.
+ * Images are duplicated so the loop resets seamlessly.
  */
 (function () {
-  var SLIDER_SPEED = 0.8; // Smooth speed
-  var isHovered = false;
-  var isTouched = false;
-  var rafId;
-  
+  var SPEED = 0.5; // px per frame (auto-scroll speed)
+  var currentX = 0; // accumulated translateX offset (negative = scrolled right)
+  var rafId = null;
+  var isPaused = false;
+
+  // Touch-swipe state
+  var touchStartX = 0;
+  var touchDeltaX = 0;
+  var isSwiping = false;
+
   function init() {
-    var section = document.getElementById('section-gallery');
     var wrapper = document.querySelector('.gallery-slider-wrapper');
     var track = document.getElementById('gallerySliderTrack');
 
-    if (section) {
-      section.style.cursor = 'pointer';
-    }
-
     if (!wrapper || !track) return;
-    
-    // Explicitly guarantee the track can stretch horizontally
-    track.style.width = 'max-content';
 
-    // Pause functionality for interaction
-    // Mobile browsers famously trigger 'mouseenter' on tap without ever firing 'mouseleave'.
-    // We safeguard this by completely separating touch logic.
-    wrapper.addEventListener('mouseenter', function() { if (!isTouched) isHovered = true; });
-    wrapper.addEventListener('mouseleave', function() { isHovered = false; });
-    
-    wrapper.addEventListener('touchstart', function() { 
-      isTouched = true; 
-      isHovered = false; // Disable mouse pause specifically for touch 
-    }, {passive: true});
-    
-    wrapper.addEventListener('touchend', function() { 
-      // Slight delay before auto-scroll resumes to respect native scroll momentum
-      setTimeout(function() { isTouched = false; }, 1200); 
-    }, {passive: true});
+    /* ── Desktop: pause on hover ── */
+    wrapper.addEventListener('mouseenter', function () { isPaused = true; });
+    wrapper.addEventListener('mouseleave', function () { isPaused = false; });
 
+    /* ── Fetch gallery images ── */
     fetch('gallery-feed.php', { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : []; })
       .then(function (images) {
@@ -47,51 +36,82 @@
         var html = images.map(function (entry) {
           var src = typeof entry === 'string' ? entry : entry.thumb;
           return '<div class="gallery-slide">' +
-                   '<a href="gallery" class="gallery-slide-link" aria-label="Open gallery page" draggable="false">' +
+                   '<a href="gallery.html" class="gallery-slide-link" aria-label="Open gallery page">' +
                      '<img src="' + src + '" alt="" loading="lazy" decoding="async" draggable="false">' +
                    '</a>' +
                  '</div>';
         }).join('');
 
-        // Wrap exactly into two distinct identical groups using display:contents 
-        // to maintain direct flex layout percentage calculation cleanly.
-        var totalHtml = '<div style="display: contents;">' + html + '</div>' + 
-                        '<div style="display: contents;">' + html + '</div>';
+        // Duplicate the set for seamless infinite loop
+        track.innerHTML = html + html;
 
-        track.innerHTML = totalHtml;
-
-        // Accurate float accumulator to allow sub-pixel smooth scrolling
-        var exactScrollLeft = 0;
-
-        // Infinite scroll logic relying on native scrollLeft
-        function autoScroll() {
-          if (!isHovered && !isTouched) {
-            exactScrollLeft += SLIDER_SPEED;
-            wrapper.scrollLeft = exactScrollLeft;
-            
-            // The exact midpoint of 2 consecutive flex groups
-            var midwayPoint = track.scrollWidth / 2;
-            
-            if (exactScrollLeft >= midwayPoint) {
-              exactScrollLeft = 0;
-              wrapper.scrollLeft = 0; 
-            }
-          } else {
-            // Keep numerical accumulator strictly synced with physical swiping
-            exactScrollLeft = wrapper.scrollLeft;
-          }
-          rafId = requestAnimationFrame(autoScroll);
-        }
-
-        // Delay starting the loop slightly to ensure layout repaints measure scrollWidth correctly
-        setTimeout(function() {
-          rafId = requestAnimationFrame(autoScroll);
-        }, 150);
-
+        // Wait for images to get initial layout before measuring
+        requestAnimationFrame(function () {
+          startAutoSlide(wrapper, track);
+          setupTouchSwipe(wrapper, track);
+        });
       })
       .catch(function (err) { console.error('gallery-feed failed:', err); });
   }
 
+  /* ── Auto-slide loop ── */
+  function startAutoSlide(wrapper, track) {
+    var halfWidth = track.scrollWidth / 2;
+
+    function tick() {
+      if (!isPaused && !isSwiping) {
+        currentX -= SPEED;
+
+        // Seamless reset: when we've scrolled past the first set, jump back
+        if (Math.abs(currentX) >= halfWidth) {
+          currentX += halfWidth;
+        }
+      }
+
+      track.style.transform = 'translateX(' + currentX + 'px)';
+      rafId = requestAnimationFrame(tick);
+    }
+
+    rafId = requestAnimationFrame(tick);
+  }
+
+  /* ── Touch swipe support ── */
+  function setupTouchSwipe(wrapper, track) {
+    var halfWidth = track.scrollWidth / 2;
+
+    wrapper.addEventListener('touchstart', function (e) {
+      isSwiping = true;
+      touchStartX = e.touches[0].clientX;
+      touchDeltaX = 0;
+    }, { passive: true });
+
+    wrapper.addEventListener('touchmove', function (e) {
+      if (!isSwiping) return;
+      var dx = e.touches[0].clientX - touchStartX;
+      touchDeltaX = dx;
+
+      // Apply swipe offset on top of the current auto-scroll position
+      track.style.transform = 'translateX(' + (currentX + touchDeltaX) + 'px)';
+    }, { passive: true });
+
+    wrapper.addEventListener('touchend', function () {
+      // Commit the swipe delta into the running offset
+      currentX += touchDeltaX;
+
+      // Normalise so we stay within the valid scroll range
+      if (Math.abs(currentX) >= halfWidth) {
+        currentX += halfWidth;
+      }
+      if (currentX > 0) {
+        currentX -= halfWidth;
+      }
+
+      touchDeltaX = 0;
+      isSwiping = false;
+    }, { passive: true });
+  }
+
+  /* ── Bootstrap ── */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {

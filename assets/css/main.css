@@ -1267,6 +1267,10 @@ body {
     display: none;
   }
 
+  #section-archives .section-decor-wrap.section-decor-kolka.is-left {
+    display: none;
+  }
+
   .section-about .section-decor-kolka {
     width: 48vw;
     height: 48vw;
@@ -2073,27 +2077,21 @@ body {
 .gallery-slider-wrapper {
   position: relative;
   width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  overscroll-behavior-x: contain;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  touch-action: pan-x pan-y;
-}
-
-.gallery-slider-wrapper::-webkit-scrollbar {
-  display: none;
+  overflow: hidden;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .gallery-slider-track {
   display: flex;
   gap: 16px;
+  will-change: transform;
 }
 
 .gallery-slide {
-  flex: 0 0 calc(33.333% - 8px); /* 3 larger slides visible on desktop */
-  min-width: calc(33.333% - 8px);
+  flex: 0 0 320px;
+  min-width: 320px;
   border-radius: 8px;
   overflow: hidden;
 }
@@ -2141,12 +2139,6 @@ body {
   100% { transform: translateX(100%); }
 }
 
-/* Auto-slide animation — -50% because the JS duplicates the track */
-@keyframes gallerySlide {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
 .gallery-slide img {
   width: 100%;
   height: clamp(250px, 23vw, 360px);
@@ -2175,17 +2167,14 @@ body {
   opacity: 1;
 }
 
-/* Pause on hover */
-/* Pause on hover natively handled by JS */
-
 /* Mobile: 2 slides visible */
 @media (max-width: 768px) {
   .zone-1-red{
     padding-bottom: 1rem;;
   }
   .gallery-slide {
-    flex: 0 0 calc(50% - 6px);
-    min-width: calc(50% - 6px);
+    flex: 0 0 180px;
+    min-width: 180px;
   }
 
   .gallery-slider-track {
@@ -2613,12 +2602,12 @@ body {
    ============================================================ */
 .contact-hero {
   width: 100%;
-  min-height: clamp(280px, 46vw, 620px);
+  aspect-ratio: 1920 / 640;
   margin: 0;
   padding: 0;
   display: block;
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: center center;
   background-size: cover;
 }
 
@@ -2636,24 +2625,16 @@ body {
   line-height: 0;
 }
 
-.about-page-hero img {
+.about-page-hero img,
+.gallery-page-hero img {
   width: 100%;
-  height: clamp(240px, 43vw, 620px);
-  object-fit: cover;
-  object-position: center top;
+  height: auto;
   display: block;
 }
 
 @media (max-width: 576px) {
   .contact-hero {
-    min-height: clamp(280px, 72vw, 420px);
     background-position: center center;
-  }
-
-  .about-page-hero img,
-  .gallery-page-hero img {
-    height: clamp(280px, 72vw, 420px);
-    object-position: center center;
   }
   
   .hero-video-fixed img {
