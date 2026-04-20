@@ -472,14 +472,14 @@ body {
   -webkit-user-drag: none;
 }
 
-/* Mandala — dark line-art source, needs inversion + screen blend to read as white on red */
+/* Alpana — already a light/white design on transparent bg.
+   No inversion needed; screen blend still safely drops any residual dark fringe. */
 .section-decor-mandala {
   top: 33%;
   width: min(55vw, 520px);
   height: min(55vw, 520px);
   transform: translateY(-50%);
-  opacity: 1;
-  filter: invert(1) contrast(1.15) brightness(1.1);
+  opacity: 0.9;
   mix-blend-mode: screen;
 }
 
@@ -2136,6 +2136,89 @@ body {
   display: block;
   width: 100%;
   height: auto;
+}
+
+/* 2026 Theme & Artist intro — sits between banner and Core Committee */
+.theme-intro {
+  padding: clamp(56px, 8vw, 110px) 0 clamp(40px, 6vw, 80px);
+}
+
+.theme-intro-inner {
+  max-width: 820px;
+  text-align: center;
+}
+
+.theme-intro-eyebrow {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  color: #1f1b18;
+  margin-bottom: 18px;
+}
+
+.theme-intro-heading {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.75rem);
+  line-height: 1.2;
+  color: #b22222;
+  margin: 0 0 22px;
+}
+
+.theme-intro-artist {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #333333;
+  margin-bottom: 32px;
+}
+
+.theme-intro-artist-name {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: #b22222;
+  margin-left: 8px;
+  position: relative;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(178, 34, 34, 0.35);
+}
+
+.theme-intro-body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: clamp(1rem, 1.15vw, 1.08rem);
+  line-height: 1.85;
+  color: #3d3630;
+  margin: 0;
+}
+
+.theme-intro-body strong {
+  color: #b22222;
+  font-weight: 600;
+}
+
+.theme-intro-body em {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: #1f1b18;
+  font-weight: 500;
+}
+
+@media (max-width: 576px) {
+  .theme-intro-inner {
+    padding: 0 8px;
+  }
+  .theme-intro-body {
+    text-align: left;
+    line-height: 1.75;
+  }
 }
 
 .gallery-inner {
