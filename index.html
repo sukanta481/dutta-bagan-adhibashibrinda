@@ -17,7 +17,7 @@
     rel="stylesheet">
 
   <!-- Main CSS -->
-  <link rel="stylesheet" href="assets/css/main.css?v=20260419-8">
+  <link rel="stylesheet" href="assets/css/main.css?v=20260421-2">
 </head>
 
 <body>
@@ -39,18 +39,13 @@
       <section id="section-hero" class="hero-outer">
         <div class="hero-sticky">
 
-          <!-- Hero cover background (contained within hero) -->
+          <!-- Hero image slider (replaces video) -->
           <div class="hero-video-fixed" id="hero-video-fixed">
-            <video autoplay muted loop playsinline preload="metadata" poster="assets/images/index-hero-1920w.webp"
-              aria-hidden="true">
-              <source src="assets/video/index-hero.webm" type="video/webm">
-              <source src="assets/video/index-hero.mp4" type="video/mp4">
-              <img src="assets/images/index-hero-1920w.webp" srcset="assets/images/index-hero-480w.webp 480w,
-                         assets/images/index-hero-1024w.webp 1024w,
-                         assets/images/index-hero-1920w.webp 1920w" sizes="100vw" alt="" loading="eager"
-                fetchpriority="high" decoding="async">
-            </video>
-            <!-- <div class="hero-video-overlay" aria-hidden="true"></div> -->
+            <div class="hero-slide-track" id="heroSlideTrack">
+              <img src="assets/images/about-bg.webp" alt="" loading="eager" fetchpriority="high" decoding="async">
+              <img src="assets/images/contacts-bg.webp" alt="" loading="eager" decoding="async">
+              <img src="assets/images/gallery-bg.webp" alt="" loading="eager" decoding="async">
+            </div>
           </div>
 
           <!-- Scroll indicator -->
@@ -356,11 +351,11 @@
           </div>
 
           <!-- Mobile Peek Slider Grid -->
-          <div class="row flex-nowrap flex-md-wrap overflow-auto pb-4 committee-slider"
+          <div class="row flex-nowrap flex-md-wrap justify-content-md-center overflow-auto pb-4 committee-slider"
             style="scrollbar-width: none; -ms-overflow-style: none;">
 
             <!-- Person 1 -->
-            <div class="col-10 col-sm-6 col-md-4 mb-4 text-center">
+            <div class="col-10 col-sm-6 col-md-4 col-lg-3 mb-4 text-center">
               <div class="bg-white p-3 mx-auto mb-4"
                 style="max-width: 280px; box-shadow: 0 15px 35px rgba(178,34,34,0.05); border: 1px solid rgba(0,0,0,0.03);">
                 <div class="position-relative w-100 portrait-placeholder"
@@ -381,36 +376,19 @@
             </div>
 
             <!-- Person 2 -->
-            <div class="col-10 col-sm-6 col-md-4 mb-4 text-center">
+            <div class="col-10 col-sm-6 col-md-4 col-lg-3 mb-4 text-center">
               <div class="bg-white p-3 mx-auto mb-4"
                 style="max-width: 280px; box-shadow: 0 15px 35px rgba(178,34,34,0.05); border: 1px solid rgba(0,0,0,0.03);">
                 <div class="position-relative w-100 portrait-placeholder"
                   style="aspect-ratio: 3/4; border: 1px solid rgba(178,34,34,0.15); overflow: hidden;">
-                  <span class="portrait-initials">VP</span>
+                  <img src="assets/images/core%20committee/Kajal%20Das.webp"
+                    alt="Kajal Das" class="w-100 h-100" style="object-fit: cover;" loading="lazy"
+                    decoding="async">
                 </div>
               </div>
-              <h4 class="font-serif fw-bold mb-1" style="color: #b22222; font-size: 1.5rem;">Kasturi Chowdhury</h4>
-              <p class="text-uppercase mb-4" style="color: #333333; font-size: 0.75rem; letter-spacing: 0.15em;">Vice
-                President</p>
-              <a href="about#profile-vice-president"
-                class="d-inline-block text-uppercase fw-bold text-decoration-none pb-1"
-                style="color: black; font-size: 0.7rem; letter-spacing: 0.15em; border-bottom: 2px solid #b22222; transition: opacity 0.3s;">Know
-                More</a>
-            </div>
-
-            <!-- Person 3 -->
-            <div class="col-10 col-sm-6 col-md-4 mb-4 text-center">
-              <div class="bg-white p-3 mx-auto mb-4"
-                style="max-width: 280px; box-shadow: 0 15px 35px rgba(178,34,34,0.05); border: 1px solid rgba(0,0,0,0.03);">
-                <div class="position-relative w-100 portrait-placeholder"
-                  style="aspect-ratio: 3/4; border: 1px solid rgba(178,34,34,0.15); overflow: hidden;">
-                  <span class="portrait-initials">GS</span>
-                </div>
-              </div>
-              <h4 class="font-serif fw-bold mb-1" style="color: #b22222; font-size: 1.5rem;">Debaditya Banerjee</h4>
-              <p class="text-uppercase mb-4" style="color: #333333; font-size: 0.75rem; letter-spacing: 0.15em;">General
-                Secretary</p>
-              <a href="about#profile-general-secretary"
+              <h4 class="font-serif fw-bold mb-1" style="color: #b22222; font-size: 1.5rem;">Kajal Das</h4>
+              <p class="text-uppercase mb-4" style="color: #333333; font-size: 0.75rem; letter-spacing: 0.15em;">Secretary</p>
+              <a href="about#profile-secretary"
                 class="d-inline-block text-uppercase fw-bold text-decoration-none pb-1"
                 style="color: black; font-size: 0.7rem; letter-spacing: 0.15em; border-bottom: 2px solid #b22222; transition: opacity 0.3s;">Know
                 More</a>
@@ -574,6 +552,19 @@
     <script src="assets/js/animations.js?v=20260417-1"></script>
     <script src="assets/js/interactions.js?v=20260417-1"></script>
     <script src="assets/js/scroll-reveal.js?v=20260417-1"></script>
+    <!-- Hero image slider -->
+    <script>
+    (function () {
+      var track = document.getElementById('heroSlideTrack');
+      if (!track) return;
+      var total = track.children.length;
+      var current = 0;
+      setInterval(function () {
+        current = (current + 1) % total;
+        track.style.transform = 'translateX(-' + (current * (100 / total)) + '%)';
+      }, 5000);
+    }());
+    </script>
     <script src="assets/js/gallery-slider.js?v=20260419-1"></script>
 
 </body>
