@@ -591,20 +591,20 @@ body {
 }
 
 .section-decor-mandala--theme {
-  top: 50%;
+  top: 30%;
   left: -10vw;
   right: auto;
-  opacity: 0.24;
+  opacity: 0.4;
   mix-blend-mode: normal;
 }
 
 .section-decor-mandala--committee {
   top: auto;
-  bottom: -7.5rem;
-  right: -10vw;
+  bottom: -2.5rem;
+  right: -7vw;
   left: auto;
   transform: none;
-  opacity: 0.18;
+  opacity: 0.4;
   mix-blend-mode: normal;
 }
 
@@ -707,6 +707,11 @@ body {
     right: -22vw;
     bottom: -3.5rem;
     opacity: 0.16;
+  }
+
+  .section-decor-mandala--theme,
+  .section-decor-mandala--committee {
+    display: none;
   }
 
   .section-decor-kolka {
