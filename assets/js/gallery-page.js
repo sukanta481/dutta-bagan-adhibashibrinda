@@ -115,7 +115,7 @@
       var full  = typeof entry === 'string' ? entry : entry.full;
 
       var itemEl = document.createElement('div');
-      itemEl.className = 'masonry-item';
+      itemEl.className = 'masonry-item gallery-item anim-fadeup';
       itemEl.style.cursor = 'pointer';
 
       var imgEl = document.createElement('img');
@@ -131,6 +131,31 @@
 
       grid.appendChild(itemEl);
     });
+
+    animateGridItems();
+  }
+
+  function animateGridItems() {
+    if (!grid || !window.gsap) return;
+
+    var items = grid.querySelectorAll('.gallery-item');
+    if (!items.length) return;
+
+    gsap.fromTo(items, {
+      opacity: 0,
+      y: 28
+    }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.75,
+      stagger: { each: 0.05, from: 'random' },
+      ease: 'power3.out',
+      clearProps: 'opacity,transform'
+    });
+
+    if (window.ScrollTrigger) {
+      ScrollTrigger.refresh();
+    }
   }
 
   function initGallery() {

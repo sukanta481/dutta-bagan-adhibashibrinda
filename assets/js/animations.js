@@ -86,7 +86,7 @@ function initAnimations() {
      5. GALLERY SECTION ANIMATIONS
      ============================================================ */
 
-  gsap.from('#section-gallery .gallery-header', {
+  gsap.from('#section-gallery .gallery-header, #section-gallery .gallery-filter', {
     opacity:  0,
     y:        40,
     duration: 0.9,
@@ -98,17 +98,22 @@ function initAnimations() {
     }
   });
 
-  gsap.from('#section-gallery .gallery-item', {
-    opacity:  0,
-    y:        40,
-    duration: 0.7,
-    stagger:  { each: 0.06, from: 'random' },
-    ease:     'power3.out',
-    scrollTrigger: {
-      trigger:       '#section-gallery .gallery-grid',
-      start:         'top 80%',
-      toggleActions: 'play none none none'
-    }
+  ScrollTrigger.batch('#section-gallery .gallery-item', {
+    start: 'top 88%',
+    onEnter: function (batch) {
+      gsap.fromTo(batch, {
+        opacity: 0,
+        y: 34
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 0.75,
+        stagger: { each: 0.05, from: 'random' },
+        ease: 'power3.out',
+        overwrite: true
+      });
+    },
+    once: true
   });
 
 
