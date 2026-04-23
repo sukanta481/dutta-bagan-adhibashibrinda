@@ -238,6 +238,29 @@ body {
   position: relative;
 }
 
+.zone-2-light::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1.6vw;
+  background:
+    radial-gradient(circle at 1vw 0, #b22222 1vw, transparent 1.01vw)
+    0 0 / 2vw 100% repeat-x;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@media (max-width: 768px) {
+  .zone-2-light::before {
+    height: 2.2vw;
+    background:
+      radial-gradient(circle at 1.4vw 0, #b22222 1.4vw, transparent 1.41vw)
+      0 0 / 2.8vw 100% repeat-x;
+  }
+}
+
 .page-shell {
   position: relative;
   overflow: hidden;
@@ -1004,6 +1027,13 @@ body {
   .hero-text-line2 {
     font-size: clamp(3rem, 13vw, 4.8rem);
   }
+
+  /* Mobile: force the cursive word onto its own line after the last block word */
+  .hero-text-line2 {
+    flex-basis: 100%;
+    margin-left: 0;
+    margin-top: 0.08em;
+  }
 }
 
 @media (max-width: 576px) {
@@ -1027,13 +1057,6 @@ body {
 
   .hero-text-line2 {
     font-size: clamp(3.05rem, 15vw, 4.5rem);
-  }
-
-  .hero-text-content--gallery .hero-text-line2,
-  .hero-text-content--contact .hero-text-line2 {
-    flex-basis: 100%;
-    margin-left: 0;
-    margin-top: 0.08em;
   }
 }
 
@@ -1743,7 +1766,6 @@ body {
   padding: 20px 0 0;
   position: relative;
   overflow: hidden;
-  background: #b22222;
 }
 
 .section-archives .container {
@@ -2428,6 +2450,8 @@ body {
 .theme-banner-section {
   width: 100%;
   margin: 0;
+  padding-top: clamp(40px, 6vw, 90px);
+  background-color: #F8EFEF;
 }
 
 .theme-banner-image {
@@ -2622,6 +2646,51 @@ body {
   max-width: 620px;
   opacity: 1 !important;
   transform: none !important;
+}
+
+/* Theme credits row under gallery hero description */
+.gallery-hero-credits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.55rem 2rem;
+  max-width: 920px;
+  margin: 2rem auto 0;
+  padding: 1.2rem 1rem 0;
+  border-top: 1px solid rgba(253, 251, 247, 0.18);
+}
+
+.gallery-hero-credits .credit {
+  color: rgba(253, 251, 247, 0.92);
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.gallery-hero-credits .credit-label {
+  display: inline-block;
+  color: rgba(253, 251, 247, 0.55);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  margin-right: 0.45rem;
+}
+
+.gallery-hero-credits .credit-value {
+  font-weight: 500;
+}
+
+@media (max-width: 576px) {
+  .gallery-hero-credits {
+    gap: 0.6rem 1.2rem;
+    padding: 1rem 0.5rem 0;
+  }
+
+  .gallery-hero-credits .credit {
+    font-size: 0.85rem;
+  }
 }
 
 /* Gallery Slider */
