@@ -82,6 +82,35 @@ function initAnimations() {
     }
   });
 
+  var achievementNumbers = document.querySelectorAll('#section-achievements .count-number');
+  if (achievementNumbers.length) {
+    ScrollTrigger.create({
+      trigger: '#section-achievements',
+      start: 'top 75%',
+      once: true,
+      onEnter: function () {
+        achievementNumbers.forEach(function (numberEl) {
+          var target = parseFloat(numberEl.dataset.countTo || '0');
+          var decimals = parseInt(numberEl.dataset.countDecimals || '0', 10);
+          var suffix = numberEl.dataset.countSuffix || '';
+          var state = { value: 0 };
+
+          gsap.to(state, {
+            value: target,
+            duration: 1.5,
+            ease: 'power2.out',
+            onUpdate: function () {
+              numberEl.textContent = state.value.toFixed(decimals) + suffix;
+            },
+            onComplete: function () {
+              numberEl.textContent = target.toFixed(decimals) + suffix;
+            }
+          });
+        });
+      }
+    });
+  }
+
   /* ============================================================
      5. GALLERY SECTION ANIMATIONS
      ============================================================ */

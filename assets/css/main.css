@@ -266,6 +266,14 @@ body {
   overflow: hidden;
 }
 
+.zone-2-light.page-shell::before {
+  display: none;
+}
+
+.zone-2-light.gallery-year-content::before {
+  display: none;
+}
+
 .page-shell--inner {
   padding-bottom: 0;
 }
@@ -2454,6 +2462,10 @@ body {
   background-color: #F8EFEF;
 }
 
+.theme-banner-section--flush {
+  padding-top: 0;
+}
+
 .theme-banner-image {
   display: block;
   width: 100%;
@@ -3393,6 +3405,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
 }
 
 .contact-item-label {
@@ -3408,6 +3421,8 @@ body {
   font-size: clamp(1.45rem, 2.1vw, 2rem);
   color: #1f1b18;
   text-decoration: none;
+  overflow-wrap: anywhere;
+  word-break: break-word;
   transition: color 0.3s ease;
 }
 
@@ -3422,6 +3437,7 @@ body {
   color: #3d3630;
   line-height: 1.55;
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .contact-ad-cta {
@@ -3608,6 +3624,86 @@ textarea.contact-form-input {
     padding: 14px 20px;
     font-size: clamp(0.92rem, 3.4vw, 1.12rem);
     line-height: 1.25;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-contact {
+    padding: 58px 20px 24px;
+  }
+
+  .contact-info {
+    gap: 18px;
+  }
+
+  .contact-intro-label {
+    font-size: 0.86rem;
+    line-height: 1.45;
+  }
+
+  .contact-main-title {
+    font-size: clamp(1.72rem, 8.6vw, 2.15rem);
+    line-height: 1.18;
+    max-width: 100%;
+  }
+
+  .contact-details {
+    gap: 22px;
+    margin-top: 4px;
+  }
+
+  .contact-item {
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .contact-item-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+  }
+
+  .contact-item-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .contact-item-label {
+    font-size: 0.86rem;
+  }
+
+  .contact-item-phone {
+    font-size: clamp(1.08rem, 5vw, 1.28rem);
+    line-height: 1.25;
+  }
+
+  .contact-item-addr {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .contact-map {
+    height: 320px;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 390px) {
+  .section-contact {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .contact-main-title {
+    font-size: clamp(1.55rem, 8vw, 1.9rem);
+  }
+
+  .contact-item-phone {
+    font-size: 1.02rem;
+  }
+
+  .contact-map {
+    height: 280px;
   }
 }
 
