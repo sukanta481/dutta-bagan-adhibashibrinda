@@ -2488,6 +2488,28 @@ body {
   align-self: center;
 }
 
+.section-committee .committee-card-link {
+  color: inherit;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.28s ease, opacity 0.28s ease;
+}
+
+.section-committee .committee-card-link:hover,
+.section-committee .committee-card-link:focus-visible {
+  transform: translateY(-4px);
+}
+
+.section-committee .committee-card-link:focus-visible {
+  outline: 2px solid rgba(178, 34, 34, 0.35);
+  outline-offset: 6px;
+}
+
+.section-committee .committee-card-cta {
+  align-self: center;
+  width: auto;
+}
+
 /* 2026 Theme & Artist intro — sits between banner and Core Committee */
 .theme-intro {
   padding: clamp(56px, 8vw, 110px) 0 clamp(40px, 6vw, 80px);
