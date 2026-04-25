@@ -1,5 +1,5 @@
 /**
- * gallery-page.js — Gallery page with year filter and justified grid
+ * gallery-page.js - Gallery page with year filter and justified grid
  */
 (function () {
   var grid, select, loading;
@@ -28,9 +28,30 @@
     if (lightbox) return;
     lightbox = document.createElement('div');
     lightbox.className = 'gallery-lightbox';
-    lightbox.innerHTML = '<button class="gallery-lightbox-close" aria-label="Close">&times;</button><img src="" alt="">';
+    lightbox.innerHTML = '<button class="gallery-lightbox-close" aria-label="Close">&times;</button>' +
+                         '<button class="gallery-lightbox-prev btn btn-dark position-absolute top-50 start-0 translate-middle-y ms-2 ms-md-4" style="z-index: 1055; border-radius: 50%; width: 48px; height: 48px; padding: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.6); border: none;"><i class="bi bi-chevron-left text-white fs-4"></i></button>' +
+                         '<img src="" alt="" style="max-height: 90vh; max-width: 100%; object-fit: contain; box-shadow: 0 0 20px rgba(0,0,0,0.5);">' +
+                         '<button class="gallery-lightbox-next btn btn-dark position-absolute top-50 end-0 translate-middle-y me-2 me-md-4" style="z-index: 1055; border-radius: 50%; width: 48px; height: 48px; padding: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.6); border: none;"><i class="bi bi-chevron-right text-white fs-4"></i></button>';
     lightboxImg = lightbox.querySelector('img');
+    var prevBtn = lightbox.querySelector('.gallery-lightbox-prev');
+    var nextBtn = lightbox.querySelector('.gallery-lightbox-next');
     document.body.appendChild(lightbox);
+
+    var currentIndex = 0;
+
+    function updateLightboxImage(index) {
+      if (currentImages.length === 0) return;
+      if (index < 0) index = currentImages.length - 1;
+      if (index >= currentImages.length) index = 0;
+      currentIndex = index;
+      var entry = currentImages[currentIndex];
+      var full = typeof entry === 'string' ? entry : entry.full;
+      lightboxImg.src = full;
+    }
+
+    lightbox.setIndex = function(index) {
+      currentIndex = index;
+    };
 
     lightbox.addEventListener('click', function (e) {
       if (e.target === lightbox || e.target.classList.contains('gallery-lightbox-close')) {
@@ -39,16 +60,47 @@
       }
     });
 
+    prevBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      updateLightboxImage(currentIndex - 1);
+    });
+
+    nextBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      updateLightboxImage(currentIndex + 1);
+    });
+
+    var touchStartX = 0;
+    var touchEndX = 0;
+    
+    lightboxImg.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    lightboxImg.addEventListener('touchend', function(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX < touchStartX - 50) updateLightboxImage(currentIndex + 1);
+      if (touchEndX > touchStartX + 50) updateLightboxImage(currentIndex - 1);
+    });
+
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+      if (!lightbox || !lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') {
         lightbox.classList.remove('active');
         document.body.style.overflow = '';
+      }
+      if (e.key === 'ArrowLeft') {
+        updateLightboxImage(currentIndex - 1);
+      }
+      if (e.key === 'ArrowRight') {
+        updateLightboxImage(currentIndex + 1);
       }
     });
   }
 
-  function openLightbox(src) {
+  function openLightbox(src, index) {
     createLightbox();
+    if (lightbox.setIndex) lightbox.setIndex(index);
     lightboxImg.src = src;
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -126,7 +178,7 @@
 
       itemEl.appendChild(imgEl);
       itemEl.addEventListener('click', function () {
-        openLightbox(full);
+        openLightbox(full, index);
       });
 
       grid.appendChild(itemEl);
