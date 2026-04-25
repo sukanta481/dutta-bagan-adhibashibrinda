@@ -951,7 +951,7 @@ body {
   row-gap: 0;
   opacity: 0;
   transform: translate3d(0, 42px, 0);
-  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 1.5s ease, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-text-content.active {
@@ -976,7 +976,7 @@ body {
   text-shadow: 0 8px 34px rgba(0, 0, 0, 0.44);
   transform: translate3d(-18px, 0, 0);
   opacity: 0;
-  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s ease;
+  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.5s ease;
 }
 
 /* Force the first block word onto its own row so the rest flow inline with the script */
@@ -994,7 +994,7 @@ body {
   text-shadow: 0 8px 34px rgba(0, 0, 0, 0.44);
   transform: translate3d(20px, 18px, 0) scale(0.96);
   opacity: 0;
-  transition: transform 0.95s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.95s ease;
+  transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.6s ease;
 }
 
 .hero-text-content.active .hero-text-line1,
@@ -1007,12 +1007,12 @@ body {
 }
 
 .hero-text-content.active .hero-text-primary .hero-text-line1:nth-child(2) {
-  transition-delay: 0.08s;
+  transition-delay: 0.3s;
 }
 
 .hero-text-content.active .hero-text-line2 {
   transform: translate3d(0, 0, 0) scale(1);
-  transition-delay: 0.14s;
+  transition-delay: 0.6s;
 }
 
 @media (max-width: 768px) {

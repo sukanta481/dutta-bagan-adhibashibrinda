@@ -203,10 +203,10 @@
         heroText.classList.add('active');
       });
     }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', activateHeroText, { once: true });
-    } else {
-      activateHeroText();
+    document.addEventListener('loader:done', activateHeroText, { once: true });
+    // Failsafe in case loader finished before this script ran
+    if (document.readyState === 'complete' && (!document.getElementById('pageLoader') || document.getElementById('pageLoader').dataset.done === '1')) {
+        activateHeroText();
     }
     window.addEventListener('pageshow', activateHeroText);
   }());
