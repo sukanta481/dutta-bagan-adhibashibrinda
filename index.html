@@ -17,7 +17,7 @@
     rel="stylesheet">
 
   <!-- Main CSS -->
-  <link rel="stylesheet" href="assets/css/main.css?v=20260421-3">
+  <link rel="stylesheet" href="assets/css/main.css?v=20260421-2">
 </head>
 
 <body>
@@ -42,59 +42,24 @@
           <!-- Hero image slider (replaces video) -->
           <div class="hero-video-fixed" id="hero-video-fixed">
             <div class="hero-slide-track" id="heroSlideTrack">
-              <img
-                src="assets/images/about-bg-1920w.webp"
-                srcset="assets/images/About-bg-480w.webp 480w,
-                        assets/images/about-bg-1024w.webp 1024w,
-                        assets/images/about-bg-1920w.webp 1920w"
-                sizes="100vw"
-                alt=""
-                loading="eager"
-                fetchpriority="high"
-                decoding="async">
-              <img
-                src="assets/images/Gallery-bg-1920w.webp"
-                srcset="assets/images/Gallery-bg-480w.webp 480w,
-                        assets/images/Gallery-bg-1024w.webp 1024w,
-                        assets/images/Gallery-bg-1920w.webp 1920w"
-                sizes="100vw"
-                alt=""
-                loading="eager"
-                decoding="async">
-              <img
-                src="assets/images/Contact-bg-1920w.webp"
-                srcset="assets/images/Contact-bg-480w.webp 480w,
-                        assets/images/Contact-bg-1024w.webp 1024w,
-                        assets/images/Contact-bg-1920w.webp 1920w"
-                sizes="100vw"
-                alt=""
-                loading="eager"
-                decoding="async">
+              <img src="assets/images/about-bg.webp" alt="" loading="eager" fetchpriority="high" decoding="async">
+              <img src="assets/images/gallery-bg.webp" alt="" loading="eager" decoding="async">
+              <img src="assets/images/contacts-bg.webp" alt="" loading="eager" decoding="async">
             </div>
-            <div class="hero-video-overlay" aria-hidden="true"></div>
 
             <!-- Text overlay — slides in with each image -->
             <div class="hero-text-overlay" id="heroTextOverlay">
-              <div class="hero-text-content hero-text-content--about" data-slide="0">
-                <div class="hero-text-primary" aria-label="TRADITION OF">
-                  <span class="hero-text-line1">TRADITION</span>
-                  <span class="hero-text-line1">OF</span>
-                </div>
+              <div class="hero-text-content" data-slide="0">
+                <span class="hero-text-line1">TRADITION OF</span>
                 <span class="hero-text-line2">Bengal</span>
               </div>
-              <div class="hero-text-content hero-text-content--gallery" data-slide="1">
-                <div class="hero-text-primary" aria-label="ARTISTRY MEETS">
-                  <span class="hero-text-line1">ARTISTRY</span>
-                  <span class="hero-text-line1">MEETS</span>
-                </div>
-                <span class="hero-text-line2">Devotion</span>
+              <div class="hero-text-content" data-slide="1">
+                <span class="hero-text-line1">ARTISTRY MEETS
+                  <span class="hero-text-line2">Devotion</span>
               </div>
-              <div class="hero-text-content hero-text-content--contact" data-slide="2">
-                <div class="hero-text-primary" aria-label="GRACE BEYOND">
-                  <span class="hero-text-line1">GRACE</span>
-                  <span class="hero-text-line1">BEYOND</span>
-                </div>
-                <span class="hero-text-line2">Celebration</span>
+              <div class="hero-text-content" data-slide="2">
+                <span class="hero-text-line1">GRACE BEYOND
+                  <span class="hero-text-line2">Celebration
               </div>
             </div>
           </div>
@@ -345,8 +310,8 @@
     <div class="zone-2-light py-0">
 
       <!-- Ambient Art: Paisley � bottom-left, parallax, red watermark -->
-      <!-- <img src="assets/images/paisley.svg" alt="" class="zone-2-paisley parallax-slow" loading="lazy"
-        aria-hidden="true"> -->
+      <img src="assets/images/paisley.svg" alt="" class="zone-2-paisley parallax-slow" loading="lazy"
+        aria-hidden="true">
 
       <!-- 2026 Theme Banner -->
       <section class="theme-banner-section" aria-label="2026 theme banner">
@@ -358,9 +323,6 @@
          THE 2026 THEME & ARTIST � editorial concept note
          ============================================================ -->
       <section id="section-theme-intro" class="theme-intro" aria-label="About the 2026 theme and artist">
-        <div class="section-decor-wrap section-decor-mandala section-decor-mandala--theme is-left" aria-hidden="true">
-          <img src="assets/images/alpana-red.webp" alt="" loading="lazy" decoding="async">
-        </div>
         <div class="container theme-intro-inner">
 
           <p class="theme-intro-eyebrow text-uppercase">The 2026 Vision</p>
@@ -390,13 +352,9 @@
          ============================================================ -->
       <div class="position-relative overflow-hidden py-4" style="background-color: transparent;">
 
-        <div class="section-decor-wrap section-decor-mandala section-decor-mandala--committee is-right" aria-hidden="true">
-          <img src="assets/images/alpana-red.png" alt="" loading="lazy" decoding="async">
-        </div>
-
-        <!-- <img src="assets/images/mangokolka1.webp" alt="" aria-hidden="true" class="position-absolute ambient-drift"
+        <img src="assets/images/mangokolka1.webp" alt="" aria-hidden="true" class="position-absolute ambient-drift"
           style="top: 8%; left: -6vw; width: min(42vw, 440px); opacity: 0.12; z-index: 0; pointer-events: none; filter: invert(15%) sepia(85%) saturate(3000%) hue-rotate(345deg) brightness(90%) contrast(90%);"
-          loading="lazy" decoding="async"> -->
+          loading="lazy" decoding="async">
 
         <section id="section-committee" class="section-committee container py-5 position-relative" style="z-index: 10;">
 
@@ -415,64 +373,40 @@
 
             <!-- Person 1 -->
             <div class="col-10 col-sm-6 col-md-4 col-lg-3 mb-4 text-center">
-              <a href="about#profile-president" class="committee-card-link d-flex flex-column text-center text-decoration-none">
-                <div class="bg-white p-3 mx-auto mb-4"
-                  style="max-width: 280px; box-shadow: 0 15px 35px rgba(178,34,34,0.05); border: 1px solid rgba(0,0,0,0.03);">
-                  <div class="position-relative w-100 portrait-placeholder"
-                    style="aspect-ratio: 3/4; border: 1px solid rgba(178,34,34,0.15); overflow: hidden;">
-                    <img src="assets/images/core%20committee/Mrs.%20Debika%20Chakraborty.webp"
-                      alt="Mrs. Debika Chakraborty" class="w-100 h-100" style="object-fit: cover; object-position: top center;" loading="lazy"
-                      decoding="async">
-                  </div>
+              <div class="bg-white p-3 mx-auto mb-4"
+                style="max-width: 280px; box-shadow: 0 15px 35px rgba(178,34,34,0.05); border: 1px solid rgba(0,0,0,0.03);">
+                <div class="position-relative w-100 portrait-placeholder"
+                  style="aspect-ratio: 3/4; border: 1px solid rgba(178,34,34,0.15); overflow: hidden;">
+                  <img src="assets/images/core%20committee/Mrs.%20Debika%20Chakraborty.webp"
+                    alt="Mrs. Debika Chakraborty" class="w-100 h-100" style="object-fit: cover;" loading="lazy"
+                    decoding="async">
                 </div>
-                <h4 class="font-serif fw-bold mb-1" style="color: #b22222; font-size: 1.5rem;">Mrs. Debika Chakraborty
-                </h4>
-                <p class="text-uppercase mb-4" style="color: #333333; font-size: 0.75rem; letter-spacing: 0.15em;">
-                  President</p>
-                <span class="d-inline-block text-uppercase fw-bold pb-1 committee-card-cta"
-                  style="color: black; font-size: 0.7rem; letter-spacing: 0.15em; border-bottom: 2px solid #b22222; transition: opacity 0.3s;">Know
-                  More</span>
-              </a>
+              </div>
+              <h4 class="font-serif fw-bold mb-1" style="color: #b22222; font-size: 1.5rem;">Mrs. Debika Chakraborty
+              </h4>
+              <p class="text-uppercase mb-4" style="color: #333333; font-size: 0.75rem; letter-spacing: 0.15em;">
+                President</p>
+              <a href="about#profile-president" class="d-inline-block text-uppercase fw-bold text-decoration-none pb-1"
+                style="color: black; font-size: 0.7rem; letter-spacing: 0.15em; border-bottom: 2px solid #b22222; transition: opacity 0.3s;">Know
+                More</a>
             </div>
 
             <!-- Person 2 -->
             <div class="col-10 col-sm-6 col-md-4 col-lg-3 mb-4 text-center">
-              <a href="about#profile-secretary" class="committee-card-link d-flex flex-column text-center text-decoration-none">
-                <div class="bg-white p-3 mx-auto mb-4"
-                  style="max-width: 280px; box-shadow: 0 15px 35px rgba(178,34,34,0.05); border: 1px solid rgba(0,0,0,0.03);">
-                  <div class="position-relative w-100 portrait-placeholder"
-                    style="aspect-ratio: 3/4; border: 1px solid rgba(178,34,34,0.15); overflow: hidden;">
-                    <img src="assets/images/core%20committee/Kajal%20Das.webp" alt="Kajal Das" class="w-100 h-100"
-                      style="object-fit: cover; object-position: top center;" loading="lazy" decoding="async">
-                  </div>
+              <div class="bg-white p-3 mx-auto mb-4"
+                style="max-width: 280px; box-shadow: 0 15px 35px rgba(178,34,34,0.05); border: 1px solid rgba(0,0,0,0.03);">
+                <div class="position-relative w-100 portrait-placeholder"
+                  style="aspect-ratio: 3/4; border: 1px solid rgba(178,34,34,0.15); overflow: hidden;">
+                  <img src="assets/images/core%20committee/Kajal%20Das.webp" alt="Kajal Das" class="w-100 h-100"
+                    style="object-fit: cover;" loading="lazy" decoding="async">
                 </div>
-                <h4 class="font-serif fw-bold mb-1" style="color: #b22222; font-size: 1.5rem;">Kajal Das</h4>
-                <p class="text-uppercase mb-4" style="color: #333333; font-size: 0.75rem; letter-spacing: 0.15em;">
-                  Secretary</p>
-                <span class="d-inline-block text-uppercase fw-bold pb-1 committee-card-cta"
-                  style="color: black; font-size: 0.7rem; letter-spacing: 0.15em; border-bottom: 2px solid #b22222; transition: opacity 0.3s;">Know
-                  More</span>
-              </a>
-            </div>
-
-            <!-- Person 3 -->
-            <div class="col-10 col-sm-6 col-md-4 col-lg-3 mb-4 text-center">
-              <a href="about#profile-treasurer" class="committee-card-link d-flex flex-column text-center text-decoration-none">
-                <div class="bg-white p-3 mx-auto mb-4"
-                  style="max-width: 280px; box-shadow: 0 15px 35px rgba(178,34,34,0.05); border: 1px solid rgba(0,0,0,0.03);">
-                  <div class="position-relative w-100 portrait-placeholder"
-                    style="aspect-ratio: 3/4; border: 1px solid rgba(178,34,34,0.15); overflow: hidden;">
-                    <img src="assets/images/core%20committee/Sima%20kanojiya.jpeg" alt="Sima Kanojiya" class="w-100 h-100"
-                      style="object-fit: cover; object-position: top center;" loading="lazy" decoding="async">
-                  </div>
-                </div>
-                <h4 class="font-serif fw-bold mb-1" style="color: #b22222; font-size: 1.5rem;">Sima Kanojiya</h4>
-                <p class="text-uppercase mb-4" style="color: #333333; font-size: 0.75rem; letter-spacing: 0.15em;">
-                  Treasurer</p>
-                <span class="d-inline-block text-uppercase fw-bold pb-1 committee-card-cta"
-                  style="color: black; font-size: 0.7rem; letter-spacing: 0.15em; border-bottom: 2px solid #b22222; transition: opacity 0.3s;">Know
-                  More</span>
-              </a>
+              </div>
+              <h4 class="font-serif fw-bold mb-1" style="color: #b22222; font-size: 1.5rem;">Kajal Das</h4>
+              <p class="text-uppercase mb-4" style="color: #333333; font-size: 0.75rem; letter-spacing: 0.15em;">
+                Secretary</p>
+              <a href="about#profile-secretary" class="d-inline-block text-uppercase fw-bold text-decoration-none pb-1"
+                style="color: black; font-size: 0.7rem; letter-spacing: 0.15em; border-bottom: 2px solid #b22222; transition: opacity 0.3s;">Know
+                More</a>
             </div>
 
           </div>
@@ -490,7 +424,7 @@
           <div class="achievements-stats">
             <div class="achievement-item anim-fadeup">
               <div class="achievement-number">
-                <span class="number-highlight count-number" data-count-to="9" data-count-suffix="L+">0L+</span>
+                <span class="number-highlight">9L+</span>
               </div>
               <div class="achievement-label">
                 <span>Visitors<br>Every Year</span>
@@ -499,7 +433,7 @@
 
             <div class="achievement-item anim-fadeup">
               <div class="achievement-number">
-                <span class="number-highlight count-number" data-count-to="10" data-count-suffix="+">0+</span>
+                <span class="number-highlight">10+</span>
               </div>
               <div class="achievement-label">
                 <span>Years of<br>Glorious Celebrations</span>
@@ -508,7 +442,7 @@
 
             <div class="achievement-item anim-fadeup">
               <div class="achievement-number">
-                <span class="number-highlight count-number" data-count-to="4.8" data-count-decimals="1">0.0</span><span class="number-star">*</span>
+                <span class="number-highlight">4.8</span><span class="number-star">*</span>
               </div>
               <div class="achievement-label">
                 <span>Love &<br>Appreciation from Devotees</span>
@@ -549,7 +483,8 @@
           <div class="contact-grid">
             <!-- Left: Contact info -->
             <div class="contact-info">
-              <p class="contact-intro-label">Stay Connected with the Spirit of Pujo</p>
+              <p class="contact-intro-label">Stay Connected with the Spirit of Pujo
+              <p>
               <h2 class="contact-main-title">Get in Touch. Let's Celebrate Together</h2>
 
               <div class="contact-details">
@@ -579,20 +514,6 @@
                   <div class="contact-item-text">
                     <span class="contact-item-label">Visit Us</span>
                     <p class="contact-item-addr">22 No Raja Manindra Road, Kolkata - 700037, Kolkata, India</p>
-                  </div>
-                </div>
-
-                <div class="contact-item">
-                  <div class="contact-item-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M4 4h16v16H4z"></path>
-                      <path d="m4 6 8 7 8-7"></path>
-                    </svg>
-                  </div>
-                  <div class="contact-item-text">
-                    <span class="contact-item-label">Email Us</span>
-                    <a href="mailto:duttabaganadhibashibrinda@gmail.com" class="contact-item-phone">duttabaganadhibashibrinda@gmail.com</a>
                   </div>
                 </div>
               </div>
@@ -648,30 +569,30 @@
     <script src="assets/js/scroll-reveal.js?v=20260417-1"></script>
     <!-- Hero image slider -->
     <script>
-    (function () {
-      var track = document.getElementById('heroSlideTrack');
-      var texts = document.querySelectorAll('.hero-text-content');
-      if (!track || texts.length === 0) return;
-      var total = track.children.length;
-      var current = 0;
+      (function () {
+        var track = document.getElementById('heroSlideTrack');
+        var texts = document.querySelectorAll('.hero-text-content');
+        if (!track || texts.length === 0) return;
+        var total = track.children.length;
+        var current = 0;
 
-      // Activate first text on load
-      texts[0].classList.add('active');
+        // Activate first text on load
+        texts[0].classList.add('active');
 
-      setInterval(function () {
-        // Remove active from current text
-        texts[current].classList.remove('active');
+        setInterval(function () {
+          // Remove active from current text
+          texts[current].classList.remove('active');
 
-        // Slide image
-        current = (current + 1) % total;
-        track.style.transform = 'translateX(-' + (current * (100 / total)) + '%)';
+          // Slide image
+          current = (current + 1) % total;
+          track.style.transform = 'translateX(-' + (current * (100 / total)) + '%)';
 
-        // Activate new text with slight delay for cascade feel
-        setTimeout(function () {
-          texts[current].classList.add('active');
-        }, 300);
-      }, 5000);
-    }());
+          // Activate new text with slight delay for cascade feel
+          setTimeout(function () {
+            texts[current].classList.add('active');
+          }, 300);
+        }, 5000);
+      }());
     </script>
     <script src="assets/js/gallery-slider.js?v=20260419-1"></script>
 
