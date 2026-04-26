@@ -254,10 +254,10 @@ body {
 
 @media (max-width: 768px) {
   .zone-2-light::before {
-    height: 2.2vw;
+    height: 4vw;
     background:
-      radial-gradient(circle at 1.4vw 0, #b22222 1.4vw, transparent 1.41vw)
-      0 0 / 2.8vw 100% repeat-x;
+      radial-gradient(circle at 2vw 0, #b22222 2vw, transparent 2.01vw)
+      0 0 / 4vw 100% repeat-x;
   }
 }
 
@@ -271,7 +271,11 @@ body {
 }
 
 .zone-2-light.gallery-year-content::before {
-  display: none;
+  /* scallop edge is enabled — same as homepage */
+}
+
+.zone-2-light.gallery-year-content {
+  padding-top: 4rem;
 }
 
 .page-shell--inner {
