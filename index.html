@@ -165,7 +165,7 @@
                     loading="lazy" decoding="async">
                   <img src="assets/images/Dutta bagan.png" alt="Dutta Bagan Adhibashibrinda Durgoutsav Committee"
                     class="about-logo-overlay"
-                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; max-width: 600px; height: auto; object-fit: contain; z-index: 2; filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15));"
+                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70%; max-width: 520px; height: auto; object-fit: contain; z-index: 2; filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15));"
                     loading="lazy" decoding="async">
                 </div>
               </div>
@@ -409,6 +409,24 @@
                 More</a>
             </div>
 
+            <!-- Person 3 -->
+            <div class="col-10 col-sm-6 col-md-4 col-lg-3 mb-4 text-center">
+              <div class="bg-white p-3 mx-auto mb-4"
+                style="max-width: 280px; box-shadow: 0 15px 35px rgba(178,34,34,0.05); border: 1px solid rgba(0,0,0,0.03);">
+                <div class="position-relative w-100 portrait-placeholder"
+                  style="aspect-ratio: 3/4; border: 1px solid rgba(178,34,34,0.15); overflow: hidden;">
+                  <img src="assets/images/core%20committee/Sima Kanojiya.webp" alt="Sima Kanojiya" class="w-100 h-100"
+                    style="object-fit: cover; object-position: top;" loading="lazy" decoding="async">
+                </div>
+              </div>
+              <h4 class="font-serif fw-bold mb-1" style="color: #b22222; font-size: 1.5rem;">Sima Kanojiya</h4>
+              <p class="text-uppercase mb-4" style="color: #333333; font-size: 0.75rem; letter-spacing: 0.15em;">
+                Treasurer</p>
+              <a href="about#profile-treasurer" class="d-inline-block text-uppercase fw-bold text-decoration-none pb-1"
+                style="color: black; font-size: 0.7rem; letter-spacing: 0.15em; border-bottom: 2px solid #b22222; transition: opacity 0.3s;">Know
+                More</a>
+            </div>
+
           </div>
         </section>
       </div>
@@ -594,6 +612,49 @@
         }, 5000);
       }());
     </script>
+
+    <!-- Achievement counter animation -->
+    <script>
+      (function () {
+        var items = document.querySelectorAll('.number-highlight');
+        if (!items.length) return;
+
+        function parseTarget(text) {
+          var num = parseFloat(text.replace(/[^0-9.]/g, ''));
+          return isNaN(num) ? 0 : num;
+        }
+
+        function animateCounter(el) {
+          if (el.dataset.animated) return;
+          el.dataset.animated = '1';
+          var original = el.textContent.trim();
+          var target = parseTarget(original);
+          var suffix = original.replace(/[0-9.]/g, '');
+          var isDecimal = original.indexOf('.') !== -1;
+          var duration = 1800;
+          var start = null;
+
+          function step(ts) {
+            if (!start) start = ts;
+            var progress = Math.min((ts - start) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var current = target * eased;
+            el.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current)) + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) animateCounter(entry.target);
+          });
+        }, { threshold: 0.5 });
+
+        items.forEach(function (el) { observer.observe(el); });
+      }());
+    </script>
+
     <script src="assets/js/gallery-slider.js?v=20260419-1"></script>
 
 </body>

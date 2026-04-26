@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,12 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@400;600;900&family=Fira+Sans:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Barlow+Condensed:ital,wght@1,800&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@400;600;900&family=Fira+Sans:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Barlow+Condensed:ital,wght@1,800&family=Great+Vibes&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="assets/css/main.css?v=20260421-5">
 </head>
+
 <body>
   <script src="assets/js/loader.js?v=20260417-1"></script>
 
@@ -19,17 +23,10 @@
     <div id="site-header"></div>
 
     <section class="page-hero page-hero--about" aria-label="About page hero image">
-      <img
-        src="assets/images/about-bg-1920w.webp"
-        srcset="assets/images/About-bg-480w.webp 480w,
+      <img src="assets/images/about-bg-1920w.webp" srcset="assets/images/About-bg-480w.webp 480w,
                 assets/images/about-bg-1024w.webp 1024w,
-                assets/images/about-bg-1920w.webp 1920w"
-        sizes="100vw"
-        alt="About hero"
-        class="page-hero-media"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async">
+                assets/images/about-bg-1920w.webp 1920w" sizes="100vw" alt="About hero" class="page-hero-media"
+        loading="eager" fetchpriority="high" decoding="async">
       <div class="hero-video-overlay" aria-hidden="true"></div>
       <div class="hero-text-overlay">
         <div class="hero-text-content hero-text-content--about" data-slide="0">
@@ -43,110 +40,172 @@
     </section>
 
     <div class="zone-2-light page-shell page-shell--inner">
-    <!-- ============================================
+      <!-- ============================================
          OUR STORY SECTION
          ============================================ -->
-    <section class="py-5 page-section page-section--story">
-      <div class="page-ornament page-ornament--left" aria-hidden="true">
-        <img src="assets/images/alpana.webp" alt="" loading="lazy" decoding="async">
-      </div>
-      <div class="container py-5 page-section-inner">
-        <div class="row g-5 align-items-center">
+      <section class="py-5 page-section page-section--story">
+        <div class="page-ornament page-ornament--left" aria-hidden="true">
+          <img src="assets/images/alpana.webp" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="container py-5 page-section-inner">
+          <div class="row g-5 align-items-center">
 
-          <!-- Left Column: Arch Image + Logo (Desktop Only) -->
-          <div class="col-12 col-lg-5 text-center mb-5 mb-lg-0 anim-fadeup d-none d-lg-block" style="position: relative;">
-            <img src="assets/images/arch-red.webp" alt="" class="img-fluid" style="max-width: 400px; width: 75%;" loading="lazy" decoding="async">
-            <img src="assets/images/Dutta bagan 2.png" alt="Dutta Bagan Adhibashibrinda" class="about-logo-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; max-width: 600px; height: auto; object-fit: contain; z-index: 2; filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15));" loading="lazy" decoding="async">
+            <!-- Left Column: Arch Image + Logo (Desktop Only) -->
+            <div class="col-12 col-lg-5 text-center mb-5 mb-lg-0 anim-fadeup d-none d-lg-block"
+              style="position: relative;">
+              <img src="assets/images/arch-red.webp" alt="" class="img-fluid" style="max-width: 400px; width: 75%;"
+                loading="lazy" decoding="async">
+              <img src="assets/images/Dutta bagan 2.png" alt="Dutta Bagan Adhibashibrinda" class="about-logo-overlay"
+                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; max-width: 600px; height: auto; object-fit: contain; z-index: 2; filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15));"
+                loading="lazy" decoding="async">
+            </div>
+
+            <!-- Right Column: The Narrative (with mobile watermark) -->
+            <div class="col-12 col-lg-6 position-relative py-4 anim-fadeup">
+
+              <!-- Mobile Watermark (visible only on mobile) -->
+              <img src="assets/images/arch.webp" class="position-absolute d-block d-lg-none"
+                style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; opacity: 0.05; pointer-events: none; z-index: 0;"
+                alt="" loading="lazy" decoding="async">
+
+              <!-- Text Content (positioned above watermark) -->
+              <div class="page-copy-card" style="position: relative; z-index: 10;">
+
+                <!-- Our Heritage -->
+                <p class="text-uppercase fw-bold mb-2"
+                  style="color: black; font-size: 0.85rem; letter-spacing: 0.15em;">Our Heritage</p>
+                <h2 class="display-5 font-serif fw-bold mb-4" style="color: #b22222;">About Dutta Bagan</h2>
+
+                <p class="lead mb-4" style="color: #b22222; font-weight: 500;">Dutta Bagan Adhibashibrinda has been at
+                  the heart of cultural celebrations for over half a century. What began as a small community gathering
+                  has blossomed into one of the most vibrant and anticipated festivities in the region, attracting
+                  devotees and visitors from across the nation.</p>
+
+                <p style="color: #333333; font-size: 1rem;">Our roots run deep in tradition, yet our spirit embraces the
+                  energy of each new generation. The committee, composed of passionate local residents, works tirelessly
+                  to create an experience that honors our heritage while evolving with contemporary expression.</p>
+
+                <!-- Divider -->
+                <hr class="my-5" style="border-color: rgba(178,34,34,0.1);">
+
+                <!-- Our Vision -->
+                <h3 class="font-serif fw-bold mb-3" style="color: #b22222;">Our Vision</h3>
+
+                <p style="color: #333333; font-size: 0.95rem;">Looking ahead, we envision Dutta Bagan Adhibashibrinda as
+                  more than a festival ground—it is a living testament to community strength, cultural preservation, and
+                  the unifying power of faith. We aim to expand our reach while maintaining the intimate, heartfelt
+                  connection that defines our celebrations, ensuring that future generations inherit a tradition as
+                  vibrant and meaningful as the one we cherish today.</p>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+         LEADERSHIP PROFILES SECTION
+         ============================================ -->
+      <section class="py-5 page-section page-section--team">
+        <div class="page-ornament page-ornament--right page-ornament--soft" aria-hidden="true">
+          <img src="assets/images/mangokolka1.webp" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="container page-section-inner">
+
+          <!-- Section Title -->
+          <div class="text-center mb-5 pb-4 anim-fadeup">
+            <p class="text-uppercase fw-bold mb-2" style="color: black; font-size: 0.85rem; letter-spacing: 0.15em;">Our
+              Team</p>
+            <h2 class="display-5 font-serif fw-bold mb-0" style="color: #b22222;">Leadership Profiles</h2>
           </div>
 
-          <!-- Right Column: The Narrative (with mobile watermark) -->
-          <div class="col-12 col-lg-6 position-relative py-4 anim-fadeup">
+          <!-- Profile 1: President -->
+          <div id="profile-president"
+            class="row align-items-center mb-5 pb-5 profile-anchor page-profile-block anim-fadeup"
+            style="border-bottom: 1px solid rgba(178,34,34,0.1);">
+            <div class="col-12 col-md-5 mb-4 mb-md-0">
+              <img src="assets/images/core committee/Mrs. Debika Chakraborty.webp" alt="Mrs. Debika Chakraborty"
+                class="img-fluid w-100 profile-photo-reveal" tabindex="0" role="button"
+                aria-label="Toggle color for Mrs. Debika Chakraborty portrait" aria-pressed="false"
+                onmouseenter="this.style.filter='grayscale(0%)'"
+                onmouseleave="if(!this.classList.contains('is-color')){this.style.filter='grayscale(100%)';}"
+                onclick="const on=this.classList.toggle('is-color');this.style.filter=on?'grayscale(0%)':'grayscale(100%)';this.setAttribute('aria-pressed',on?'true':'false');"
+                onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"
+                style="aspect-ratio: 4/5; object-fit: cover; object-position: top center; filter: grayscale(100%); border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(178,34,34,0.05);"
+                loading="lazy" decoding="async">
+            </div>
 
-            <!-- Mobile Watermark (visible only on mobile) -->
-            <img src="assets/images/arch.webp" class="position-absolute d-block d-lg-none" style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; opacity: 0.05; pointer-events: none; z-index: 0;" alt="" loading="lazy" decoding="async">
-
-            <!-- Text Content (positioned above watermark) -->
-            <div class="page-copy-card" style="position: relative; z-index: 10;">
-
-              <!-- Our Heritage -->
-              <p class="text-uppercase fw-bold mb-2" style="color: black; font-size: 0.85rem; letter-spacing: 0.15em;">Our Heritage</p>
-              <h2 class="display-5 font-serif fw-bold mb-4" style="color: #b22222;">About Dutta Bagan</h2>
-
-              <p class="lead mb-4" style="color: #b22222; font-weight: 500;">Dutta Bagan Adhibashibrinda has been at the heart of cultural celebrations for over half a century. What began as a small community gathering has blossomed into one of the most vibrant and anticipated festivities in the region, attracting devotees and visitors from across the nation.</p>
-
-              <p style="color: #333333; font-size: 1rem;">Our roots run deep in tradition, yet our spirit embraces the energy of each new generation. The committee, composed of passionate local residents, works tirelessly to create an experience that honors our heritage while evolving with contemporary expression.</p>
-
-              <!-- Divider -->
-              <hr class="my-5" style="border-color: rgba(178,34,34,0.1);">
-
-              <!-- Our Vision -->
-              <h3 class="font-serif fw-bold mb-3" style="color: #b22222;">Our Vision</h3>
-
-              <p style="color: #333333; font-size: 0.95rem;">Looking ahead, we envision Dutta Bagan Adhibashibrinda as more than a festival ground—it is a living testament to community strength, cultural preservation, and the unifying power of faith. We aim to expand our reach while maintaining the intimate, heartfelt connection that defines our celebrations, ensuring that future generations inherit a tradition as vibrant and meaningful as the one we cherish today.</p>
-
+            <div class="col-12 col-md-7 ps-md-5">
+              <h3 class="font-serif fw-bold mb-2" style="color: #b22222; font-size: 1.5rem;">Mrs. Debika Chakraborty
+              </h3>
+              <div class="d-inline-block px-3 py-1 mb-3"
+                style="background-color: #b22222; color: #FDFBF7; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">
+                Club President</div>
+              <p style="color: #333333; line-height: 1.7; font-size: 0.95rem;">As the Club President, Mrs. Debika
+                Chakraborty brings decades of experience in community leadership and cultural preservation. Her vision
+                and dedication have been instrumental in shaping the identity and growth of Dutta Bagan Adhibashibrinda,
+                ensuring that every celebration reflects the values and aspirations of our community.</p>
             </div>
           </div>
 
-        </div>
-      </div>
-    </section>
+          <!-- Profile 2: Secretary -->
+          <div id="profile-secretary"
+            class="row align-items-center mb-5 pb-5 profile-anchor page-profile-block anim-fadeup"
+            style="border-bottom: 1px solid rgba(178,34,34,0.1);">
+            <div class="col-12 col-md-7 pe-md-5 order-2 order-md-1">
+              <h3 class="font-serif fw-bold mb-2" style="color: #b22222; font-size: 1.5rem;">Kajal Das</h3>
+              <div class="d-inline-block px-3 py-1 mb-3"
+                style="background-color: #b22222; color: #FDFBF7; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">
+                Secretary</div>
+              <p style="color: #333333; line-height: 1.7; font-size: 0.95rem;">As Secretary, Kajal Das plays a vital
+                role in coordinating committee activities, planning schedules, and ensuring smooth execution of every
+                initiative. Her commitment and organizational leadership help carry the spirit of Dutta Bagan
+                Adhibashibrinda forward with clarity and care.</p>
+            </div>
 
-    <!-- ============================================
-         LEADERSHIP PROFILES SECTION
-         ============================================ -->
-    <section class="py-5 page-section page-section--team">
-      <div class="page-ornament page-ornament--right page-ornament--soft" aria-hidden="true">
-        <img src="assets/images/mangokolka1.webp" alt="" loading="lazy" decoding="async">
-      </div>
-      <div class="container page-section-inner">
-
-        <!-- Section Title -->
-        <div class="text-center mb-5 pb-4 anim-fadeup">
-          <p class="text-uppercase fw-bold mb-2" style="color: black; font-size: 0.85rem; letter-spacing: 0.15em;">Our Team</p>
-          <h2 class="display-5 font-serif fw-bold mb-0" style="color: #b22222;">Leadership Profiles</h2>
-        </div>
-
-        <!-- Profile 1: President -->
-        <div id="profile-president" class="row align-items-center mb-5 pb-5 profile-anchor page-profile-block anim-fadeup" style="border-bottom: 1px solid rgba(178,34,34,0.1);">
-          <div class="col-12 col-md-5 mb-4 mb-md-0">
-            <img src="assets/images/core committee/Mrs. Debika Chakraborty.webp" alt="Mrs. Debika Chakraborty" class="img-fluid w-100 profile-photo-reveal" tabindex="0" role="button" aria-label="Toggle color for Mrs. Debika Chakraborty portrait" aria-pressed="false" onmouseenter="this.style.filter='grayscale(0%)'" onmouseleave="if(!this.classList.contains('is-color')){this.style.filter='grayscale(100%)';}" onclick="const on=this.classList.toggle('is-color');this.style.filter=on?'grayscale(0%)':'grayscale(100%)';this.setAttribute('aria-pressed',on?'true':'false');" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" style="aspect-ratio: 4/5; object-fit: cover; object-position: top center; filter: grayscale(100%); border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(178,34,34,0.05);" loading="lazy" decoding="async">
+            <div class="col-12 col-md-5 mb-4 mb-md-0 order-1 order-md-2">
+              <img src="assets/images/core committee/Kajal Das.webp" alt="Kajal Das"
+                class="img-fluid w-100 profile-photo-reveal" tabindex="0" role="button"
+                aria-label="Toggle color for Kajal Das portrait" aria-pressed="false"
+                onmouseenter="this.style.filter='grayscale(0%)'"
+                onmouseleave="if(!this.classList.contains('is-color')){this.style.filter='grayscale(100%)';}"
+                onclick="const on=this.classList.toggle('is-color');this.style.filter=on?'grayscale(0%)':'grayscale(100%)';this.setAttribute('aria-pressed',on?'true':'false');"
+                onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"
+                style="aspect-ratio: 4/5; object-fit: cover; object-position: top center; filter: grayscale(100%); border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(178,34,34,0.05);"
+                loading="lazy" decoding="async">
+            </div>
           </div>
 
-          <div class="col-12 col-md-7 ps-md-5">
-            <h3 class="font-serif fw-bold mb-2" style="color: #b22222; font-size: 1.5rem;">Mrs. Debika Chakraborty</h3>
-            <div class="d-inline-block px-3 py-1 mb-3" style="background-color: #b22222; color: #FDFBF7; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">Club President</div>
-            <p style="color: #333333; line-height: 1.7; font-size: 0.95rem;">As the Club President, Mrs. Debika Chakraborty brings decades of experience in community leadership and cultural preservation. Her vision and dedication have been instrumental in shaping the identity and growth of Dutta Bagan Adhibashibrinda, ensuring that every celebration reflects the values and aspirations of our community.</p>
-          </div>
-        </div>
+          <!-- Profile 3: Treasurer -->
+          <div id="profile-treasurer"
+            class="row align-items-center mb-5 pb-5 profile-anchor page-profile-block anim-fadeup"
+            style="border-bottom: 1px solid rgba(178,34,34,0.1);">
+            <div class="col-12 col-md-5 mb-4 mb-md-0">
+              <img src="assets/images/core committee/Sima Kanojiya.webp" alt="Sima Kanojiya"
+                class="img-fluid w-100 profile-photo-reveal" tabindex="0" role="button"
+                aria-label="Toggle color for Sima Kanojiya portrait" aria-pressed="false"
+                onmouseenter="this.style.filter='grayscale(0%)'"
+                onmouseleave="if(!this.classList.contains('is-color')){this.style.filter='grayscale(100%)';}"
+                onclick="const on=this.classList.toggle('is-color');this.style.filter=on?'grayscale(0%)':'grayscale(100%)';this.setAttribute('aria-pressed',on?'true':'false');"
+                onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"
+                style="aspect-ratio: 4/5; object-fit: cover; object-position: top center; filter: grayscale(100%); border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(178,34,34,0.05);"
+                loading="lazy" decoding="async">
+            </div>
 
-        <!-- Profile 2: Secretary -->
-        <div id="profile-secretary" class="row align-items-center mb-5 pb-5 profile-anchor page-profile-block anim-fadeup" style="border-bottom: 1px solid rgba(178,34,34,0.1);">
-          <div class="col-12 col-md-7 pe-md-5 order-2 order-md-1">
-            <h3 class="font-serif fw-bold mb-2" style="color: #b22222; font-size: 1.5rem;">Kajal Das</h3>
-            <div class="d-inline-block px-3 py-1 mb-3" style="background-color: #b22222; color: #FDFBF7; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">Secretary</div>
-            <p style="color: #333333; line-height: 1.7; font-size: 0.95rem;">As Secretary, Kajal Das plays a vital role in coordinating committee activities, planning schedules, and ensuring smooth execution of every initiative. Her commitment and organizational leadership help carry the spirit of Dutta Bagan Adhibashibrinda forward with clarity and care.</p>
+            <div class="col-12 col-md-7 ps-md-5">
+              <h3 class="font-serif fw-bold mb-2" style="color: #b22222; font-size: 1.5rem;">Sima Kanojiya</h3>
+              <div class="d-inline-block px-3 py-1 mb-3"
+                style="background-color: #b22222; color: #FDFBF7; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">
+                Treasurer</div>
+              <p style="color: #333333; line-height: 1.7; font-size: 0.95rem;">As Treasurer, Sima Kanojiya manages the
+                committee's financial planning and stewardship with responsibility and precision. Her role helps support
+                every celebration with strong organization and dependable oversight.</p>
+            </div>
           </div>
 
-          <div class="col-12 col-md-5 mb-4 mb-md-0 order-1 order-md-2">
-            <img src="assets/images/core committee/Kajal Das.webp" alt="Kajal Das" class="img-fluid w-100 profile-photo-reveal" tabindex="0" role="button" aria-label="Toggle color for Kajal Das portrait" aria-pressed="false" onmouseenter="this.style.filter='grayscale(0%)'" onmouseleave="if(!this.classList.contains('is-color')){this.style.filter='grayscale(100%)';}" onclick="const on=this.classList.toggle('is-color');this.style.filter=on?'grayscale(0%)':'grayscale(100%)';this.setAttribute('aria-pressed',on?'true':'false');" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" style="aspect-ratio: 4/5; object-fit: cover; object-position: top center; filter: grayscale(100%); border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(178,34,34,0.05);" loading="lazy" decoding="async">
-          </div>
-        </div>
-
-        <!-- Profile 3: Treasurer -->
-        <div id="profile-treasurer" class="row align-items-center mb-5 pb-5 profile-anchor page-profile-block anim-fadeup" style="border-bottom: 1px solid rgba(178,34,34,0.1);">
-          <div class="col-12 col-md-5 mb-4 mb-md-0">
-            <img src="assets/images/core committee/Sima kanojiya.jpeg" alt="Sima Kanojiya" class="img-fluid w-100 profile-photo-reveal" tabindex="0" role="button" aria-label="Toggle color for Sima Kanojiya portrait" aria-pressed="false" onmouseenter="this.style.filter='grayscale(0%)'" onmouseleave="if(!this.classList.contains('is-color')){this.style.filter='grayscale(100%)';}" onclick="const on=this.classList.toggle('is-color');this.style.filter=on?'grayscale(0%)':'grayscale(100%)';this.setAttribute('aria-pressed',on?'true':'false');" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" style="aspect-ratio: 4/5; object-fit: cover; object-position: top center; filter: grayscale(100%); border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(178,34,34,0.05);" loading="lazy" decoding="async">
-          </div>
-
-          <div class="col-12 col-md-7 ps-md-5">
-            <h3 class="font-serif fw-bold mb-2" style="color: #b22222; font-size: 1.5rem;">Sima Kanojiya</h3>
-            <div class="d-inline-block px-3 py-1 mb-3" style="background-color: #b22222; color: #FDFBF7; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">Treasurer</div>
-            <p style="color: #333333; line-height: 1.7; font-size: 0.95rem;">As Treasurer, Sima Kanojiya manages the committee's financial planning and stewardship with responsibility and precision. Her role helps support every celebration with strong organization and dependable oversight.</p>
-          </div>
-        </div>
-
-        <!-- Profile 2: Vice President (Commented Out) -->
-        <!-- <div id="profile-vice-president" class="row align-items-center mb-5 pb-5 profile-anchor" style="border-bottom: 1px solid rgba(178,34,34,0.1);">
+          <!-- Profile 2: Vice President (Commented Out) -->
+          <!-- <div id="profile-vice-president" class="row align-items-center mb-5 pb-5 profile-anchor" style="border-bottom: 1px solid rgba(178,34,34,0.1);">
           <div class="col-12 col-md-7 pe-md-5 order-2 order-md-1">
             <h3 class="font-serif fw-bold mb-2" style="color: #b22222; font-size: 1.5rem;">Kasturi Chowdhury</h3>
             <div class="d-inline-block px-3 py-1 mb-3" style="background-color: #b22222; color: #FDFBF7; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">Vice President</div>
@@ -160,8 +219,8 @@
           </div>
         </div> -->
 
-        <!-- Profile 3: General Secretary (Commented Out) -->
-        <!-- <div id="profile-general-secretary" class="row align-items-center mb-5 pb-5 profile-anchor" style="border-bottom: 1px solid rgba(178,34,34,0.1);">
+          <!-- Profile 3: General Secretary (Commented Out) -->
+          <!-- <div id="profile-general-secretary" class="row align-items-center mb-5 pb-5 profile-anchor" style="border-bottom: 1px solid rgba(178,34,34,0.1);">
           <div class="col-12 col-md-5 mb-4 mb-md-0">
             <div class="portrait-placeholder d-flex align-items-center justify-content-center" style="aspect-ratio: 4/5; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(178,34,34,0.05);">
               <span class="portrait-initials">DB</span>
@@ -175,8 +234,8 @@
           </div>
         </div> -->
 
-      </div>
-    </section>
+        </div>
+      </section>
     </div>
 
     <div id="site-footer"></div>
@@ -195,21 +254,22 @@
   <script src="assets/js/interactions.js?v=20260417-1"></script>
   <script src="assets/js/scroll-reveal.js?v=20260417-1"></script>
   <script>
-  (function () {
-    var heroText = document.querySelector('.page-hero .hero-text-content');
-    if (!heroText) return;
-    function activateHeroText() {
-      window.requestAnimationFrame(function () {
-        heroText.classList.add('active');
-      });
-    }
-    document.addEventListener('loader:done', activateHeroText, { once: true });
-    // Failsafe in case loader finished before this script ran
-    if (document.readyState === 'complete' && (!document.getElementById('pageLoader') || document.getElementById('pageLoader').dataset.done === '1')) {
+    (function () {
+      var heroText = document.querySelector('.page-hero .hero-text-content');
+      if (!heroText) return;
+      function activateHeroText() {
+        window.requestAnimationFrame(function () {
+          heroText.classList.add('active');
+        });
+      }
+      document.addEventListener('loader:done', activateHeroText, { once: true });
+      // Failsafe in case loader finished before this script ran
+      if (document.readyState === 'complete' && (!document.getElementById('pageLoader') || document.getElementById('pageLoader').dataset.done === '1')) {
         activateHeroText();
-    }
-    window.addEventListener('pageshow', activateHeroText);
-  }());
+      }
+      window.addEventListener('pageshow', activateHeroText);
+    }());
   </script>
 </body>
+
 </html>
