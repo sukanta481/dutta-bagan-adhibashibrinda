@@ -991,6 +991,7 @@ body {
   color: #fff;
   line-height: 0.95;
   letter-spacing: 0;
+  text-transform: none;
   text-shadow: 0 8px 34px rgba(0, 0, 0, 0.44);
   transform: translate3d(20px, 18px, 0) scale(0.96);
   opacity: 0;
